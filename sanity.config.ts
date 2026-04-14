@@ -3,6 +3,7 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
+import {oldStructure} from './structure/old'
 import {oldSchemaTypes} from './schemaTypes/old'
 
 export default defineConfig([
@@ -25,7 +26,7 @@ export default defineConfig([
     dataset: 'old',
     basePath: '/old',
     plugins: [
-      structureTool(),
+      structureTool({structure: oldStructure}),
       visionTool(),
     ],
     schema: {types: oldSchemaTypes},
