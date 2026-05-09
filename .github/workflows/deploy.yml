@@ -1,11 +1,10 @@
-name: Deploy Sanity Studio to S3 + CloudFront
+name: Deploy Sanity Studio to Cloudflare Pages
 
 on:
   push:
     branches: [main]
 
 permissions:
-  id-token: write
   contents: read
 
 jobs:
@@ -21,18 +20,17 @@ jobs:
 
       - run: npm ci
 
-      - run: npx sanity build
+      # Use `npm run build` (not `npx sanity build`) so the package.json
+      # `postbuild` script fires and copies _headers + _redirects into dist/.
+      - name: Build
         env:
           SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
           SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
+        run: npm run build
 
-      - uses: aws-actions/configure-aws-credentials@v4
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
-          aws-region: ap-south-2
-
-      - name: Sync to S3
-        run: aws s3 sync dist/ s3://cms-sasinfra-com --delete
-
-      - name: Invalidate CloudFront
-        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 3dfaf24ab3c78462d65efe216feeb0b6
+          command: pages deploy dist/ --project-name=sasinfra-cms --branch=main --commit-hash=${{ github.sha }}

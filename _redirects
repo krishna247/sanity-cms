@@ -1,0 +1,3 @@
+# SPA fallback for Sanity Studio.
+# Copied into dist/ by the package.json `postbuild` script.
+/*  /index.html  200

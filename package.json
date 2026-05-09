@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "sanity dev",
     "build": "sanity build",
+    "postbuild": "cp _headers _redirects dist/",
     "deploy": "sanity deploy",
     "typegen": "sanity typegen generate"
   },
