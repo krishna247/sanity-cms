@@ -25,13 +25,12 @@ export default defineType({
       title: 'Excerpt',
       type: 'text',
       rows: 3,
-      validation: (rule) => rule.max(300),
+      validation: (rule) => rule.max(500),
     }),
     defineField({
       name: 'featuredImage',
       title: 'Featured Image',
       type: 'imageWithAlt',
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'body',
