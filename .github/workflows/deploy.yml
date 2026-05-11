@@ -32,5 +32,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 3dfaf24ab3c78462d65efe216feeb0b6
+          accountId: 659a3f2bef182e72dacb2ae344b2bf8a
           command: pages deploy dist/ --project-name=sasinfra-cms --branch=main --commit-hash=${{ github.sha }}
