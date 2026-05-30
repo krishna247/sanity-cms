@@ -149,6 +149,61 @@ export default defineType({
       title: 'SEO',
       type: 'seo',
     }),
+
+    // ─── Structured data (project JSON-LD) ───────────────────────────────
+    // Powers the ApartmentComplex / LocalBusiness schema on the project page.
+    // Geo comes from `location.geopoint`; amenities from `amenities[].name`;
+    // RERA from `reraNumber`.
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description (1–2 sentence pitch)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'structuredData',
+      description:
+        'Canonical pitch Google + AI search read. Separate from the on-page description.',
+    }),
+    defineField({
+      name: 'seoSchemaType',
+      title: 'Schema Type',
+      type: 'string',
+      fieldset: 'structuredData',
+      options: {
+        list: [
+          {title: 'Apartment Complex (residential)', value: 'ApartmentComplex'},
+          {title: 'Local Business (commercial)', value: 'LocalBusiness'},
+        ],
+      },
+      description: 'schema.org @type for this project.',
+    }),
+    defineField({
+      name: 'numberOfFloors',
+      title: 'Number of Floors',
+      type: 'number',
+      fieldset: 'structuredData',
+      description: 'Total floors incl. ground, e.g. G+57 → 58.',
+    }),
+    defineField({
+      name: 'unitConfiguration',
+      title: 'Unit Configuration',
+      type: 'string',
+      fieldset: 'structuredData',
+      description: 'Residential only, e.g. "4 BHK". Maps to numberOfAccommodationUnits.',
+    }),
+    defineField({
+      name: 'priceRange',
+      title: 'Price Range',
+      type: 'string',
+      fieldset: 'structuredData',
+      description: 'Optional, e.g. "Starts from ₹X cr". Published as priceRange if set.',
+    }),
+  ],
+  fieldsets: [
+    {
+      name: 'structuredData',
+      title: 'Structured Data (project JSON-LD)',
+      options: {collapsible: true, collapsed: true},
+    },
   ],
   preview: {
     select: {
