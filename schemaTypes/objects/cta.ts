@@ -2,8 +2,11 @@ import {defineType, defineField} from 'sanity'
 
 export default defineType({
   name: 'cta',
-  title: 'Call to Action',
+  title: 'Legacy Call to Action',
   type: 'object',
+  deprecated: {
+    reason: 'Use the discriminated link object instead.',
+  },
   fields: [
     defineField({
       name: 'label',

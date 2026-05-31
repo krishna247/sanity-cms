@@ -25,10 +25,7 @@ export default defineType({
     defineField({
       name: 'ogImage',
       title: 'Open Graph Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      type: 'imageWithAlt',
     }),
     defineField({
       name: 'noIndex',
