@@ -1,10 +1,13 @@
 import {
   CogIcon,
   DocumentIcon,
+  DocumentsIcon,
   DocumentTextIcon,
   HomeIcon,
   MenuIcon,
   PinIcon,
+  ProjectsIcon,
+  StarIcon,
   ThListIcon,
   UserIcon,
 } from '@sanity/icons'
@@ -39,7 +42,7 @@ function flagshipProject(S: StructureBuilder, id: string, title: string) {
   return S.listItem()
     .id(id)
     .title(title)
-    .icon(HomeIcon)
+    .icon(StarIcon)
     .child(S.document().schemaType('project').documentId(id).title(title))
 }
 
@@ -51,6 +54,8 @@ export const structure: StructureResolver = (S) =>
       singleton(S, 'navigation', 'Navigation', MenuIcon),
       S.divider(),
       singleton(S, 'homePage', 'Home', HomeIcon),
+      flagshipProject(S, 'project-sas-crown', 'SAS Crown'),
+      flagshipProject(S, 'project-sas-itower', 'SAS iTower'),
       S.divider(),
       S.listItem()
         .id('blog')
@@ -79,7 +84,7 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .id('projects')
         .title('Projects')
-        .icon(HomeIcon)
+        .icon(ProjectsIcon)
         .child(
           S.list()
             .title('Projects')
@@ -107,11 +112,10 @@ export const structure: StructureResolver = (S) =>
                         ),
                     ]),
                 ),
-              flagshipProject(S, 'project-sas-crown', 'SAS Crown'),
-              flagshipProject(S, 'project-sas-itower', 'SAS iTower'),
               S.listItem()
                 .id('all-projects')
                 .title('All Projects')
+                .icon(ProjectsIcon)
                 .schemaType('project')
                 .child(
                   S.list()
@@ -139,7 +143,7 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .id('pages')
         .title('Pages')
-        .icon(DocumentIcon)
+        .icon(DocumentsIcon)
         .child(
           S.list()
             .title('Pages')
