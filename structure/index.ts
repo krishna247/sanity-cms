@@ -15,13 +15,6 @@ import type {StructureBuilder, StructureResolver} from 'sanity/structure'
 import type {ComponentType} from 'react'
 import {FIXED_PAGE_IDS} from '../schemaTypes/utils/routing'
 
-const projectStatuses = [
-  {title: 'Upcoming', value: 'upcoming'},
-  {title: 'Under Construction', value: 'under-construction'},
-  {title: 'Ready to Move', value: 'ready-to-move'},
-  {title: 'Completed', value: 'completed'},
-]
-
 function singleton(S: StructureBuilder, type: string, title: string, icon: ComponentType) {
   return S.listItem()
     .id(type)
@@ -81,62 +74,41 @@ export const structure: StructureResolver = (S) =>
                 ),
             ]),
         ),
+      // "Projects" is a flat list of every project doc — clicking it shows the
+      // projects directly (the two flagship docs are also pinned above for
+      // one-click access; this list also reaches any non-pinned project).
       S.listItem()
         .id('projects')
         .title('Projects')
         .icon(ProjectsIcon)
+        .schemaType('project')
+        .child(
+          S.documentList()
+            .title('Projects')
+            .schemaType('project')
+            .filter('_type == "project"')
+            .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        ),
+      S.listItem()
+        .id('project-updates')
+        .title('Updates')
+        .icon(ThListIcon)
         .child(
           S.list()
-            .title('Projects')
+            .title('Updates')
             .items([
+              singleton(S, 'updatesIndexPage', 'Updates Index', ThListIcon),
               S.listItem()
-                .id('project-updates')
-                .title('Updates')
-                .icon(ThListIcon)
+                .id('project-update-items')
+                .title('Update Items')
+                .schemaType('projectUpdate')
                 .child(
-                  S.list()
-                    .title('Updates')
-                    .items([
-                      singleton(S, 'updatesIndexPage', 'Updates Index', ThListIcon),
-                      S.listItem()
-                        .id('project-update-items')
-                        .title('Update Items')
-                        .schemaType('projectUpdate')
-                        .child(
-                          S.documentList()
-                            .title('Project Updates')
-                            .schemaType('projectUpdate')
-                            .filter('_type == "projectUpdate"')
-                            .defaultOrdering([{field: 'date', direction: 'desc'}])
-                            .initialValueTemplates([S.initialValueTemplateItem('projectUpdate-today')]),
-                        ),
-                    ]),
-                ),
-              S.listItem()
-                .id('all-projects')
-                .title('All Projects')
-                .icon(ProjectsIcon)
-                .schemaType('project')
-                .child(
-                  S.list()
-                    .title('All Projects')
-                    .items([
-                      ...projectStatuses.map((status) =>
-                        S.listItem()
-                          .id(`projects-${status.value}`)
-                          .title(status.title)
-                          .schemaType('project')
-                          .child(
-                            S.documentList()
-                              .title(status.title)
-                              .schemaType('project')
-                              .filter('_type == "project" && status == $status')
-                              .params({status: status.value}),
-                          ),
-                      ),
-                      S.divider(),
-                      S.documentTypeListItem('project').title('Every Project'),
-                    ]),
+                  S.documentList()
+                    .title('Project Updates')
+                    .schemaType('projectUpdate')
+                    .filter('_type == "projectUpdate"')
+                    .defaultOrdering([{field: 'date', direction: 'desc'}])
+                    .initialValueTemplates([S.initialValueTemplateItem('projectUpdate-today')]),
                 ),
             ]),
         ),
