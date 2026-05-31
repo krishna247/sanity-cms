@@ -210,20 +210,51 @@ overlays, click-to-edit, refresh, **and a real `drafts` request** in the network
 
 ---
 
-## 6. Phase 2 — Deployed preview (Cloudflare **Workers**)
+## 6. Phase 2 — Deployed preview (Cloudflare **Workers**) — infra spec
 
-- **`wrangler.jsonc`** for the preview Worker: `main: "@astrojs/cloudflare/entrypoints/server"`,
-  a worker name (e.g. `sasinfra-frontend-preview`), compatibility flags per the adapter docs.
-- **`repos/frontend/.github/workflows/deploy-preview.yml`** — build with `PREVIEW_BUILD=1`,
-  then `wrangler deploy` (Workers), **not** `pages deploy`. Production `deploy.yml`
-  (Pages) is **untouched**.
-- **Token as a Workers secret** (`wrangler secret put SANITY_API_READ_TOKEN` /
-  dashboard), surfaced through `astro:env/server`. Not a build var.
-- **Studio:** `SANITY_STUDIO_PREVIEW_URL` → the Worker's URL; `stega.studioUrl` →
-  the live `sasinfra-cms` Studio URL.
-- **CORS:** preview origin added (credentials) **before first use**.
-- **Verify on the deployed Worker**, not just locally — confirm drafts render and the
-  token resolves at request time.
+Stages A–F need **no** Cloudflare account work; everything here does. The Worker is
+created on first `wrangler deploy` (no pre-provisioning like a Pages project).
+
+### 6.0 Hard prerequisite — Cloudflare API token scope 🔴
+The existing `CLOUDFLARE_API_TOKEN` GH secret is used for `wrangler pages deploy`
+(**Pages:Edit**). A Workers deploy **and** `wrangler secret put` need
+**Workers Scripts:Edit** (+ Account Settings:Read). **Verify the token's scope first**;
+if it's Pages-only, broaden it or mint a Workers-scoped token. This is the single most
+likely Stage-G blocker, and a wrong-scope failure is a silent 403 until you read the logs.
+
+### 6.1 Preview URL — default to a `workers.dev` subdomain
+Use the free subdomain `sasinfra-frontend-preview.<account>.workers.dev`: zero DNS, stable,
+immediate. A custom domain (`preview.sasinfra.com`) means DNS work and the domain is split
+GoDaddy/Cloudflare (CLAUDE.md) — not worth it for an internal editor preview. Confirm the
+account's `workers.dev` subdomain is enabled (one-time account setting).
+
+### 6.2 `wrangler.jsonc` (preview Worker)
+- `name: "sasinfra-frontend-preview"`
+- `main: "@astrojs/cloudflare/entrypoints/server"`
+- `compatibility_date: "<recent>"`
+- `compatibility_flags: ["nodejs_compat"]` — **required**: `@sanity/client` /
+  `@sanity/preview-url-secret` use `node:crypto`/`buffer`.
+- `assets: { directory: "./dist", binding: "ASSETS" }` — how the Worker serves the built
+  client assets (adapter mostly wires this automatically; set it explicitly to be safe).
+- `workers_dev: true`.
+
+### 6.3 Deploy workflow
+`repos/frontend/.github/workflows/deploy-preview.yml` — checkout → pnpm → build with
+`PREVIEW_BUILD=1` → `wrangler deploy` (`cloudflare/wrangler-action@v3`, `command: deploy`),
+using the Workers-scoped token (6.0). Production `deploy.yml` (Pages) is **untouched**.
+
+### 6.4 Worker secret
+One-time `wrangler secret put SANITY_API_READ_TOKEN` (or dashboard); read at runtime via
+`astro:env/server`. Needs the Workers-scoped token. Not a build var, never in the repo.
+
+### 6.5 Studio + CORS
+`SANITY_STUDIO_PREVIEW_URL` → the Worker URL; `stega.studioUrl` → live `sasinfra-cms`
+Studio URL. Add the Worker origin to Sanity CORS (**Allow credentials**) **before first use**.
+
+### 6.6 Verify on the deployed Worker
+Open Presentation against the deployed preview — confirm drafts render, overlays work, and
+the token resolves at **request time** (the C1 failure mode only surfaces here, not in
+`astro dev`).
 
 ---
 
@@ -350,11 +381,14 @@ the `output` mode does the split.**
 - [ ] F1. Token in `.dev.vars` (done); CORS `localhost:4321` **+ the Studio origin** (Allow credentials).
 - [ ] F2. Studio (`:3333`) + frontend (`:4321`, Workers adapter + `platformProxy`); confirm overlays, click-to-edit, refresh, **and a real `drafts` request**.
 
-### Stage G — Deploy (Phase 2, Cloudflare **Workers**)
-- [ ] G1. `wrangler.jsonc` (`main: @astrojs/cloudflare/entrypoints/server`, worker name).
-- [ ] G2. `deploy-preview.yml`: `PREVIEW_BUILD=1` build → `wrangler deploy` (Workers).
-- [ ] G3. Token as a **Workers secret**; add CORS preview origin (credentials); Studio `SANITY_STUDIO_PREVIEW_URL` + `stega.studioUrl`.
-- [ ] G4. Verify **on the deployed Worker** (drafts render, token resolves at request time).
+### Stage G — Deploy (Phase 2, Cloudflare **Workers**) — see §6
+- [ ] G0. 🔴 **Verify `CLOUDFLARE_API_TOKEN` has Workers Scripts:Edit** (current token is Pages-scoped for `pages deploy`); broaden or mint a Workers token. Hard prerequisite — do first.
+- [ ] G1. Confirm the account `workers.dev` subdomain is enabled; preview URL = `sasinfra-frontend-preview.<acct>.workers.dev`.
+- [ ] G2. `wrangler.jsonc`: `main: @astrojs/cloudflare/entrypoints/server`, `name`, `compatibility_date`, `compatibility_flags: ["nodejs_compat"]`, `assets`(`./dist`/`ASSETS`), `workers_dev: true`.
+- [ ] G3. `deploy-preview.yml`: `PREVIEW_BUILD=1` build → `wrangler deploy` (`cloudflare/wrangler-action@v3`, `command: deploy`).
+- [ ] G4. `wrangler secret put SANITY_API_READ_TOKEN` (one-time); read via `astro:env/server`.
+- [ ] G5. Studio `SANITY_STUDIO_PREVIEW_URL` + `stega.studioUrl`; add the Worker origin to CORS (credentials).
+- [ ] G6. Verify **on the deployed Worker** (drafts render, token resolves at request time).
 
 ### Parallelism / independence
 - A → B → C are behavior-preserving under `published`; could ship to prod independently.
