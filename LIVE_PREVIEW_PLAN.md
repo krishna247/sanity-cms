@@ -307,3 +307,56 @@ Adversarial review of v1 (2026-05-31). Resolutions folded into the sections abov
 | **I5** | Cooldown analysis lumped both repos | Studio is **npm** (no cooldown); only the 6 frontend deps hit the pnpm cooldown — expect to lower floors (§2, §5) |
 | **I6** | `siteSettings.ts` module-level promise cache is unsafe per-request under SSR | Memoize at build only; per-request (or perspective-keyed) in preview (§5) |
 | verdict | v1 not safe as written; the riskiest item (filter removal) is actually safe; landmines concentrate in Phase 2 (Cloudflare) | All folded in; Phase 2 retained per decision, with C1/C4/I6 treated as first-class design problems |
+
+---
+
+## 13. Implementation checklist (execution order)
+
+Ordered so production is never at risk; each stage has a verification gate.
+Stages A–F are local (zero prod impact); G is the deploy.
+**Client decision: golden path** — adopt `@sanity/astro`'s `sanity:client`
+(typed queries via `groq`/TypeGen), not a hand-wrapped client.
+
+### Stage A — Scaffolding (no behavior change)
+- [ ] A1. `pnpm add` the 6 deps; resolve the cooldown (lower caret floors to the newest ≥30-day release per root CLAUDE.md — do **not** disable it); commit lockfile.
+- [ ] A2. `astro.config.mjs`: `PREVIEW_BUILD` branch — default `static`/no-adapter (unchanged); preview `server` + `@astrojs/cloudflare` + `react()`. Always register `sanity()` (`projectId`/`dataset`/`apiVersion`/`useCdn:false`/`stega.studioUrl`) so `sanity:client` exists in both builds. Add `vite.optimizeDeps.include`.
+- [ ] A3. `src/env.d.ts`: add `/// <reference types="@sanity/astro/module" />`.
+- [ ] **Gate A:** `pnpm build` (no flag) → static `dist/`, **no `_worker.js`**.
+
+### Stage B — Data layer (golden-path client + the core refactor)
+- [ ] B1. `src/lib/sanity.ts`: source the client from `sanity:client`; keep `urlForImage`/`portableTextToHtml` (rebuild the image builder from `sanity:client`).
+- [ ] B2. `src/sanity/lib/load-query.ts`: wrap `sanity:client`; switch perspective/stega/`resultSourceMap` on the cookie; **token passed in** (from `Astro.locals.runtime.env`), used only in draft mode.
+- [ ] B3. `src/sanity/lib/draft-mode.ts`: read the perspective cookie from `Astro.cookies`.
+- [ ] B4. `content.ts`: route every fetch → `loadQuery`; **remove all 10** `drafts.**` filters; add `loadQuery`-backed `getPageByPath`/`getProjectBySlug`.
+- [ ] B5. `blog.ts`: `getAllPosts`/`getPostBySlug` → `loadQuery`; **remove the line-80 filter**; add a direct `getPostBySlug` (no full-collection `.find()`).
+- [ ] B6. `siteSettings.ts`: → `loadQuery`; **scope the module cache** (build-only / perspective-keyed) — finding I6.
+- [ ] B7. *(Optional, golden-path)* wrap queries in `groq` `defineQuery`; run `sanity typegen generate` for typed results.
+- [ ] **Gate B (critical):** `pnpm build` (no flag), diff HTML vs the current prod build → **identical**. Empirically proves filter removal is safe under `published`.
+
+### Stage C — SEO / stega safety
+- [ ] C1. `src/components/SEO.astro`: deep `stegaClean()` of `title`/`description`/`imageAlt`/`article.*` + **each `jsonLd` object** before `JSON.stringify` (line 84-86) — covers all JSON-LD in one place. Body content keeps stega.
+- [ ] **Gate C:** no-op when stega is off → prod `<head>` bytes unchanged.
+
+### Stage D — Visual-editing runtime (preview-only)
+- [ ] D1. `export const prerender = !import.meta.env.PREVIEW_BUILD` on `index`, `[...slug]`, `projects/[slug]`, `blog/[slug]`.
+- [ ] D2. SSR fallbacks: add the missing `blog/[slug]` fallback; route `[...slug]`/`projects/[slug]` fallbacks through `loadQuery` (finding C3).
+- [ ] D3. `api/draft-mode/enable.ts` + `disable.ts` (`prerender` expr + prod no-op guard).
+- [ ] D4. `SanityVisualEditing.tsx` + `DisableDraftMode.tsx` (`client:only="react"`).
+- [ ] D5. `SiteLayout.astro`: render the islands only when the perspective cookie is present.
+
+### Stage E — Studio (npm, trivial)
+- [ ] E1. `sanity.config.ts`: add `previewMode: { enable: '/api/draft-mode/enable' }`.
+
+### Stage F — Local validation (Phase 0 prereqs)
+- [ ] F1. Viewer token → `.dev.vars`; add CORS `http://localhost:4321` (Allow credentials).
+- [ ] F2. Run Studio (`:3333`) + frontend (`:4321`, Cloudflare adapter + `platformProxy`); confirm overlays, click-to-edit, refresh, **and a real `drafts` request** in the network tab (not a silent published fallback).
+
+### Stage G — Deploy (Phase 2)
+- [ ] G1. New Pages project `sasinfra-frontend-preview`.
+- [ ] G2. `deploy-preview.yml`: `PREVIEW_BUILD=1`, `--project-name=sasinfra-frontend-preview`, deploy `dist/` only (no `functions/`, per §3.2).
+- [ ] G3. Token as CF Pages **secret**; add CORS preview origin (credentials); Studio `SANITY_STUDIO_PREVIEW_URL` + `stega.studioUrl`.
+- [ ] G4. Verify **on the deployed preview** (the C1 trap only surfaces here).
+
+### Parallelism / independence
+- A → B → C are behavior-preserving under `published` and could ship to prod independently of preview.
+- D and E are independent of each other once B/C land.
