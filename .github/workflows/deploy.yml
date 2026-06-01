@@ -26,6 +26,12 @@ jobs:
         env:
           SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
           SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
+          # Presentation tool's preview iframe target (LIVE_PREVIEW_PLAN.md G5/G7).
+          # MUST be the same-parent-domain Worker host (preview.sasinfra.com) so the
+          # Cloudflare Access cookie is same-site with cms.sasinfra.com and the iframe
+          # can authenticate. Without this the config falls back to localhost:4321 and
+          # the iframe never loads. Set as a repo variable.
+          SANITY_STUDIO_PREVIEW_URL: ${{ vars.SANITY_STUDIO_PREVIEW_URL }}
         run: npm run build
 
       - name: Deploy to Cloudflare Pages

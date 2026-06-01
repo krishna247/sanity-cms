@@ -1,11 +1,18 @@
 # Live Preview Plan — Sanity Presentation + Astro Visual Editing
 
-**Status:** **Stages A–G DONE & deployed (2026-06-01).** Preview Worker live at
-`https://sasinfra-frontend-preview.sas-infra.workers.dev` behind Cloudflare Access.
-Only remaining: the in-browser G7 eyeball (Access-gated → Krishna confirms overlays
-render in Presentation) + the R-13 optimizeDeps client-hydration verdict. · **Rev:** v4
-(2026-06-01; §12 Rounds 3–4 log the as-built deltas) · **Architecture:** A (static prod
-on Pages + separate SSR preview Worker) · **Phase 2 shipped.**
+**Status:** **Stages A–F + G0–G6 done; G7 (in-browser) is BLOCKED and being
+re-platformed.** The G7 eyeball surfaced two real blockers (§12 Round 5): (1) the
+deployed Studio's Presentation iframe was pointed at the `localhost:4321` fallback
+(`SANITY_STUDIO_PREVIEW_URL` was never wired into CI despite G5 being checked) — fixed
+2026-06-01; (2) **Cloudflare Access cannot be satisfied inside the cross-origin
+Presentation iframe on a `*.workers.dev` host** (login page is `frame-ancestors 'none'`
++ the Access cookie is third-party across `workers.dev`↔`sasinfra.com`). **Decision:
+move the preview Worker to a same-parent-domain custom host `https://preview.sasinfra.com`**
+so the Access cookie is same-site with `cms.sasinfra.com` and the iframe authenticates.
+Studio wiring + Sanity CORS done; **DNS + Worker custom domain + Access app pending
+(Krishna, ~2026-06-02)** — see the §13 G7 runbook. · **Rev:** v5 (2026-06-01; §12
+Round 5 logs the G7 blockers + the custom-domain pivot) · **Architecture:** A (static
+prod on Pages + separate SSR preview Worker) · **Phase 2 shipped.**
 
 **Scope:** spans `repos/sanity` (Studio) and `repos/frontend` (Astro). Lives in the
 Studio repo next to `CONTENT_ARCHITECTURE_PLAN.md`, but **most work is in the
@@ -487,6 +494,17 @@ check still pending with Krishna). Verdicts:
 | **R-12** | **Smoke test GREEN (server-side):** published `/` = 0 stega / 0 React; drafts `/` = 22.5k stega markers + `SanityVisualEditing`/`DisableDraftMode` islands; `/disable`→307, `/enable`(no secret)→401; token resolves from `.dev.vars`; draft `<head>` title stega-clean (chokepoint). | F1 done; F2 server-side verified. **Still pending:** in-browser overlay/click-to-edit/refresh hydration (needs the authenticated Studio session). |
 | **R-13** | `optimizeDeps.include` WARNs persist (`lodash/*`, `react-is`, `styled-components`, `react/compiler-runtime` fail to resolve — some auto-discovered from `@sanity/visual-editing`). | **Non-fatal server-side** (pages render, islands emit). These are the VE overlay's *client* deps — whether they block **hydration** is the open browser-side verdict. Trim/correct the list once the browser confirms. Also: the **first request after a dev restart / config edit** can render published while vite re-optimizes — reload once. |
 
+### Round 5 — G7 in-browser blockers + the custom-domain pivot (2026-06-01)
+The in-browser eyeball (Krishna: "click Presentation → blank, never loads") exposed two
+distinct, stacked failures. Both are now understood; the fix is a host change, not a
+code change.
+| # | Finding | Resolution |
+|---|---|---|
+| **R-14** | 🔴 **The deployed Studio's preview iframe was pointed at the `localhost:4321` fallback.** `sanity.config.ts` is `process.env.SANITY_STUDIO_PREVIEW_URL \|\| 'http://localhost:4321'`, but G5 was checked off without ever wiring the var: `deploy.yml` only passed PROJECT_ID/DATASET, and no `SANITY_STUDIO_PREVIEW_URL` repo variable existed (`gh variable list`). So the live Studio embeds `http://localhost:4321` — not running, and mixed-content-blocked in an HTTPS page → blank iframe. **This is the literal "never loads."** | **Fixed 2026-06-01:** added repo var `SANITY_STUDIO_PREVIEW_URL=https://preview.sasinfra.com` + referenced it in `deploy.yml`'s build `env`. Redeploy Studio for it to bake in. |
+| **R-15** | 🔴 **Cloudflare Access is structurally incompatible with the Presentation iframe on `*.workers.dev`.** The Worker 302s to `sasinfra.cloudflareaccess.com/cdn-cgi/access/login/…`, which serves **`x-frame-options: DENY` + `content-security-policy: frame-ancestors 'none'`** → the login page cannot render inside the cross-origin iframe. And even post-auth, the `CF_Authorization` cookie is **third-party** (`sas-infra.workers.dev` and `sasinfra.com` are different registrable domains) → blocked by Safari/Chrome. The §6.1 "workers.dev, no DNS" choice was made before the iframe was tested in-browser; it makes Access-in-iframe **unsolvable**. | **Pivot (Krishna approved):** move the Worker to **`https://preview.sasinfra.com`** — same registrable domain as the Studio `cms.sasinfra.com`. Then `CF_Authorization` is **same-site** in the iframe: editor authenticates to `preview.sasinfra.com` once top-level, after which the iframe request carries the cookie directly (no framed login, no third-party cookie). Supersedes §6.1. |
+| **R-16** | **A plain `CNAME preview.sasinfra.com → …workers.dev` at GoDaddy will NOT work.** `cms` works that way because **Pages** custom domains use SSL-for-SaaS (rides a CNAME, no zone needed). **Workers custom domains are different** — Cloudflare must be authoritative for the hostname. `@astrojs/cloudflare` 13.3.0 is **Workers-only** (no Pages mode), so the preview is a Worker, so a CNAME alone is insufficient. | DNS tomorrow must be one of: **(a)** delegate just `preview.sasinfra.com` (add `NS` records at GoDaddy → Cloudflare; add the subdomain as a Cloudflare zone) — lowest risk, apex/cms/staging/email untouched; or **(b)** move `sasinfra.com` apex NS to Cloudflare (full migration; tidies the split-DNS mess, higher blast radius). Either makes the Access cookie same-site. See §13 G7 runbook. |
+| **R-17** | Confirm the preview origin isn't hardcoded anywhere that the host change would miss. | ✅ It isn't. `deploy-preview.yml` doesn't pin the Worker URL; `validatePreviewUrl` uses the **request** URL; stega `studioUrl` is `https://cms.sasinfra.com` (correct, unchanged). Sanity **CORS** for `https://preview.sasinfra.com` (credentialed) **added 2026-06-01**. So no frontend code change is needed — only DNS + custom domain + Access + the two redeploys. |
+
 ---
 
 ## 13. Implementation checklist (execution order)
@@ -530,16 +548,48 @@ the `output` mode does the split.**
 - [x] F2 (server-side). `PREVIEW_BUILD=1 astro dev` (**needs `wrangler.preview.jsonc` for `nodejs_compat` — R-10**) + curl smoke test GREEN: published clean (0 stega/0 React), drafts carry 22.5k stega + VE islands, `/disable`→307, `/enable`(no secret)→401, token resolves, `<head>` stega-clean (R-12). `optimizeDeps` WARNs are non-fatal server-side (R-13).
 - [ ] F2 (browser). Studio (`:3333`, `SANITY_STUDIO_URL=http://localhost:3333` on the frontend) → open Presentation → confirm overlays **hydrate**, click-to-edit, refresh, and a real `drafts` request. This is where the R-13 `optimizeDeps` client-hydration verdict lands.
 
-### Stage G — Deploy (Cloudflare **Workers**) — ✅ G0–G6 DONE & verified (2026-06-01); G7 = in-browser eyeball pending
-**Deployed: `https://sasinfra-frontend-preview.sas-infra.workers.dev`** (account `659a3f2…` = SAS Infra; Access team `sasinfra.cloudflareaccess.com`).
+### Stage G — Deploy (Cloudflare **Workers**) — G0–G6 done; G7 BLOCKED → custom-domain pivot (§12 Round 5)
+**Deployed: `https://sasinfra-frontend-preview.sas-infra.workers.dev`** (account `659a3f2…` = SAS Infra; Access team `sasinfra.cloudflareaccess.com`). ⚠️ **The `workers.dev` host cannot be used in the Presentation iframe (R-15); it is being replaced by a same-parent-domain custom host `https://preview.sasinfra.com` (R-16 runbook in G7).**
 - [x] G0. New **Workers-scoped token** minted (least-privilege; prod token stays Pages-only) → GH secret `CLOUDFLARE_WORKERS_API_TOKEN`.
 - [x] G1. workers.dev subdomain = **`sas-infra.workers.dev`** (already set on the SAS Infra account).
 - [x] G2. `wrangler.preview.jsonc` via adapter `configPath` (R-10) — bakes `nodejs_compat` + name into `dist/server/wrangler.json`.
 - [x] G3. **`deploy-preview.yml`** (`wrangler-action@v4`, `command: deploy --config dist/server/wrangler.json`; validated via `--dry-run`). Now `push:[main]` + `workflow_dispatch`. First run ✅ — deployed; wrangler **auto-provisioned** the `SESSION` KV namespace (the unbacked-binding worry was moot). Prod `deploy.yml` untouched.
 - [x] G4. `SANITY_API_READ_TOKEN` set as a Worker secret (via dashboard UI). Read at request time via `astro:env/server`.
-- [x] G5. Sanity CORS for the Worker origin (credentialed) + Studio `SANITY_STUDIO_PREVIEW_URL` → the Worker URL (redeploy Studio for it to take effect).
-- [x] G6. 🔴 **Cloudflare Access ENABLED** on the workers.dev route (verified: Worker 302-redirects to `sasinfra.cloudflareaccess.com/cdn-cgi/access/login/…`). Resolves the forgeable-cookie finding (§3.5, §6.0b).
-- [ ] G7 (in-browser, Krishna). Open Presentation in `cms.sasinfra.com` → authenticate through Access → confirm **drafts render + overlays/click-to-edit/refresh**. Access gates `curl`, so this is browser-only; also lands the R-13 `optimizeDeps` client-hydration verdict. **Pre-deploy checks already passed:** published renders on the real Worker, `nodejs_compat` works at runtime, drafts safely blocked before the secret (302→/404, no leak).
+- [x] G5. **Studio `SANITY_STUDIO_PREVIEW_URL` wired (2026-06-01, R-14 fix):** repo var `SANITY_STUDIO_PREVIEW_URL=https://preview.sasinfra.com` + referenced in `deploy.yml` build `env` (was missing → localhost fallback). Sanity **CORS** for `https://preview.sasinfra.com` (credentialed) added. *(The old `workers.dev` CORS entry stays; harmless.)* **Studio redeploy needed** to bake the var in — do after the host resolves (G7 step 5).
+- [x] G6. 🔴 **Cloudflare Access ENABLED** on the workers.dev route (verified: Worker 302-redirects to `sasinfra.cloudflareaccess.com/cdn-cgi/access/login/…`). Resolves the forgeable-cookie finding (§3.5, §6.0b). **Must be re-pointed at `preview.sasinfra.com` (G7 step 3).**
+
+#### G7 — custom-domain runbook (Krishna, ~2026-06-02). Order matters.
+> **Why** (R-15/R-16): the iframe needs the Access cookie to be **same-site** with
+> `cms.sasinfra.com`, which requires the preview Worker on a `*.sasinfra.com` host that
+> Cloudflare is **authoritative** for. A GoDaddy CNAME alone won't route a Worker.
+> Done already (no action): Studio var + `deploy.yml` wiring (R-14), Sanity CORS (R-17).
+>
+> 1. **DNS — make Cloudflare authoritative for the host** (pick one):
+>    - **(a) Subdomain delegation (recommended, low blast radius):** add `preview.sasinfra.com`
+>      as a zone in the Cloudflare account `659a3f2…`; Cloudflare gives 2 nameservers;
+>      at **GoDaddy** add `NS` records for `preview` pointing to them. Apex/cms/staging/MX untouched.
+>    - **(b) Full apex migration:** move `sasinfra.com` NS from GoDaddy (`dns-parking.com`)
+>      to Cloudflare; recreate all existing records first (cms CNAME, staging, MX/email, CAA, etc.).
+> 2. **Worker custom domain:** Workers&Pages → `sasinfra-frontend-preview` → Settings →
+>    Domains & Routes → **Add Custom Domain** `preview.sasinfra.com` (Cloudflare provisions
+>    the cert + proxied DNS). *IaC alt:* add `"routes":[{"pattern":"preview.sasinfra.com","custom_domain":true}]`
+>    to `wrangler.preview.jsonc` — but only commit it **after** the zone exists, or the
+>    `deploy-preview.yml` run will fail provisioning.
+> 3. **Cloudflare Access on `preview.sasinfra.com`:** add a self-hosted Access app for the
+>    new hostname under the **same policy/identity as `cms.sasinfra.com`** (team
+>    `sasinfra.cloudflareaccess.com`). Then the workers.dev Access app/route can be removed
+>    or left (the Studio no longer points at it).
+> 4. **Redeploy the preview Worker** (push to `frontend` main, or `workflow_dispatch`
+>    `deploy-preview.yml`) so it's serving on the custom domain. Re-confirm the
+>    `SANITY_API_READ_TOKEN` Worker secret survived (G4).
+> 5. **Redeploy the Studio** (push to `sanity` main, or re-run `deploy.yml`) so
+>    `SANITY_STUDIO_PREVIEW_URL=https://preview.sasinfra.com` bakes into the Presentation iframe.
+> 6. **One-time top-level auth:** open `https://preview.sasinfra.com/` in a tab, authenticate
+>    through Access (this sets the same-site `CF_Authorization` cookie the iframe will reuse).
+> 7. **The actual G7 eyeball:** open Presentation in `cms.sasinfra.com` → confirm the iframe
+>    loads, **drafts render**, overlays/click-to-edit/refresh work. Lands the R-13
+>    `optimizeDeps` client-hydration verdict. **Pre-checks already green on the Worker:**
+>    published renders, `nodejs_compat` works at runtime, drafts blocked before the secret.
 
 ### Parallelism / independence
 - A → B → C are behavior-preserving under `published`; could ship to prod independently.
