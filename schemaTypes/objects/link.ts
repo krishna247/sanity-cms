@@ -4,7 +4,14 @@ import {defineField, defineType} from 'sanity'
 const TARGET_FIELDS = ['reference', 'href', 'file', 'email', 'phone'] as const
 
 function validateLink(value: Record<string, unknown> | undefined) {
-  if (!value?.kind) return 'Choose a link kind.'
+  // An absent or empty link is valid — `cta`/`link` fields are usually optional,
+  // and the Studio runs this custom validator even when the field is undefined.
+  // Only start validating once the editor has actually begun filling it in.
+  if (!value) return true
+  const hasContent = Object.keys(value).some((key) => !key.startsWith('_') && value[key] != null)
+  if (!hasContent) return true
+
+  if (!value.kind) return 'Choose a link kind.'
 
   const kind = value.kind
   const hasReference = Boolean(value.reference)
