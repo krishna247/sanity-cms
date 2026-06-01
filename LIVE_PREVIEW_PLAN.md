@@ -74,7 +74,7 @@ One frontend codebase, two targets, switched by build env flag `PREVIEW_BUILD`:
 | `PREVIEW_BUILD` | unset | `1` |
 | Astro `output` | `static` | `server` |
 | Adapter | **none** | `@astrojs/cloudflare` (Workers) |
-| Deploy | `wrangler pages deploy dist/` (`deploy.yml`, unchanged) | `wrangler deploy` — adapter 13.x **auto-generates** `dist/server/wrangler.json` (`main: entry.mjs`); a root `wrangler.jsonc` only adds account-level config (see §6.2) |
+| Deploy | `wrangler pages deploy dist/` (`deploy.yml`, unchanged) | `wrangler deploy` — adapter 13.x **auto-generates** `dist/server/wrangler.json` (`main: entry.mjs`); `wrangler.preview.jsonc` via adapter `configPath` adds `nodejs_compat`/`name` (see §6.2) |
 | `functions/_middleware.js` | active (redirects) | irrelevant (Pages-only) |
 | Perspective | `published` (build time) | cookie-driven `drafts` (request time) |
 | Stega / overlays | off | on |
@@ -321,13 +321,27 @@ account's `workers.dev` subdomain is enabled (one-time account setting).
 > - **`name`** is `"frontend"`, not `"sasinfra-frontend-preview"`.
 > - **`workers_dev: true`** to expose the `*.workers.dev` URL.
 >
-> **G2 = reconcile, not replace.** Add a root `wrangler.jsonc` carrying only the
-> account-level additions (`name`, `compatibility_flags: ["nodejs_compat"]`,
-> `workers_dev`, `account_id`) and let the adapter-generated `dist/server/wrangler.json`
-> own `main`/`assets`/`compatibility_date`. Decide during G2 whether the auto-added
-> `SESSION` (KV) and `IMAGES` bindings are needed (they're vite-plugin defaults; keep
-> unless they force provisioning) and confirm how `wrangler deploy` resolves the two
-> configs (point `-c` at the generated file, or let the adapter's deploy hook drive).
+> **G2 — SOLVED via a non-default `configPath` (implemented 2026-06-01, Round 4).**
+> A plain root `wrangler.jsonc` is the wrong vehicle: the **production** deploy is
+> `wrangler pages deploy dist/` run from this repo root, and modern wrangler
+> auto-reads `wrangler.{toml,json,jsonc}` — so a root Workers config would be picked
+> up by the *Pages* deploy. Instead, the preview config lives in a **non-default
+> filename, `wrangler.preview.jsonc`**, wired via the adapter's `configPath` option
+> (`cloudflare({ configPath: './wrangler.preview.jsonc' })`, PREVIEW_BUILD only). The
+> adapter spreads `cloudflareOptions` into the `@cloudflare/vite-plugin`, so this one
+> file feeds **both** `astro dev` and the build — and the generated
+> `dist/server/wrangler.json` now bakes in `compatibility_flags: ["nodejs_compat"]` +
+> `name: "sasinfra-frontend-preview"` (verified). `main`/`assets`/`compatibility_date`
+> stay adapter-generated; the prod Pages deploy never sees the file. The auto-added
+> `SESSION` (KV) / `IMAGES` bindings are vite-plugin defaults — kept (harmless).
+> **Still open for G3:** confirm how `wrangler deploy` in CI resolves the config
+> (point `-c dist/server/wrangler.json`, or let the adapter's deploy path drive) +
+> `account_id`.
+>
+> 🔴 **`nodejs_compat` is also a Stage-F (local dev) prerequisite, not just deploy.**
+> Without `wrangler.preview.jsonc`, `PREVIEW_BUILD=1 astro dev` 500s **every** request
+> (`Failed to load url node:async_hooks` — the workerd dev runtime has no compat flag).
+> With it, dev serves published + drafts correctly (Round 4).
 
 ### 6.3 Deploy workflow
 `repos/frontend/.github/workflows/deploy-preview.yml` — checkout → pnpm → build with
@@ -369,9 +383,11 @@ the token resolves at **request time** (the C1 failure mode only surfaces here, 
   prod stays Pages (C-C).
 - **Adapter 13.x dropped `platformProxy`** and **auto-generates
   `dist/server/wrangler.json`** (`main: entry.mjs`, `assets`→`../client`) — don't
-  hand-author `main`; just add `nodejs_compat` (generated empty) + `name` +
-  `workers_dev` via a root `wrangler.jsonc` (§6.2). `.dev.vars` is read by the
-  adapter itself; no `platformProxy` plumbing (§3.3).
+  hand-author `main`; add `nodejs_compat` (generated empty) + `name` via
+  `wrangler.preview.jsonc` wired through the adapter `configPath` (a **non-default**
+  filename so the prod `wrangler pages deploy` can't read it — §6.2). `.dev.vars` is
+  read by the adapter itself; no `platformProxy` plumbing (§3.3). `nodejs_compat` is
+  also required for **local `astro dev`**, not just deploy (R-10).
 - **The perspective cookie is forgeable by design** → it is NOT the trust boundary;
   Cloudflare Access on the Worker is (§3.5, §6.0b).
 - **Stega corrupts logic strings, not just display** → `stegaClean` at the
@@ -460,6 +476,16 @@ entry + draft routes + middleware + React islands):
 | **R-8** | — (Codex review of A–D) | 3 actionable findings fixed; 1 deferred **pre-existing** HTML-injection sink in `blog/[slug].astro` (`set:html` of an un-escaped title) fixed 2026-06-01 — escape first, then wrap emphasis words | — |
 | **R-9** | open question | build WARNs `optimizeDeps` lodash/* + `node:async_hooks` "Unexpected Node.js imports" — expected; resolved by `nodejs_compat`; get a live verdict in Stage F | §6.2, §13 F2 |
 
+### Round 4 — Stage-F local validation findings (2026-06-01)
+Ran `PREVIEW_BUILD=1 astro dev` + curl smoke tests (server-side; browser overlay
+check still pending with Krishna). Verdicts:
+| # | Finding | Resolution |
+|---|---|---|
+| **R-10** | 🔴 `node:async_hooks` (the R-9 "open question") is a **hard blocker in dev too**, not just deploy — without `nodejs_compat` **every** request 500s (`Failed to load url node:async_hooks`). | Created **`wrangler.preview.jsonc`** (`nodejs_compat`, name, compat date) wired via the adapter's **`configPath`** (non-default filename → prod Pages deploy never reads it). Fixes dev AND bakes `nodejs_compat` into the generated `dist/server/wrangler.json` → **closes most of G2** (§6.2). |
+| **R-11** | Studio origin: the deployed Studio is **`https://cms.sasinfra.com`** (custom domain, confirmed via project CORS), not the `sasinfra-cms.pages.dev` the config defaulted to. | `STUDIO_URL` default corrected to `https://cms.sasinfra.com`; override `SANITY_STUDIO_URL=http://localhost:3333` for local Stage F. CORS already had localhost:4321/3333 + cms.sasinfra.com (credentialed). |
+| **R-12** | **Smoke test GREEN (server-side):** published `/` = 0 stega / 0 React; drafts `/` = 22.5k stega markers + `SanityVisualEditing`/`DisableDraftMode` islands; `/disable`→307, `/enable`(no secret)→401; token resolves from `.dev.vars`; draft `<head>` title stega-clean (chokepoint). | F1 done; F2 server-side verified. **Still pending:** in-browser overlay/click-to-edit/refresh hydration (needs the authenticated Studio session). |
+| **R-13** | `optimizeDeps.include` WARNs persist (`lodash/*`, `react-is`, `styled-components`, `react/compiler-runtime` fail to resolve — some auto-discovered from `@sanity/visual-editing`). | **Non-fatal server-side** (pages render, islands emit). These are the VE overlay's *client* deps — whether they block **hydration** is the open browser-side verdict. Trim/correct the list once the browser confirms. Also: the **first request after a dev restart / config edit** can render published while vite re-optimizes — reload once. |
+
 ---
 
 ## 13. Implementation checklist (execution order)
@@ -495,17 +521,18 @@ the `output` mode does the split.**
 - [x] D4. `SiteLayout.astro`: islands loaded via a **dynamic import** gated on `import.meta.env.PREVIEW_BUILD && isPreviewing()` — preview build + draft request only; prod branch is dead-code-eliminated.
 - [x] *(Codex re-review of A–D done; 3 findings fixed. The deferred pre-existing `blog/[slug].astro` `set:html` HTML-injection sink — R-8 — fixed 2026-06-01.)*
 
-### Stage E — Studio (npm, trivial) — ⏳ NEXT
-- [ ] E1. `sanity.config.ts`: add `previewMode: { enable: '/api/draft-mode/enable' }` to `presentationTool` (keep the existing `initial`).
+### Stage E — Studio (npm, trivial) — ✅ DONE (2026-06-01, committed a37379e)
+- [x] E1. `sanity.config.ts`: added `previewMode: { enable: '/api/draft-mode/enable' }` to `presentationTool` (kept the existing `initial`).
 
-### Stage F — Local validation (Phase 0 prereqs) — ⏳ interactive (involve Krishna)
-- [ ] F1. Token in `.dev.vars` (done); **CORS (Allow credentials)** for `http://localhost:4321` **+ the Studio's own origin** (sasinfra-cms host) via Sanity MCP `add_cors_origin` / `npx sanity cors add --credentials`.
-- [ ] F2. Studio (`:3333`) + frontend (`:4321`, **Workers adapter + `.dev.vars`, `PREVIEW_BUILD=1`** — no `platformProxy`, R-2); confirm overlays, click-to-edit, refresh, **and a real `drafts` request** in the network tab. Real verdict on the `optimizeDeps` lodash/* + `node:async_hooks` warnings (R-9).
+### Stage F — Local validation — F1 + F2(server-side) ✅ DONE; browser overlay check ⏳ (Krishna)
+- [x] F1. Token in `.dev.vars` (done); **CORS (Allow credentials)** confirmed for `http://localhost:4321`, `http://localhost:3333`, **and the Studio origin `https://cms.sasinfra.com`** (all three already present + credentialed; R-11).
+- [x] F2 (server-side). `PREVIEW_BUILD=1 astro dev` (**needs `wrangler.preview.jsonc` for `nodejs_compat` — R-10**) + curl smoke test GREEN: published clean (0 stega/0 React), drafts carry 22.5k stega + VE islands, `/disable`→307, `/enable`(no secret)→401, token resolves, `<head>` stega-clean (R-12). `optimizeDeps` WARNs are non-fatal server-side (R-13).
+- [ ] F2 (browser). Studio (`:3333`, `SANITY_STUDIO_URL=http://localhost:3333` on the frontend) → open Presentation → confirm overlays **hydrate**, click-to-edit, refresh, and a real `drafts` request. This is where the R-13 `optimizeDeps` client-hydration verdict lands.
 
 ### Stage G — Deploy (Phase 2, Cloudflare **Workers**) — see §6 · ⏳ needs Krishna's Cloudflare actions
 - [ ] G0. 🔴 **Verify `CLOUDFLARE_API_TOKEN` has Workers Scripts:Edit** (current token is Pages-scoped for `pages deploy`); broaden or mint a Workers token. Hard prerequisite — do first.
 - [ ] G1. Confirm the account `workers.dev` subdomain is enabled; preview URL = `sasinfra-frontend-preview.<acct>.workers.dev`.
-- [ ] G2. **Reconcile** a root `wrangler.jsonc` with the **adapter-generated** `dist/server/wrangler.json` (R-1): add only `name`, **`compatibility_flags: ["nodejs_compat"]`** (generated empty 🔴), `workers_dev: true`, `account_id`; leave `main: entry.mjs` + `assets`→`../client` as generated. Decide on the auto-added `SESSION`/`IMAGES` bindings (§6.2).
+- [x] G2. **DONE (R-10):** `wrangler.preview.jsonc` (non-default filename, so the prod Pages deploy never reads it) wired via the adapter's `configPath`; `name` + `compatibility_flags: ["nodejs_compat"]` now bake into the generated `dist/server/wrangler.json`. Remaining for G3: how `wrangler deploy` resolves the config in CI + `account_id` (§6.2).
 - [ ] G3. `deploy-preview.yml`: `PREVIEW_BUILD=1` build → `wrangler deploy` (`cloudflare/wrangler-action@v3`, `command: deploy`). Prod `deploy.yml` (Pages) untouched.
 - [ ] G4. `wrangler secret put SANITY_API_READ_TOKEN` (one-time); read via `astro:env/server`. Needs the Workers-scoped token (G0).
 - [ ] G5. Studio `SANITY_STUDIO_PREVIEW_URL` + `stega.studioUrl`; add the Worker origin to CORS (credentials).
