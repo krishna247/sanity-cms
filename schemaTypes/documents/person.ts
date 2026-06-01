@@ -34,6 +34,13 @@ export default defineType({
     }),
     defineField({name: 'jobTitle', title: 'Job Title', type: 'string'}),
     defineField({name: 'bio', title: 'Bio', type: 'text', rows: 4}),
+    defineField({
+      name: 'profile',
+      title: 'Profile (long-form bio)',
+      type: 'portableText',
+      description:
+        'Rich, multi-paragraph profile used by the featured/chairman leadership layout (strong/em supported). The short Bio above is still used by the leadership grid.',
+    }),
     defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
   ],
   preview: {
