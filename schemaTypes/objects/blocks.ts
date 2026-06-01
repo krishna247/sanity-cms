@@ -623,6 +623,229 @@ export const locationMapBlock = defineType({
   preview: {select: {title: 'overture.heading', subtitle: 'mapConfig.mapProject'}},
 })
 
+// ─── iTower bespoke set-pieces ───────────────────────────────────────────
+// Each models the VISIBLE content of one iTower section so it becomes
+// CMS-editable while the component keeps the exact bespoke DOM. Images use the
+// `image` / `anchor.image` / `cards[].image` field names already resolved by the
+// content.ts PAGE_BUILDER projection — so no projection change is needed.
+
+export const masterPlanBlock = defineType({
+  name: 'masterPlanBlock',
+  title: 'Master Plan',
+  type: 'object',
+  icon: PinIcon,
+  fields: [
+    headField,
+    defineField({name: 'image', title: 'Plan Image', type: 'imageWithAlt'}),
+    defineField({
+      name: 'cinema',
+      title: 'Cinema Caption',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'heading', title: 'Heading', type: 'string'}),
+        defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
+export const towerAnatomyBlock = defineType({
+  name: 'towerAnatomyBlock',
+  title: 'Tower Anatomy',
+  type: 'object',
+  icon: TiersIcon,
+  fields: [
+    headField,
+    defineField({name: 'image', title: 'Elevation Image', type: 'imageWithAlt'}),
+    defineField({
+      name: 'bands',
+      title: 'Program Bands',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'band', title: 'Band Key', type: 'string'}),
+            defineField({name: 'range', title: 'Floor Range', type: 'string'}),
+            defineField({name: 'cat', title: 'Category', type: 'string'}),
+            defineField({name: 'heading', title: 'Heading', type: 'string'}),
+            defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+          ],
+          preview: {select: {title: 'heading', subtitle: 'range'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
+export const plateAnatomyBlock = defineType({
+  name: 'plateAnatomyBlock',
+  title: 'Plate Anatomy',
+  type: 'object',
+  icon: ImageIcon,
+  fields: [
+    headField,
+    defineField({name: 'image', title: 'Plate Image', type: 'imageWithAlt'}),
+    defineField({
+      name: 'pins',
+      title: 'Annotation Pins',
+      description: 'Text only — the pin coordinates stay in the component.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'title', title: 'Title', type: 'string'}),
+            defineField({name: 'body', title: 'Body', type: 'text', rows: 2}),
+          ],
+          preview: {select: {title: 'title'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
+export const tenantsBlock = defineType({
+  name: 'tenantsBlock',
+  title: 'Tenants',
+  type: 'object',
+  icon: ComposeIcon,
+  fields: [
+    headField,
+    defineField({
+      name: 'anchor',
+      title: 'Editorial Anchor',
+      type: 'object',
+      fields: [
+        defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'heading', title: 'Heading', type: 'string'}),
+        defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+      ],
+    }),
+    defineField({
+      name: 'zones',
+      title: 'Tenant Zones',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'seq', title: 'Sequence', type: 'string'}),
+            defineField({name: 'title', title: 'Title', type: 'string'}),
+            defineField({name: 'body', title: 'Body', type: 'text', rows: 2}),
+          ],
+          preview: {select: {title: 'title', subtitle: 'seq'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
+export const engineeredNumbersBlock = defineType({
+  name: 'engineeredNumbersBlock',
+  title: 'Engineered Numbers',
+  type: 'object',
+  icon: ThListIcon,
+  fields: [
+    headField,
+    defineField({name: 'image', title: 'Frame Image', type: 'imageWithAlt'}),
+    defineField({name: 'frameCaption', title: 'Frame Caption', type: 'string'}),
+    defineField({
+      name: 'stats',
+      title: 'Stats',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'num', title: 'Number', type: 'string'}),
+            defineField({name: 'lab', title: 'Label', type: 'string'}),
+          ],
+          preview: {select: {title: 'num', subtitle: 'lab'}},
+        }),
+      ],
+    }),
+    defineField({name: 'banksHeading', title: 'Lift Banks Heading', type: 'string'}),
+    defineField({
+      name: 'banks',
+      title: 'Lift Banks',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'zone', title: 'Zone', type: 'string'}),
+            defineField({name: 'floors', title: 'Floors', type: 'string'}),
+          ],
+          preview: {select: {title: 'zone', subtitle: 'floors'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
+export const consultantsBlock = defineType({
+  name: 'consultantsBlock',
+  title: 'Consultants',
+  type: 'object',
+  icon: TiersIcon,
+  fields: [
+    headField,
+    defineField({
+      name: 'cells',
+      title: 'Consultants',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'name', title: 'Name', type: 'string'}),
+            defineField({name: 'role', title: 'Role', type: 'string'}),
+          ],
+          preview: {select: {title: 'name', subtitle: 'role'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
+export const brochureBlock = defineType({
+  name: 'brochureBlock',
+  title: 'Brochure',
+  type: 'object',
+  icon: DocumentTextIcon,
+  fields: [
+    headField,
+    defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string'}),
+    defineField({
+      name: 'cards',
+      title: 'Brochure Cards',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'num', title: 'Numeral', type: 'string'}),
+            defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
+            defineField({name: 'title', title: 'Title', type: 'string'}),
+            defineField({name: 'sub', title: 'Subtitle', type: 'string'}),
+          ],
+          preview: {select: {title: 'title', subtitle: 'sub', media: 'image.image'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
 export const homePageBuilder = defineType({
   name: 'homePageBuilder',
   title: 'Home Page Builder',
@@ -679,6 +902,13 @@ export const projectPageBuilder = defineType({
     defineArrayMember({type: 'ctaBlock'}),
     defineArrayMember({type: 'contactFormBlock'}),
     defineArrayMember({type: 'feedBlock'}),
+    defineArrayMember({type: 'masterPlanBlock'}),
+    defineArrayMember({type: 'towerAnatomyBlock'}),
+    defineArrayMember({type: 'plateAnatomyBlock'}),
+    defineArrayMember({type: 'tenantsBlock'}),
+    defineArrayMember({type: 'engineeredNumbersBlock'}),
+    defineArrayMember({type: 'consultantsBlock'}),
+    defineArrayMember({type: 'brochureBlock'}),
   ],
 })
 
@@ -704,6 +934,13 @@ export const blockTypes = [
   signatureFeatureBlock,
   amenityZonesBlock,
   locationMapBlock,
+  masterPlanBlock,
+  towerAnatomyBlock,
+  plateAnatomyBlock,
+  tenantsBlock,
+  engineeredNumbersBlock,
+  consultantsBlock,
+  brochureBlock,
   homePageBuilder,
   pagePageBuilder,
   projectPageBuilder,
