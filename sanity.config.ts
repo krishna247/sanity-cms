@@ -43,6 +43,12 @@ export default defineConfig([
         resolve,
         previewUrl: {
           initial: process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:4321',
+          // Draft-mode toggle: the frontend's preview build exposes this route
+          // (validates the signed secret, sets the perspective cookie). See
+          // LIVE_PREVIEW_PLAN.md §5 / Stage E.
+          previewMode: {
+            enable: '/api/draft-mode/enable',
+          },
         },
       }),
       visionTool(),

@@ -1,11 +1,14 @@
 # Live Preview Plan — Sanity Presentation + Astro Visual Editing
 
-**Status:** Proposed · **Rev:** v3 (2026-05-31, Astro-6 corrections from review round 2) ·
-**Architecture:** A (static prod + separate SSR preview deploy) · **Phase 2 committed.**
+**Status:** **Stages A–D BUILT & verified locally (uncommitted in `repos/frontend`,
+2026-06-01)**; Stage E (Studio) trivial; Stages F (local validation) + G (Workers
+deploy) pending · **Rev:** v4 (2026-06-01, folded the as-built A–D deltas back in —
+see §12 Round 3) · **Architecture:** A (static prod + separate SSR preview deploy) ·
+**Phase 2 committed.**
 
 **Scope:** spans `repos/sanity` (Studio) and `repos/frontend` (Astro). Lives in the
 Studio repo next to `CONTENT_ARCHITECTURE_PLAN.md`, but **most work is in the
-frontend.** §12 logs two adversarial review rounds.
+frontend.** §12 logs the adversarial review rounds + the as-built implementation log.
 
 > **Astro 6 reality check (round 2).** Three earlier "fixes" assumed Astro-5-era
 > APIs that Astro 6 changed. Corrected here: (a) `prerender` can no longer be a
@@ -71,7 +74,7 @@ One frontend codebase, two targets, switched by build env flag `PREVIEW_BUILD`:
 | `PREVIEW_BUILD` | unset | `1` |
 | Astro `output` | `static` | `server` |
 | Adapter | **none** | `@astrojs/cloudflare` (Workers) |
-| Deploy | `wrangler pages deploy dist/` (`deploy.yml`, unchanged) | `wrangler deploy` w/ `wrangler.jsonc` → `@astrojs/cloudflare/entrypoints/server` |
+| Deploy | `wrangler pages deploy dist/` (`deploy.yml`, unchanged) | `wrangler deploy` — adapter 13.x **auto-generates** `dist/server/wrangler.json` (`main: entry.mjs`); a root `wrangler.jsonc` only adds account-level config (see §6.2) |
 | `functions/_middleware.js` | active (redirects) | irrelevant (Pages-only) |
 | Perspective | `published` (build time) | cookie-driven `drafts` (request time) |
 | Stega / overlays | off | on |
@@ -116,8 +119,15 @@ runs inside the Workers SSR runtime.
 in the `env.schema`): build-safe, adapter-agnostic, and sidesteps the documented
 `import { env } from 'cloudflare:workers'` hazard (that raw import can break
 prerendered routes — "Unsupported ESM URL scheme"). `loadQuery` and the draft-mode
-routes import the token from `astro:env/server`. Local dev: `.dev.vars` +
-`platformProxy` (still the supported local mechanism).
+routes import the token from `astro:env/server`.
+
+> **As-built (round 3):** `@astrojs/cloudflare` **13.x** is built on
+> `@cloudflare/vite-plugin` and **dropped the `platformProxy` option** the v3 plan
+> assumed. There is nothing to configure — the adapter reads `wrangler` config and
+> **`.dev.vars`** itself, so the local token (in `repos/frontend/.dev.vars`) and the
+> deployed Workers secret both resolve through `astro:env/server` with no extra
+> plumbing. The dev command just needs `PREVIEW_BUILD=1` so the adapter + middleware
+> + draft routes exist (see §5 "Validate locally").
 
 ### 3.4 Runtime flow
 1. Editor opens Presentation → Studio loads the **preview URL** in an iframe.
@@ -129,6 +139,31 @@ routes import the token from `astro:env/server`. Local dev: `.dev.vars` +
 5. `<SanityVisualEditing>` (React island, draft-mode only) draws overlays, syncs
    history with the Studio.
 6. Edit → `refresh` → full page reload → fresh drafts.
+
+### 3.5 Perspective model & trust boundary (as-built, round 3)
+The "draft mode" toggle is **not** a custom boolean — it is the **standard
+`sanity-preview-perspective` cookie** (name imported from
+`@sanity/preview-url-secret/constants`, so it never drifts from the library):
+- **`/api/draft-mode/enable`** validates the signed secret via `validatePreviewUrl`
+  and writes the cookie to the Studio's perspective (`'drafts'` by default), as
+  `SameSite=None; Secure` (cross-origin iframe). **`/disable`** deletes it.
+- **A preview-only Astro middleware** (`src/sanity/middleware.ts`, registered via
+  `addMiddleware({ order: 'pre' })` inside the gated integration) reads that cookie
+  once per request and runs the whole request inside a **`node:async_hooks`
+  `AsyncLocalStorage`** scope (`runWithPerspective`). `loadQuery` calls
+  `getPerspective()` from that store — so **no data function threads a flag**, and
+  `getPerspective()` defaults to `'published'` whenever no middleware ran (i.e. the
+  entire static prod build). `node:async_hooks` is why Stage G needs `nodejs_compat`.
+- The canonical **`<VisualEditing>` island** owns the cookie client-side: its
+  `onPerspectiveChange` rewrites `sanity-preview-perspective` and reloads; `history`
+  + `refresh` adapters drive navigation/refetch (Astro has no SPA router / Live API).
+- 🔴 **Trust boundary:** this cookie is **client-writable BY DESIGN** (the island
+  sets it), so it is **NOT** a security control. Anyone hitting the deployed Worker
+  could forge `sanity-preview-perspective=drafts` and read unpublished content with
+  the server token. **The Worker MUST sit behind Cloudflare Access (same policy as
+  `cms.sasinfra.com`)** — that edge gate, not the cookie, is what authenticates
+  editors. This is a **hard Stage-G prerequisite** (§6.0, §13 G6), and it is the
+  resolution to the round-3 "forgeable cookie" finding.
 
 ---
 
@@ -150,15 +185,23 @@ routes import the token from `astro:env/server`. Local dev: `.dev.vars` +
 
 ## 5. Phase 1 — Wire visual editing (local, zero prod impact)
 
-> Run local dev with the **Cloudflare (Workers) adapter + `platformProxy` + `.dev.vars`**
-> so the token resolves the same way it will when deployed (kills the C1 false-positive
-> where it works in `astro dev` then is missing on deploy).
+> Run local dev with the **Cloudflare (Workers) adapter + `.dev.vars` + `PREVIEW_BUILD=1`**
+> (adapter 13.x reads `.dev.vars` itself — no `platformProxy`, R-2) so the token resolves
+> the same way it will when deployed (kills the C1 false-positive where it works in
+> `astro dev` then is missing on deploy).
 
 ### Frontend `repos/frontend`
 - **Deps** (pnpm): `@sanity/astro`, `@astrojs/react`, `@astrojs/cloudflare`,
   `@sanity/visual-editing`, `@sanity/preview-url-secret`, `groq`. `@sanity/astro`
   3.3.1 (Astro-6 support, 2026-03-13) clears the 30-day cooldown; **verify the other
   5 at install** and lower a floor only if blocked (never disable the cooldown).
+  - **As-built (round 3) — extra deps the plan didn't list:** `@astrojs/react` 5.x
+    pulls in **`react` + `react-dom`** as *peer* deps that pnpm does not auto-install,
+    so both were added explicitly (`react`/`react-dom` 19.x, runtime — only the
+    draft-mode islands import them, code-split out of prod). Dev-only:
+    **`@portabletext/types`** (the `PortableTextBlock` type for the rebuilt
+    `portableTextToHtml`), plus `@types/react` / `@types/react-dom`. All cleared the
+    cooldown at install; no floors were lowered.
 - **`astro.config.mjs`** — §3.1 mechanism: `output`/adapter/integrations gated on
   `PREVIEW_BUILD`; `sanity()` with explicit `apiVersion:'2026-05-31'`,
   `perspective:'published'`, `useCdn:false`, and `stega.studioUrl` (stega enabled
@@ -172,13 +215,18 @@ routes import the token from `astro:env/server`. Local dev: `.dev.vars` +
 - **`src/sanity/lib/load-query.ts`** — wraps `sanity:client`; perspective + stega +
   `resultSourceMap` switch on the cookie.
 - **`src/sanity/lib/draft-mode.ts`** — read the perspective cookie from `Astro.cookies`.
-- **Data layer (findings C2/C3) — all three files via `loadQuery`:**
+- **Data layer (findings C2/C3) — all data files via `loadQuery`:**
   - `content.ts`: remove **all 10** `drafts.**` filters; add `loadQuery`-backed
     `getPageByPath`/`getProjectBySlug`.
   - `blog.ts`: route `getAllPosts`/`getPostBySlug` through `loadQuery`; **remove the
     line-80 filter**; add a direct `getPostBySlug` (no full-collection `.find()`).
   - `siteSettings.ts`: route through `loadQuery`; **scope the module cache**
     (build-only / perspective-keyed) — finding I6.
+  - `projectSeo.ts` (**as-built — a 4th file the plan missed**): same shape as
+    `siteSettings.ts`. It has a per-slug module-level promise cache feeding the
+    project JSON-LD; routed through `loadQuery` and given the **same I6 cache
+    bypass** — `if (isPreviewing()) return fetchProjectSeo(slug)` before consulting
+    the cache, so a long-lived Worker doesn't pin the first draft it saw.
 - **`src/lib/sanity.ts`** — source the client from `sanity:client`; keep
   `urlForImage`/`portableTextToHtml` (rebuild the image builder from `sanity:client`).
 - **SSR fallbacks (C3):** add the missing `blog/[slug].astro` fallback
@@ -189,6 +237,17 @@ routes import the token from `astro:env/server`. Local dev: `.dev.vars` +
   `JSON.stringify` (line 84-86). `stegaClean` is recursive (confirmed, finding I-C),
   so this strips stega from all nested JSON-LD fields in one place. Body content
   keeps stega for overlays. (Literal/env-built values carry no stega — harmless.)
+- **Stega in routing/logic (as-built, round 3) — NOT a config filter:** stega marker
+  chars also corrupt any string used as **control flow**, not just display: a `_type`
+  / `kind` switch misses, an `href` segment gets invisible chars, a slug/category
+  comparison fails. So `stegaClean` is also applied at the **routing chokepoints** —
+  `resolveHref`/`resolveLinkHref` clean `_type`, `kind`, `section`, and the URL
+  segments — plus the handful of other logic fields (the feed `source`, blog
+  slug/category, the `projects/[slug]` lookup). The plan considered a single
+  **config-level `stega.filter`** instead, but **`filterDefault` is not exported from
+  `@sanity/client/stega`**, so a global filter can't cleanly preserve display strings
+  while stripping logic strings. Per-chokepoint cleaning is the chosen model;
+  `stegaClean` is a no-op in the published build, so all of this is free in prod.
 - **Islands:** `SanityVisualEditing.tsx` + `DisableDraftMode.tsx`
   (`client:only="react"`), rendered in `SiteLayout.astro` **only when the perspective
   cookie is present** (public visitors never load React).
@@ -205,8 +264,9 @@ previewUrl: {
 ```
 
 ### Validate locally
-Studio (`:3333`) + frontend (`:4321`, Workers adapter + `platformProxy` + `.dev.vars`):
-overlays, click-to-edit, refresh, **and a real `drafts` request** in the network tab.
+Studio (`:3333`) + frontend (`:4321`, Workers adapter + `.dev.vars`, `PREVIEW_BUILD=1`
+— no `platformProxy`, R-2): overlays, click-to-edit, refresh, **and a real `drafts`
+request** in the network tab.
 
 ---
 
@@ -222,21 +282,52 @@ The existing `CLOUDFLARE_API_TOKEN` GH secret is used for `wrangler pages deploy
 if it's Pages-only, broaden it or mint a Workers-scoped token. This is the single most
 likely Stage-G blocker, and a wrong-scope failure is a silent 403 until you read the logs.
 
+### 6.0b Hard prerequisite — Cloudflare Access gate 🔴 (the security boundary)
+The preview Worker reads **unpublished drafts** with a server token, and its
+`sanity-preview-perspective` cookie is **client-forgeable by design** (§3.5) — so the
+Worker itself is **not** safe to expose publicly. **Before sharing the preview URL,
+put the Worker behind Cloudflare Access under the same policy as `cms.sasinfra.com`**
+(the Studio host) so only authenticated editors reach it. This is the resolution to
+the round-3 forgeable-cookie finding and a **non-negotiable Stage-G step (§13 G6)** —
+not a follow-up. Validate that the Presentation **iframe** still authenticates: it is
+a cross-origin embed, so the Access session must be established (the editor is already
+signed into Access for the Studio; confirm the iframe inherits/re-establishes it
+rather than being blocked by frame-ancestors or a missing Access cookie).
+
 ### 6.1 Preview URL — default to a `workers.dev` subdomain
 Use the free subdomain `sasinfra-frontend-preview.<account>.workers.dev`: zero DNS, stable,
 immediate. A custom domain (`preview.sasinfra.com`) means DNS work and the domain is split
 GoDaddy/Cloudflare (CLAUDE.md) — not worth it for an internal editor preview. Confirm the
 account's `workers.dev` subdomain is enabled (one-time account setting).
 
-### 6.2 `wrangler.jsonc` (preview Worker)
-- `name: "sasinfra-frontend-preview"`
-- `main: "@astrojs/cloudflare/entrypoints/server"`
-- `compatibility_date: "<recent>"`
-- `compatibility_flags: ["nodejs_compat"]` — **required**: `@sanity/client` /
-  `@sanity/preview-url-secret` use `node:crypto`/`buffer`.
-- `assets: { directory: "./dist", binding: "ASSETS" }` — how the Worker serves the built
-  client assets (adapter mostly wires this automatically; set it explicitly to be safe).
-- `workers_dev: true`.
+### 6.2 `wrangler.jsonc` (preview Worker) — **reconcile, don't hand-author `main`**
+> **As-built correction (round 3).** The v3 plan assumed we'd hand-write
+> `main: "@astrojs/cloudflare/entrypoints/server"`. **Adapter 13.x does not work that
+> way.** A `PREVIEW_BUILD=1` build **auto-generates `dist/server/wrangler.json`**
+> (verified 2026-06-01) with the entry already wired:
+> ```jsonc
+> { "main": "entry.mjs", "compatibility_date": "2026-04-15", "compatibility_flags": [],
+>   "assets": { "binding": "ASSETS", "directory": "../client" },
+>   "kv_namespaces": [{ "binding": "SESSION" }], "images": { "binding": "IMAGES" },
+>   "name": "frontend", "observability": { "enabled": true }, "no_bundle": true, … }
+> ```
+> So `main` and `assets` are **already correct and must not be overridden**. What the
+> generated file is **missing** for our deploy:
+> - **`compatibility_flags: ["nodejs_compat"]`** 🔴 — generated as **empty `[]`**, but
+>   the build WARNs `Unexpected Node.js imports … "node:async_hooks"` (from
+>   `draft-mode.ts`'s `AsyncLocalStorage`) plus `node:crypto`/`buffer` from
+>   `@sanity/client`/`@sanity/preview-url-secret`. Without this flag the Worker
+>   throws at runtime. **This is the must-add.**
+> - **`name`** is `"frontend"`, not `"sasinfra-frontend-preview"`.
+> - **`workers_dev: true`** to expose the `*.workers.dev` URL.
+>
+> **G2 = reconcile, not replace.** Add a root `wrangler.jsonc` carrying only the
+> account-level additions (`name`, `compatibility_flags: ["nodejs_compat"]`,
+> `workers_dev`, `account_id`) and let the adapter-generated `dist/server/wrangler.json`
+> own `main`/`assets`/`compatibility_date`. Decide during G2 whether the auto-added
+> `SESSION` (KV) and `IMAGES` bindings are needed (they're vite-plugin defaults; keep
+> unless they force provisioning) and confirm how `wrangler deploy` resolves the two
+> configs (point `-c` at the generated file, or let the adapter's deploy hook drive).
 
 ### 6.3 Deploy workflow
 `repos/frontend/.github/workflows/deploy-preview.yml` — checkout → pnpm → build with
@@ -276,9 +367,22 @@ the token resolves at **request time** (the C1 failure mode only surfaces here, 
 - **`Astro.locals.runtime` is gone** (Astro 6): token via `astro:env/server` (C-B).
 - **`@astrojs/cloudflare` is Workers-only** (Astro 6): preview = `wrangler deploy`;
   prod stays Pages (C-C).
+- **Adapter 13.x dropped `platformProxy`** and **auto-generates
+  `dist/server/wrangler.json`** (`main: entry.mjs`, `assets`→`../client`) — don't
+  hand-author `main`; just add `nodejs_compat` (generated empty) + `name` +
+  `workers_dev` via a root `wrangler.jsonc` (§6.2). `.dev.vars` is read by the
+  adapter itself; no `platformProxy` plumbing (§3.3).
+- **The perspective cookie is forgeable by design** → it is NOT the trust boundary;
+  Cloudflare Access on the Worker is (§3.5, §6.0b).
+- **Stega corrupts logic strings, not just display** → `stegaClean` at the
+  `resolveHref`/`resolveLinkHref` chokepoints + logic fields, **not** a config
+  `stega.filter` (`filterDefault` isn't exported from `@sanity/client/stega`) (§5).
+- React enters only as a draft-mode island, behind an
+  `import.meta.env.PREVIEW_BUILD` **compile-time literal** (vite `define`) so the
+  whole `await import('…/VisualEditing.astro')` branch is dead-code-eliminated from
+  prod — code-split, never shipped to visitors.
 - `functions/` is Pages-only — irrelevant to the Workers preview.
 - Cookie needs `SameSite=None; Secure` → HTTPS or `localhost` only.
-- React enters only as a draft-mode island — code-split, never shipped to visitors.
 - Astro has **no Live Content API**; updates trigger a full reload (expected).
 - `drafts` perspective requires `useCdn:false` (already true).
 - Shared contract is **only** `resolveHref`'s `_type → href` (I3).
@@ -340,6 +444,22 @@ the token resolves at **request time** (the C1 failure mode only surfaces here, 
 | **M-A** | Gate A didn't prove the mechanism | Gate A asserts **both** build directions (§3.1, §13) |
 | **M-B** | Studio's own origin not in CORS for secret minting | Add `https://<sasinfra-cms host>` as a credentialed CORS origin (§4) |
 
+### Round 3 — As-built deltas (Stages A–D built & verified locally, 2026-06-01)
+What changed between the v3 plan and the working implementation (both builds pass:
+no-flag → static prod-identical, zero React/stega; `PREVIEW_BUILD=1` → SSR Worker
+entry + draft routes + middleware + React islands):
+| # | Plan said | As built | §ref |
+|---|---|---|---|
+| **R-1** | preview `main: @astrojs/cloudflare/entrypoints/server` (hand-written) | adapter 13.x **auto-generates `dist/server/wrangler.json`** with `main: entry.mjs`; G2 reconciles a root `wrangler.jsonc` for `nodejs_compat`/`name`/`workers_dev` only | §3 table, §6.2 |
+| **R-2** | local dev via `.dev.vars` + `platformProxy` | 13.x **dropped `platformProxy`**; adapter reads `.dev.vars` itself, just needs `PREVIEW_BUILD=1` | §3.3, §8 |
+| **R-3** | draft toggle = "read the perspective cookie in a helper" | standard **`sanity-preview-perspective` cookie** + **`AsyncLocalStorage` middleware** (`order:'pre'`); `loadQuery` reads `getPerspective()`; `<VisualEditing>` owns the cookie client-side | §3.5, §13 D2–D4 |
+| **R-4** | cookie security unaddressed | cookie is **client-forgeable by design** → **Cloudflare Access** on the Worker is the gate (same policy as `cms.sasinfra.com`); hard Stage-G prereq | §3.5, §6.0b, §13 G6 |
+| **R-5** | stega only at the `SEO.astro` head chokepoint | also **centralized in `resolveHref`/`resolveLinkHref`** + logic fields (feed `source`, blog slug/category, `projects/[slug]`); **no config `stega.filter`** (`filterDefault` not exported) | §5, §8 |
+| **R-6** | 6 deps | + **`react`/`react-dom`** (@astrojs/react peers pnpm won't auto-add) + dev **`@portabletext/types`**/`@types/react*`; all cleared the cooldown | §5 |
+| **R-7** | "three data files" | **four** — `projectSeo.ts` had the same I6 module-cache hazard as `siteSettings.ts`; given the same draft-mode cache bypass | §5 |
+| **R-8** | — (Codex review of A–D) | 3 actionable findings fixed; 1 deferred **pre-existing** HTML-injection sink in `blog/[slug].astro` (`set:html` of an un-escaped title) fixed 2026-06-01 — escape first, then wrap emphasis words | — |
+| **R-9** | open question | build WARNs `optimizeDeps` lodash/* + `node:async_hooks` "Unexpected Node.js imports" — expected; resolved by `nodejs_compat`; get a live verdict in Stage F | §6.2, §13 F2 |
+
 ---
 
 ## 13. Implementation checklist (execution order)
@@ -348,47 +468,49 @@ Ordered so production is never at risk; each stage has a gate. A–F local; G de
 **Client: golden-path `@sanity/astro` `sanity:client`.** **No `prerender` exports —
 the `output` mode does the split.**
 
-### Stage A — Scaffolding (no behavior change)
-- [ ] A1. `pnpm add` the 6 deps; resolve cooldown at install (lower floors only if blocked; never disable). Commit lockfile.
-- [ ] A2. `astro.config.mjs`: `PREVIEW_BUILD` (via `process.env`) gates `output` (`static`↔`server`), adapter (`@astrojs/cloudflare` Workers), and integrations (`react()`, inject-routes integration). Always `sanity()` with explicit `apiVersion:'2026-05-31'`/`perspective:'published'`/`useCdn:false`/`stega.studioUrl`. Add `env.schema` `SANITY_API_READ_TOKEN` (server/secret/optional) + `vite.optimizeDeps.include`.
-- [ ] A3. `src/env.d.ts`: `/// <reference types="@sanity/astro/module" />`.
-- [ ] **Gate A (both directions):** `pnpm build` (no flag) → static `dist/`, no Workers entry, no draft-mode routes. `PREVIEW_BUILD=1 pnpm build` → Workers entry + `/api/draft-mode/*` SSR.
+### Stage A — Scaffolding (no behavior change) — ✅ DONE (2026-06-01)
+- [x] A1. `pnpm add` the deps; resolve cooldown at install (lower floors only if blocked; never disable). Commit lockfile. *(As-built: also `react`/`react-dom` + dev `@portabletext/types`/`@types/react*` — R-6.)*
+- [x] A2. `astro.config.mjs`: `PREVIEW_BUILD` (via `process.env`) gates `output` (`static`↔`server`), adapter (`@astrojs/cloudflare` Workers), and integrations (`react()` + the `sanityPreviewRuntime()` integration that `injectRoute`s the draft routes **and** `addMiddleware`s the perspective middleware). Always `sanity()` with explicit `apiVersion:'2026-05-31'`/`perspective:'published'`/`useCdn:false`/`stega.studioUrl`. Add `env.schema` `SANITY_API_READ_TOKEN` (server/secret/optional) + `vite.optimizeDeps.include` + `vite.define` `import.meta.env.PREVIEW_BUILD` literal (dead-code-elim of the React island in prod).
+- [x] A3. `src/env.d.ts`: `/// <reference types="@sanity/astro/module" />`.
+- [x] **Gate A (both directions):** ✅ `pnpm build` (no flag) → static `dist/`, no Workers entry, no draft-mode routes. `PREVIEW_BUILD=1 pnpm build` → Workers entry (`dist/server/entry.mjs`) + `/api/draft-mode/*` SSR + middleware.
 
-### Stage B — Data layer (golden-path client + core refactor)
-- [ ] B1. `src/lib/sanity.ts`: client from `sanity:client`; keep `urlForImage`/`portableTextToHtml`.
-- [ ] B2. `src/sanity/lib/load-query.ts`: wrap `sanity:client`; perspective/stega/`resultSourceMap` on cookie; **token from `astro:env/server`**, passed in, draft-mode only.
-- [ ] B3. `src/sanity/lib/draft-mode.ts`: read perspective cookie.
-- [ ] B4. `content.ts`: all fetches → `loadQuery`; **remove all 10** filters; add `loadQuery` `getPageByPath`/`getProjectBySlug`.
-- [ ] B5. `blog.ts`: → `loadQuery`; **remove line-80 filter**; direct `getPostBySlug`.
-- [ ] B6. `siteSettings.ts`: → `loadQuery`; **scope the module cache** (I6).
-- [ ] B7. *(Optional)* `groq` `defineQuery` + `sanity typegen generate`.
-- [ ] **Gate B (semantic, not byte-identical — I-A):** `pnpm build` (no flag); (1) **assert zero stega** markers in output, (2) text/links/JSON-LD equal vs current prod after `stegaClean` normalization.
+### Stage B — Data layer (golden-path client + core refactor) — ✅ DONE (2026-06-01)
+- [x] B1. `src/lib/sanity.ts`: client from `sanity:client`; keep `urlForImage`/`portableTextToHtml` (rebuilt image-URL builder from `sanity:client`; `@portabletext/types` for the block type).
+- [x] B2. `src/sanity/lib/load-query.ts`: wrap `sanity:client`; perspective/stega/`resultSourceMap` switch on `getPerspective()`; **token from `astro:env/server`**, passed in, draft-mode only; throws if previewing without a token.
+- [x] B3. `src/sanity/lib/draft-mode.ts`: `AsyncLocalStorage` perspective store + `runWithPerspective`/`getPerspective`/`isPreviewing`/`readPerspectiveCookie` (R-3).
+- [x] B4. `content.ts`: all fetches → `loadQuery`; **removed all 10** filters; added `loadQuery` `getPageByPath`/`getProjectBySlug`.
+- [x] B5. `blog.ts`: → `loadQuery`; **removed line-80 filter**; direct `getPostBySlug`.
+- [x] B6. `siteSettings.ts`: → `loadQuery`; **module cache bypassed when previewing** (I6). **+ `projectSeo.ts`** got the identical treatment (R-7).
+- [ ] B7. *(Optional, NOT done)* `groq` `defineQuery` + `sanity typegen generate` — queries remain plain strings.
+- [x] **Gate B (semantic, not byte-identical — I-A):** ✅ no-flag build is prod-identical (semantically equal to baseline), **zero stega** markers, zero React, no worker.
 
-### Stage C — SEO / stega safety
-- [ ] C1. `SEO.astro`: deep `stegaClean()` of `title`/`description`/`imageAlt`/`article.*` + **each `jsonLd` object** (line 84-86). Body keeps stega.
-- [ ] **Gate C:** no-op when stega off → prod `<head>` unchanged.
+### Stage C — SEO / stega safety — ✅ DONE (2026-06-01)
+- [x] C1. `SEO.astro`: deep `stegaClean()` of `title`/`description`/`imageAlt`/`article.*` + **each `jsonLd` object** (line 56-60). Body keeps stega. **+ R-5:** stega also cleaned at `resolveHref`/`resolveLinkHref` + logic fields; **no** config `stega.filter`.
+- [x] **Gate C:** ✅ no-op when stega off → prod `<head>` unchanged.
 
-### Stage D — Visual-editing runtime (preview-only)
-- [ ] D1. SSR fallbacks: add `blog/[slug]` fallback; route `[...slug]`/`projects/[slug]` fallbacks via `loadQuery` (C3). **No `prerender` exports.**
-- [ ] D2. `src/sanity/routes/enable.ts` + `disable.ts` (token via `astro:env/server`); `injectRoute`d only when `PREVIEW_BUILD` (§3.1).
-- [ ] D3. `SanityVisualEditing.tsx` + `DisableDraftMode.tsx` (`client:only="react"`).
-- [ ] D4. `SiteLayout.astro`: render islands only when the perspective cookie is present.
+### Stage D — Visual-editing runtime (preview-only) — ✅ DONE (2026-06-01)
+- [x] D1. SSR fallbacks: added `blog/[slug]` fallback (`Astro.props.post ?? getPostBySlug`); `[...slug]`/`projects/[slug]` fallbacks via `loadQuery` (C3). **No `prerender` exports.**
+- [x] D2. `src/sanity/routes/enable.ts` (`validatePreviewUrl` → set `sanity-preview-perspective` cookie `SameSite=None;Secure`) + `disable.ts` (delete cookie); token via `astro:env/server`; `injectRoute`d only when `PREVIEW_BUILD` (§3.1). **+ `src/sanity/middleware.ts`** runs each request in the perspective `AsyncLocalStorage` scope (R-3).
+- [x] D3. `SanityVisualEditing.tsx` (overlays + history/refresh/`onPerspectiveChange` adapters) + `DisableDraftMode.tsx`, hosted by `VisualEditing.astro` (`client:only="react"`).
+- [x] D4. `SiteLayout.astro`: islands loaded via a **dynamic import** gated on `import.meta.env.PREVIEW_BUILD && isPreviewing()` — preview build + draft request only; prod branch is dead-code-eliminated.
+- [x] *(Codex re-review of A–D done; 3 findings fixed. The deferred pre-existing `blog/[slug].astro` `set:html` HTML-injection sink — R-8 — fixed 2026-06-01.)*
 
-### Stage E — Studio (npm, trivial)
-- [ ] E1. `sanity.config.ts`: add `previewMode: { enable: '/api/draft-mode/enable' }`.
+### Stage E — Studio (npm, trivial) — ⏳ NEXT
+- [ ] E1. `sanity.config.ts`: add `previewMode: { enable: '/api/draft-mode/enable' }` to `presentationTool` (keep the existing `initial`).
 
-### Stage F — Local validation (Phase 0 prereqs)
-- [ ] F1. Token in `.dev.vars` (done); CORS `localhost:4321` **+ the Studio origin** (Allow credentials).
-- [ ] F2. Studio (`:3333`) + frontend (`:4321`, Workers adapter + `platformProxy`); confirm overlays, click-to-edit, refresh, **and a real `drafts` request**.
+### Stage F — Local validation (Phase 0 prereqs) — ⏳ interactive (involve Krishna)
+- [ ] F1. Token in `.dev.vars` (done); **CORS (Allow credentials)** for `http://localhost:4321` **+ the Studio's own origin** (sasinfra-cms host) via Sanity MCP `add_cors_origin` / `npx sanity cors add --credentials`.
+- [ ] F2. Studio (`:3333`) + frontend (`:4321`, **Workers adapter + `.dev.vars`, `PREVIEW_BUILD=1`** — no `platformProxy`, R-2); confirm overlays, click-to-edit, refresh, **and a real `drafts` request** in the network tab. Real verdict on the `optimizeDeps` lodash/* + `node:async_hooks` warnings (R-9).
 
-### Stage G — Deploy (Phase 2, Cloudflare **Workers**) — see §6
+### Stage G — Deploy (Phase 2, Cloudflare **Workers**) — see §6 · ⏳ needs Krishna's Cloudflare actions
 - [ ] G0. 🔴 **Verify `CLOUDFLARE_API_TOKEN` has Workers Scripts:Edit** (current token is Pages-scoped for `pages deploy`); broaden or mint a Workers token. Hard prerequisite — do first.
 - [ ] G1. Confirm the account `workers.dev` subdomain is enabled; preview URL = `sasinfra-frontend-preview.<acct>.workers.dev`.
-- [ ] G2. `wrangler.jsonc`: `main: @astrojs/cloudflare/entrypoints/server`, `name`, `compatibility_date`, `compatibility_flags: ["nodejs_compat"]`, `assets`(`./dist`/`ASSETS`), `workers_dev: true`.
-- [ ] G3. `deploy-preview.yml`: `PREVIEW_BUILD=1` build → `wrangler deploy` (`cloudflare/wrangler-action@v3`, `command: deploy`).
-- [ ] G4. `wrangler secret put SANITY_API_READ_TOKEN` (one-time); read via `astro:env/server`.
+- [ ] G2. **Reconcile** a root `wrangler.jsonc` with the **adapter-generated** `dist/server/wrangler.json` (R-1): add only `name`, **`compatibility_flags: ["nodejs_compat"]`** (generated empty 🔴), `workers_dev: true`, `account_id`; leave `main: entry.mjs` + `assets`→`../client` as generated. Decide on the auto-added `SESSION`/`IMAGES` bindings (§6.2).
+- [ ] G3. `deploy-preview.yml`: `PREVIEW_BUILD=1` build → `wrangler deploy` (`cloudflare/wrangler-action@v3`, `command: deploy`). Prod `deploy.yml` (Pages) untouched.
+- [ ] G4. `wrangler secret put SANITY_API_READ_TOKEN` (one-time); read via `astro:env/server`. Needs the Workers-scoped token (G0).
 - [ ] G5. Studio `SANITY_STUDIO_PREVIEW_URL` + `stega.studioUrl`; add the Worker origin to CORS (credentials).
-- [ ] G6. Verify **on the deployed Worker** (drafts render, token resolves at request time).
+- [ ] G6. 🔴 **SECURITY: put the preview Worker behind Cloudflare Access** (same policy as `cms.sasinfra.com`); verify the Presentation **iframe** authenticates through Access (cross-origin iframe + Access session). Resolves the forgeable-cookie finding (§3.5, §6.0b) — **non-negotiable, before sharing the URL.**
+- [ ] G7. Verify **on the deployed Worker** (drafts render, token resolves at request time, overlays work).
 
 ### Parallelism / independence
 - A → B → C are behavior-preserving under `published`; could ship to prod independently.
