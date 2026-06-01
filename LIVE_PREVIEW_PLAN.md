@@ -1,10 +1,11 @@
 # Live Preview Plan — Sanity Presentation + Astro Visual Editing
 
-**Status:** **Stages A–D BUILT & verified locally (uncommitted in `repos/frontend`,
-2026-06-01)**; Stage E (Studio) trivial; Stages F (local validation) + G (Workers
-deploy) pending · **Rev:** v4 (2026-06-01, folded the as-built A–D deltas back in —
-see §12 Round 3) · **Architecture:** A (static prod + separate SSR preview deploy) ·
-**Phase 2 committed.**
+**Status:** **Stages A–G DONE & deployed (2026-06-01).** Preview Worker live at
+`https://sasinfra-frontend-preview.sas-infra.workers.dev` behind Cloudflare Access.
+Only remaining: the in-browser G7 eyeball (Access-gated → Krishna confirms overlays
+render in Presentation) + the R-13 optimizeDeps client-hydration verdict. · **Rev:** v4
+(2026-06-01; §12 Rounds 3–4 log the as-built deltas) · **Architecture:** A (static prod
+on Pages + separate SSR preview Worker) · **Phase 2 shipped.**
 
 **Scope:** spans `repos/sanity` (Studio) and `repos/frontend` (Astro). Lives in the
 Studio repo next to `CONTENT_ARCHITECTURE_PLAN.md`, but **most work is in the
@@ -529,15 +530,16 @@ the `output` mode does the split.**
 - [x] F2 (server-side). `PREVIEW_BUILD=1 astro dev` (**needs `wrangler.preview.jsonc` for `nodejs_compat` — R-10**) + curl smoke test GREEN: published clean (0 stega/0 React), drafts carry 22.5k stega + VE islands, `/disable`→307, `/enable`(no secret)→401, token resolves, `<head>` stega-clean (R-12). `optimizeDeps` WARNs are non-fatal server-side (R-13).
 - [ ] F2 (browser). Studio (`:3333`, `SANITY_STUDIO_URL=http://localhost:3333` on the frontend) → open Presentation → confirm overlays **hydrate**, click-to-edit, refresh, and a real `drafts` request. This is where the R-13 `optimizeDeps` client-hydration verdict lands.
 
-### Stage G — Deploy (Phase 2, Cloudflare **Workers**) — see §6 · ⏳ needs Krishna's Cloudflare actions
-- [ ] G0. 🔴 **Verify `CLOUDFLARE_API_TOKEN` has Workers Scripts:Edit** (current token is Pages-scoped for `pages deploy`); broaden or mint a Workers token. Hard prerequisite — do first.
-- [ ] G1. Confirm the account `workers.dev` subdomain is enabled; preview URL = `sasinfra-frontend-preview.<acct>.workers.dev`.
-- [x] G2. **DONE (R-10):** `wrangler.preview.jsonc` (non-default filename, so the prod Pages deploy never reads it) wired via the adapter's `configPath`; `name` + `compatibility_flags: ["nodejs_compat"]` now bake into the generated `dist/server/wrangler.json`. Remaining for G3: how `wrangler deploy` resolves the config in CI + `account_id` (§6.2).
-- [ ] G3. `deploy-preview.yml`: `PREVIEW_BUILD=1` build → `wrangler deploy` (`cloudflare/wrangler-action@v3`, `command: deploy`). Prod `deploy.yml` (Pages) untouched.
-- [ ] G4. `wrangler secret put SANITY_API_READ_TOKEN` (one-time); read via `astro:env/server`. Needs the Workers-scoped token (G0).
-- [ ] G5. Studio `SANITY_STUDIO_PREVIEW_URL` + `stega.studioUrl`; add the Worker origin to CORS (credentials).
-- [ ] G6. 🔴 **SECURITY: put the preview Worker behind Cloudflare Access** (same policy as `cms.sasinfra.com`); verify the Presentation **iframe** authenticates through Access (cross-origin iframe + Access session). Resolves the forgeable-cookie finding (§3.5, §6.0b) — **non-negotiable, before sharing the URL.**
-- [ ] G7. Verify **on the deployed Worker** (drafts render, token resolves at request time, overlays work).
+### Stage G — Deploy (Cloudflare **Workers**) — ✅ G0–G6 DONE & verified (2026-06-01); G7 = in-browser eyeball pending
+**Deployed: `https://sasinfra-frontend-preview.sas-infra.workers.dev`** (account `659a3f2…` = SAS Infra; Access team `sasinfra.cloudflareaccess.com`).
+- [x] G0. New **Workers-scoped token** minted (least-privilege; prod token stays Pages-only) → GH secret `CLOUDFLARE_WORKERS_API_TOKEN`.
+- [x] G1. workers.dev subdomain = **`sas-infra.workers.dev`** (already set on the SAS Infra account).
+- [x] G2. `wrangler.preview.jsonc` via adapter `configPath` (R-10) — bakes `nodejs_compat` + name into `dist/server/wrangler.json`.
+- [x] G3. **`deploy-preview.yml`** (`wrangler-action@v4`, `command: deploy --config dist/server/wrangler.json`; validated via `--dry-run`). Now `push:[main]` + `workflow_dispatch`. First run ✅ — deployed; wrangler **auto-provisioned** the `SESSION` KV namespace (the unbacked-binding worry was moot). Prod `deploy.yml` untouched.
+- [x] G4. `SANITY_API_READ_TOKEN` set as a Worker secret (via dashboard UI). Read at request time via `astro:env/server`.
+- [x] G5. Sanity CORS for the Worker origin (credentialed) + Studio `SANITY_STUDIO_PREVIEW_URL` → the Worker URL (redeploy Studio for it to take effect).
+- [x] G6. 🔴 **Cloudflare Access ENABLED** on the workers.dev route (verified: Worker 302-redirects to `sasinfra.cloudflareaccess.com/cdn-cgi/access/login/…`). Resolves the forgeable-cookie finding (§3.5, §6.0b).
+- [ ] G7 (in-browser, Krishna). Open Presentation in `cms.sasinfra.com` → authenticate through Access → confirm **drafts render + overlays/click-to-edit/refresh**. Access gates `curl`, so this is browser-only; also lands the R-13 `optimizeDeps` client-hydration verdict. **Pre-deploy checks already passed:** published renders on the real Worker, `nodejs_compat` works at runtime, drafts safely blocked before the secret (302→/404, no leak).
 
 ### Parallelism / independence
 - A → B → C are behavior-preserving under `published`; could ship to prod independently.
