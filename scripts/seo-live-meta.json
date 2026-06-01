@@ -1,0 +1,122 @@
+{
+  "homePage": {
+    "url": "https://sasinfra.com/",
+    "status": 200,
+    "title": "Luxury Apartments & Office Spaces in Hyderabad | SAS Infra",
+    "description": "Discover ultra-luxury gated community residences and premium Grade-A commercial developments in Hyderabad with us, defined by high-rise living and corporate excellence—luxury apartments hyderabad, office space hyderabad.",
+    "ogTitle": "Luxury Apartments & Office Spaces in Hyderabad | SAS Infra",
+    "ogDescription": "Discover ultra-luxury gated community residences and premium Grade-A commercial developments in Hyderabad with us, defined by high-rise living and corporate excellence—luxury apartments hyderabad, office space hyderabad.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Logo-Blue-01-01-1-1.webp",
+    "ogImageAlt": "Contact SAS Infra"
+  },
+  "page-contact": {
+    "url": "https://sasinfra.com/contact/",
+    "status": 200,
+    "title": "Contact SAS Infra | Office Details & Enquiries",
+    "description": "Contact SAS Infra for project enquiries, partnerships, and support. Find office details and reach the team directly.",
+    "ogTitle": "Contact SAS Infra | Office Details & Enquiries",
+    "ogDescription": "Contact SAS Infra for project enquiries, partnerships, and support. Find office details and reach the team directly.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Logo-Blue-01-01-1-1.webp",
+    "ogImageAlt": "Contact SAS Infra"
+  },
+  "page-privacy": {
+    "url": "https://sasinfra.com/privacy-policy/",
+    "status": 200,
+    "title": "Privacy Policy | SAS Infra",
+    "description": "Learn how we collect, use, and safeguard your data—details are outlined in our privacy policy.",
+    "ogTitle": "Privacy Policy | SAS Infra",
+    "ogDescription": "Learn how we collect, use, and safeguard your data—details are outlined in our privacy policy.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Logo-Blue-01-01-1-1.webp",
+    "ogImageAlt": "Contact SAS Infra"
+  },
+  "page-cookies": {
+    "url": "https://sasinfra.com/cookie-policy/",
+    "status": 200,
+    "title": "Cookie Policy | SAS Infra",
+    "description": "Understand how we use these tools to enhance site experience and performance—explained in our cookie policy.",
+    "ogTitle": "Cookie Policy | SAS Infra",
+    "ogDescription": "Understand how we use these tools to enhance site experience and performance—explained in our cookie policy.",
+    "ogImage": null,
+    "ogImageAlt": null
+  },
+  "page-terms": {
+    "url": "https://sasinfra.com/terms-conditions/",
+    "status": 200,
+    "title": "Terms & Conditions | SAS Infra",
+    "description": "Learn about the guidelines that govern your use of our website and related services in our terms & conditions.",
+    "ogTitle": "Terms & Conditions | SAS Infra",
+    "ogDescription": "Learn about the guidelines that govern your use of our website and related services in our terms & conditions.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Logo-Blue-01-01-1-1.webp",
+    "ogImageAlt": "Contact SAS Infra"
+  },
+  "page-media": {
+    "url": "https://sasinfra.com/media/",
+    "status": 200,
+    "title": "Media & Press Coverage | SAS Infra",
+    "description": "Browse SAS Infra media coverage: press features, interviews, and third-party coverage highlighting projects and milestones.",
+    "ogTitle": "Media & Press Coverage | SAS Infra",
+    "ogDescription": "Browse SAS Infra media coverage: press features, interviews, and third-party coverage highlighting projects and milestones.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Logo-Blue-01-01-1-1.webp",
+    "ogImageAlt": "Contact SAS Infra"
+  },
+  "page-careers": {
+    "url": "https://sasinfra.com/sas-infra-careers/",
+    "status": 200,
+    "title": "SAS Infra Careers| Real Estate Jobs in Hyderabad",
+    "description": "Explore SAS Infra careers across engineering, design, operations, sales, and management roles in Hyderabad.",
+    "ogTitle": "SAS Infra Careers| Real Estate Jobs in Hyderabad",
+    "ogDescription": "Explore SAS Infra careers across engineering, design, operations, sales, and management roles in Hyderabad.",
+    "ogImage": null,
+    "ogImageAlt": null
+  },
+  "updatesIndexPage": {
+    "url": "https://sasinfra.com/project-updates/",
+    "status": 200,
+    "title": "Project Updates & Construction Progress | SAS Infra",
+    "description": "Stay informed with our project updates on construction milestones, ongoing progress, and new developments across our portfolio.",
+    "ogTitle": "Project Updates & Construction Progress | SAS Infra",
+    "ogDescription": "Stay informed with our project updates on construction milestones, ongoing progress, and new developments across our portfolio.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2026/03/ChatGPT-Image-Mar-12-2026-03_20_48-PM.png",
+    "ogImageAlt": "SAS Crown Thumbnail for Project Update of Mar 2026"
+  },
+  "blogIndexPage": {
+    "url": "https://sasinfra.com/sas-infra-blog/",
+    "status": 200,
+    "title": "SAS Infra Blog",
+    "description": "Latest news, insights and updates on commercial real estate, projects and developments on the SAS Infra blog.",
+    "ogTitle": "SAS Infra Blog",
+    "ogDescription": "Latest news, insights and updates on commercial real estate, projects and developments on the SAS Infra blog.",
+    "ogImage": null,
+    "ogImageAlt": null
+  },
+  "page-about": {
+    "url": "https://sasinfra.com/about-sas-infra-hyderabad/",
+    "status": 200,
+    "title": "About SAS Infra Hyderabad | Real Estate Developer",
+    "description": "A prominent brand in the city, we're known for delivering luxury residential apartments and premium commercial spaces - SAS Infra Hyderabad",
+    "ogTitle": "About SAS Infra Hyderabad | Real Estate Developer",
+    "ogDescription": "A prominent brand in the city, we're known for delivering luxury residential apartments and premium commercial spaces - SAS Infra Hyderabad",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/WhatsApp-Image-2025-05-13-at-3.37.26-PM-1024x483.jpeg",
+    "ogImageAlt": "SAS Infra Hyderabad"
+  },
+  "project-sas-crown": {
+    "url": "https://sasinfra.com/tallest-residential-tower-in-south-india/",
+    "status": 200,
+    "title": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+    "description": "Own ultra-luxury 3 & 4 BHK residences in Kokapet—an iconic high-rise near the Financial District with elite amenities, crafted for refined living in Luxury Apartments in Kokapet Hyderabad.",
+    "ogTitle": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+    "ogDescription": "Own ultra-luxury 3 & 4 BHK residences in Kokapet—an iconic high-rise near the Financial District with elite amenities, crafted for refined living in Luxury Apartments in Kokapet Hyderabad.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Crown-Clubhouse-1-1024x596.webp",
+    "ogImageAlt": "Luxury Apartments in Kokapet Hyderabad"
+  },
+  "project-sas-itower": {
+    "url": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/",
+    "status": 200,
+    "title": "Premium Commercial Spaces Nanakramguda Khajaguda | SAS Infra",
+    "description": "Discover premium Commercial Spaces Nanakramguda Khajaguda with prime connectivity, modern infrastructure, and strong investment potential in Hyderabad’s Financial District.",
+    "ogTitle": "Premium Commercial Spaces Nanakramguda Khajaguda | SAS Infra",
+    "ogDescription": "Discover premium Commercial Spaces Nanakramguda Khajaguda with prime connectivity, modern infrastructure, and strong investment potential in Hyderabad’s Financial District.",
+    "ogImage": "https://sasinfra.com/wp-content/uploads/2026/02/Blog_Image-copy.jpg",
+    "ogImageAlt": "iTower Landscape View | SAS Infra"
+  }
+}
