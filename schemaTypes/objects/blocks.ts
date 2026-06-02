@@ -619,6 +619,46 @@ export const locationMapBlock = defineType({
       ],
     }),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
+    defineField({
+      name: 'pointsOfInterest',
+      title: 'Points of Interest',
+      description:
+        'Curated nearby landmarks, rendered as the location-map leader ring + legend ' +
+        '(sorted by drive time). Coordinates are geocoded via Google Places; drive ' +
+        'times are Google Routes API traffic-aware medians from this project.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'poi',
+          icon: PinIcon,
+          fields: [
+            defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
+            defineField({
+              name: 'category',
+              title: 'Category',
+              type: 'string',
+              description: 'Short label, e.g. Metro Station, Airport, Hospital, Hotel, Retail.',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'driveMinutes',
+              title: 'Drive time (min)',
+              type: 'number',
+              validation: (rule) => rule.min(0).integer(),
+            }),
+            defineField({name: 'location', title: 'Location', type: 'geopoint', validation: (rule) => rule.required()}),
+          ],
+          preview: {
+            select: {title: 'name', category: 'category', mins: 'driveMinutes'},
+            prepare({title, category, mins}) {
+              const bits = [category, mins != null ? `${mins} min` : null].filter(Boolean)
+              return {title, subtitle: bits.join(' · ')}
+            },
+          },
+        }),
+      ],
+    }),
   ],
   preview: {select: {title: 'overture.heading', subtitle: 'mapConfig.mapProject'}},
 })
