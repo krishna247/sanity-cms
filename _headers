@@ -8,7 +8,12 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   X-XSS-Protection: 1; mode=block
+  # index.html (and all non-hashed entry docs) must always revalidate, or a
+  # stale-cached index.html keeps referencing old immutable /static bundles —
+  # which is how editors got pinned to a dead Presentation preview URL.
+  Cache-Control: no-cache
 
-# Sanity Studio hashed bundles — content-addressed, safe to cache forever
+# Sanity Studio hashed bundles — content-addressed, safe to cache forever.
+# Later rule wins, so these stay immutable despite the no-cache above.
 /static/*
   Cache-Control: public, max-age=31536000, immutable
