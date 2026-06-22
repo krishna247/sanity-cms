@@ -37,30 +37,52 @@ const ITOWER = { latitude: 17.419178012275573, longitude: 78.36055538892053 };
 // list to add/drop POIs, then re-run and patch the CMS with the output.
 // `category` is the short label shown in the legend; `query` is the Places
 // text search (include "Hyderabad" / the locality to disambiguate).
+// Landmarks per the iTower content doc §16 ("Landmarks to label on the map").
+// ~19 entries; review drive times after running and trim outliers for ring clarity.
 const POIS = [
-  { category: 'Hospital',      query: 'Continental Hospitals Nanakramguda Hyderabad' },
-  { category: 'Landmark',      query: 'IKEA Hyderabad Hitech City' },
-  { category: 'Metro Station', query: 'Raidurg Metro Station Hyderabad' },
-  { category: 'Institution',   query: 'Indian School of Business Hyderabad' },
-  { category: 'Hotel',         query: 'ITC Kohenur Hyderabad' },
-  { category: 'Retail',        query: 'Sarath City Capital Mall Hyderabad' },
-  { category: 'Airport',       query: 'Rajiv Gandhi International Airport Hyderabad' },
-  // Swap options (geocoded clean, currently unused):
-  // { category: 'Hospital',     query: 'AIG Hospitals Gachibowli Hyderabad' },
-  // { category: 'Retail',       query: 'Inorbit Mall Madhapur Hyderabad' },
-  // { category: 'Tech Campus',  query: 'Microsoft India Development Center Gachibowli Hyderabad' },
+  { category: 'Tech Campus', query: 'Microsoft India Development Center Gachibowli Hyderabad' },
+  { category: 'Tech Campus', query: 'Wipro Gachibowli Hyderabad' },
+  { category: 'Tech Campus', query: 'Cognizant Gachibowli Hyderabad' },
+  { category: 'Tech Campus', query: 'Infosys Hyderabad' },
+  { category: 'Office',      query: 'Waverock Nanakramguda Hyderabad' },
+  { category: 'Office',      query: 'Cyber Gateway Hitech City Hyderabad' },
+  { category: 'Institution', query: 'Indian School of Business Hyderabad' },
+  { category: 'Institution', query: 'IIIT Hyderabad Gachibowli' },
+  { category: 'Hospital',    query: 'AIG Hospitals Gachibowli Hyderabad' },
+  { category: 'Hospital',    query: 'Continental Hospitals Nanakramguda Hyderabad' },
+  { category: 'Retail',      query: 'Inorbit Mall Madhapur Hyderabad' },
+  { category: 'Landmark',    query: 'IKEA Hyderabad Hitech City' },
+  { category: 'Hotel',       query: 'Hyatt Hyderabad Gachibowli' },
+  { category: 'Leisure',     query: 'Emaar Hills Golf Club Gachibowli Hyderabad' },
+  { category: 'Sports',      query: 'Gachibowli Indoor Stadium Hyderabad' },
+  { category: 'School',      query: 'Oakridge International School Gachibowli Hyderabad' },
+  { category: 'School',      query: 'The Gaudium School Kollur Hyderabad' },
+  { category: 'School',      query: 'Delhi Public School Khajaguda Hyderabad' },
+  { category: 'School',      query: 'Phoenix Greens International School Kokapet Hyderabad' },
 ];
 
 // Short display names per query (keeps leader-ring labels compact). Falls back
 // to the Places displayName when a query isn't listed here.
 const DISPLAY_NAME = {
-  'Continental Hospitals Nanakramguda Hyderabad': 'Continental Hospitals',
-  'IKEA Hyderabad Hitech City': 'IKEA Hyderabad',
-  'Raidurg Metro Station Hyderabad': 'Raidurg Metro',
+  'Microsoft India Development Center Gachibowli Hyderabad': 'Microsoft',
+  'Wipro Gachibowli Hyderabad': 'Wipro',
+  'Cognizant Gachibowli Hyderabad': 'Cognizant',
+  'Infosys Hyderabad': 'Infosys',
+  'Waverock Nanakramguda Hyderabad': 'Waverock SEZ',
+  'Cyber Gateway Hitech City Hyderabad': 'Cyber Gateway',
   'Indian School of Business Hyderabad': 'Indian School of Business',
-  'ITC Kohenur Hyderabad': 'ITC Kohenur',
-  'Sarath City Capital Mall Hyderabad': 'Sarath City Mall',
-  'Rajiv Gandhi International Airport Hyderabad': 'RGI Airport',
+  'IIIT Hyderabad Gachibowli': 'IIIT Hyderabad',
+  'AIG Hospitals Gachibowli Hyderabad': 'AIG Hospitals',
+  'Continental Hospitals Nanakramguda Hyderabad': 'Continental Hospitals',
+  'Inorbit Mall Madhapur Hyderabad': 'Inorbit Mall',
+  'IKEA Hyderabad Hitech City': 'IKEA Hyderabad',
+  'Hyatt Hyderabad Gachibowli': 'Hyatt Gachibowli',
+  'Emaar Hills Golf Club Gachibowli Hyderabad': 'Emaar Golf Club',
+  'Gachibowli Indoor Stadium Hyderabad': 'Gachibowli Stadium',
+  'Oakridge International School Gachibowli Hyderabad': 'Oakridge Intl School',
+  'The Gaudium School Kollur Hyderabad': 'The Gaudium School',
+  'Delhi Public School Khajaguda Hyderabad': 'DPS Khajaguda',
+  'Phoenix Greens International School Kokapet Hyderabad': 'Phoenix Greens',
 };
 
 async function place(q) {
@@ -99,8 +121,12 @@ async function driveTimes(dests) {
 
 const geo = [];
 for (const poi of POIS) {
-  const g = await place(poi.query);
-  geo.push({ category: poi.category, name: DISPLAY_NAME[poi.query] || g.name, addr: g.addr, lat: g.lat, lng: g.lng });
+  try {
+    const g = await place(poi.query);
+    geo.push({ category: poi.category, name: DISPLAY_NAME[poi.query] || g.name, addr: g.addr, lat: g.lat, lng: g.lng });
+  } catch (e) {
+    console.error(`  SKIP (no geocode): ${poi.query} — ${e.message}`);
+  }
 }
 
 const matrix = await driveTimes(geo);

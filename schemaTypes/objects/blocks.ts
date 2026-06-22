@@ -6,6 +6,7 @@ import {
   PinIcon,
   PlayIcon,
   StarIcon,
+  TagIcon,
   ThListIcon,
   TiersIcon,
 } from '@sanity/icons'
@@ -619,6 +620,29 @@ export const locationMapBlock = defineType({
       ],
     }),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
+    defineField({name: 'address', title: 'Street Address', type: 'text', rows: 2}),
+    defineField({
+      name: 'travelTimes',
+      title: 'Travel Times',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'distance', title: 'Distance', type: 'string'}),
+            defineField({name: 'time', title: 'Time', type: 'string'}),
+            defineField({name: 'destination', title: 'Destination', type: 'string'}),
+          ],
+          preview: {select: {title: 'destination', subtitle: 'time'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'connectivity',
+      title: 'Connectivity Highlights',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+    }),
     defineField({
       name: 'pointsOfInterest',
       title: 'Points of Interest',
@@ -685,6 +709,21 @@ export const masterPlanBlock = defineType({
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+      ],
+    }),
+    defineField({
+      name: 'annotations',
+      title: 'Site-plan Annotations',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'building', title: 'Building', type: 'string'}),
+            defineField({name: 'detail', title: 'Detail', type: 'string'}),
+          ],
+          preview: {select: {title: 'building', subtitle: 'detail'}},
+        }),
       ],
     }),
   ],
@@ -886,6 +925,113 @@ export const brochureBlock = defineType({
   preview: {select: {title: 'head.heading'}},
 })
 
+export const addressSectionBlock = defineType({
+  name: 'addressSectionBlock',
+  title: 'The Address (Retail)',
+  type: 'object',
+  icon: TagIcon,
+  description:
+    'Composite block modelling the "The Address" luxury-retail section. ' +
+    'The iTower component only renders block types it explicitly looks up, ' +
+    'so this is invisible on the live site until render code is added.',
+  fields: [
+    defineField({name: 'wordmark', title: 'Wordmark', type: 'imageWithAlt'}),
+    defineField({
+      name: 'intro',
+      title: 'Intro',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'heading', title: 'Heading', type: 'string', description: 'Allows inline <em> html.'}),
+        defineField({
+          name: 'body',
+          title: 'Body Paragraphs',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+        }),
+        defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
+      ],
+    }),
+    defineField({
+      name: 'stats',
+      title: 'Stats',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+          ],
+          preview: {select: {title: 'value', subtitle: 'label'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'mix',
+      title: 'The Mix',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'heading', title: 'Heading', type: 'string', description: 'Allows inline <em> html.'}),
+        defineField({name: 'body', title: 'Body', type: 'text', rows: 4}),
+        defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
+        defineField({
+          name: 'cards',
+          title: 'Mix Cards',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              fields: [
+                defineField({name: 'category', title: 'Category', type: 'string', validation: (rule) => rule.required()}),
+                defineField({name: 'share', title: 'Share', type: 'string'}),
+                defineField({name: 'gla', title: 'GLA', type: 'string'}),
+                defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+              ],
+              preview: {select: {title: 'category', subtitle: 'share'}},
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'amenities',
+      title: 'Amenities',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'heading', title: 'Heading', type: 'string', description: 'Allows inline <em> html.'}),
+        defineField({
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              fields: [
+                defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
+                defineField({name: 'icon', title: 'Icon', type: 'string', options: {list: iconTokenOptions}}),
+              ],
+              preview: {select: {title: 'name', subtitle: 'icon'}},
+            }),
+          ],
+        }),
+        defineField({
+          name: 'cta',
+          title: 'CTA',
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Label', type: 'string'}),
+            defineField({name: 'prefill', title: 'Prefill', type: 'string'}),
+          ],
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'intro.heading', subtitle: 'intro.eyebrow', media: 'wordmark.image'}},
+})
+
 export const homePageBuilder = defineType({
   name: 'homePageBuilder',
   title: 'Home Page Builder',
@@ -949,6 +1095,7 @@ export const projectPageBuilder = defineType({
     defineArrayMember({type: 'engineeredNumbersBlock'}),
     defineArrayMember({type: 'consultantsBlock'}),
     defineArrayMember({type: 'brochureBlock'}),
+    defineArrayMember({type: 'addressSectionBlock'}),
   ],
 })
 
@@ -981,6 +1128,7 @@ export const blockTypes = [
   engineeredNumbersBlock,
   consultantsBlock,
   brochureBlock,
+  addressSectionBlock,
   homePageBuilder,
   pagePageBuilder,
   projectPageBuilder,
