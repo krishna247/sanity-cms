@@ -1,0 +1,962 @@
+{
+  "_note": "Full live JSON-LD per template type, captured 2026-06-01 pre-cutover. Use to replicate schema parity in src/lib/jsonld.ts.",
+  "samples": {
+    "home": {
+      "url": "https://sasinfra.com/",
+      "ld_json_blocks": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Place",
+              "@id": "https://sasinfra.com/#place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              }
+            },
+            {
+              "@type": [
+                "RealEstateAgent",
+                "Organization"
+              ],
+              "@id": "https://sasinfra.com/#organization",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com",
+              "sameAs": [
+                "https://www.facebook.com/SasInfraHyderabad",
+                "https://twitter.com/https://x.com/SAS_INFRA",
+                "https://www.instagram.com/sasinfra/",
+                "https://www.linkedin.com/company/sasinfra/",
+                "https://www.youtube.com/channel/UCGG8lm_JDU66xznitCsK7TQ"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              },
+              "logo": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/#logo",
+                "url": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "caption": "https://sasinfra.com/",
+                "inLanguage": "en-US"
+              },
+              "openingHours": [
+                "Monday,Tuesday,Wednesday,Thursday 10:00-18:00",
+                "Friday 10:0-18:00",
+                "Saturday 10:00-17:00"
+              ],
+              "description": "SAS Infra is a leading construction and development company in Hyderabad, redefining the city’s skyline through architectural excellence and innovation. We are driven by a commitment to quality and a belief in turning the impossible into possible.\n",
+              "location": {
+                "@id": "https://sasinfra.com/#place"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/#logo"
+              },
+              "telephone": "+91-9718662299"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://sasinfra.com/#website",
+              "url": "https://sasinfra.com",
+              "name": "https://sasinfra.com/",
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://sasinfra.com/?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            },
+            {
+              "@type": "ImageObject",
+              "@id": "https://sasinfra.com/wp-content/uploads/2025/10/Acoustics-1.webp",
+              "url": "https://sasinfra.com/wp-content/uploads/2025/10/Acoustics-1.webp",
+              "width": "200",
+              "height": "200",
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://sasinfra.com/#webpage",
+              "url": "https://sasinfra.com/",
+              "name": "Luxury Apartments &amp; Office Spaces in Hyderabad | SAS Infra",
+              "datePublished": "2025-10-03T09:18:21+00:00",
+              "dateModified": "2026-05-22T12:11:20+00:00",
+              "about": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#website"
+              },
+              "primaryImageOfPage": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/Acoustics-1.webp"
+              },
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "image": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "url": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "caption": "SAS Infra",
+                "inLanguage": "en-US"
+              },
+              "sameAs": [
+                "https://sasinfra.com"
+              ],
+              "worksFor": {
+                "@id": "https://sasinfra.com/#organization"
+              }
+            },
+            {
+              "headline": "Luxury Apartments &amp; Office Spaces in Hyderabad | SAS Infra",
+              "description": "Discover ultra-luxury gated community residences and premium Grade-A commercial developments in Hyderabad with us, defined by high-rise living and corporate excellence—luxury apartments hyderabad, office space hyderabad.",
+              "datePublished": "2025-10-03T09:18:21+00:00",
+              "dateModified": "2026-05-22T12:11:20+00:00",
+              "keywords": "luxury apartments hyderabad, office space hyderabad, gated community flats, high-rise apartments, commercial towers",
+              "image": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/Acoustics-1.webp"
+              },
+              "author": {
+                "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+                "name": "SAS Infra"
+              },
+              "@type": "Article",
+              "name": "Luxury Apartments &amp; Office Spaces in Hyderabad | SAS Infra",
+              "@id": "https://sasinfra.com/#schema-20135",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#webpage"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US",
+              "mainEntityOfPage": {
+                "@id": "https://sasinfra.com/#webpage"
+              }
+            },
+            {
+              "@type": "VideoObject",
+              "name": "Luxury Apartments &amp; Office Spaces in Hyderabad | SAS Infra",
+              "description": "Discover ultra-luxury gated community residences and premium Grade-A commercial developments in Hyderabad with us, defined by high-rise living and corporate excellence—luxury apartments hyderabad, office space hyderabad.",
+              "uploadDate": "2025-10-03T09:18:21+00:00",
+              "contentUrl": "https://sasinfra.com/wp-content/uploads/2025/10/WhatsApp-Video-2025-05-13-at-2.37.19-PMC.mp4",
+              "width": "1920",
+              "height": "1080",
+              "isFamilyFriendly": "True",
+              "@id": "https://sasinfra.com/#schema-20176",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#webpage"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            }
+          ]
+        }
+      ]
+    },
+    "project_residential": {
+      "url": "https://sasinfra.com/tallest-residential-tower-in-south-india/",
+      "ld_json_blocks": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Place",
+              "@id": "https://sasinfra.com/#place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              }
+            },
+            {
+              "@type": [
+                "RealEstateAgent",
+                "Organization"
+              ],
+              "@id": "https://sasinfra.com/#organization",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com",
+              "sameAs": [
+                "https://www.facebook.com/SasInfraHyderabad",
+                "https://twitter.com/https://x.com/SAS_INFRA",
+                "https://www.instagram.com/sasinfra/",
+                "https://www.linkedin.com/company/sasinfra/",
+                "https://www.youtube.com/channel/UCGG8lm_JDU66xznitCsK7TQ"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              },
+              "logo": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/#logo",
+                "url": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "caption": "https://sasinfra.com/",
+                "inLanguage": "en-US"
+              },
+              "openingHours": [
+                "Monday,Tuesday,Wednesday,Thursday 10:00-18:00",
+                "Friday 10:0-18:00",
+                "Saturday 10:00-17:00"
+              ],
+              "description": "SAS Infra is a leading construction and development company in Hyderabad, redefining the city’s skyline through architectural excellence and innovation. We are driven by a commitment to quality and a belief in turning the impossible into possible.\n",
+              "location": {
+                "@id": "https://sasinfra.com/#place"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/#logo"
+              },
+              "telephone": "+91-9718662299"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://sasinfra.com/#website",
+              "url": "https://sasinfra.com",
+              "name": "https://sasinfra.com/",
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "ImageObject",
+              "@id": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Crown.svg",
+              "url": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Crown.svg",
+              "width": "200",
+              "height": "200",
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": "1",
+                  "item": {
+                    "@id": "https://sasinfra.com",
+                    "name": "Home"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": "2",
+                  "item": {
+                    "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/",
+                    "name": "SAS Crown"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#webpage",
+              "url": "https://sasinfra.com/tallest-residential-tower-in-south-india/",
+              "name": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+              "datePublished": "2025-10-07T05:42:24+00:00",
+              "dateModified": "2026-05-23T09:53:12+00:00",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#website"
+              },
+              "primaryImageOfPage": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Crown.svg"
+              },
+              "inLanguage": "en-US",
+              "breadcrumb": {
+                "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#breadcrumb"
+              }
+            },
+            {
+              "@type": "Person",
+              "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "image": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "url": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "caption": "SAS Infra",
+                "inLanguage": "en-US"
+              },
+              "sameAs": [
+                "https://sasinfra.com"
+              ],
+              "worksFor": {
+                "@id": "https://sasinfra.com/#organization"
+              }
+            },
+            {
+              "headline": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+              "description": "Own ultra-luxury 3 &amp; 4 BHK residences in Kokapet—an iconic high-rise near the Financial District with elite amenities, crafted for refined living in Luxury Apartments in Kokapet Hyderabad.",
+              "datePublished": "2025-10-07T05:42:24+00:00",
+              "dateModified": "2026-05-23T09:53:12+00:00",
+              "keywords": "Luxury Apartments in Kokapet Hyderabad,flats in kokapet hyderabad,high-rise apartments",
+              "image": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-Crown.svg"
+              },
+              "author": {
+                "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+                "name": "SAS Infra"
+              },
+              "@type": "Article",
+              "name": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+              "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#schema-19828",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#webpage"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US",
+              "mainEntityOfPage": {
+                "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#webpage"
+              }
+            },
+            {
+              "@type": "VideoObject",
+              "name": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+              "description": "Own ultra-luxury 3 &amp; 4 BHK residences in Kokapet—an iconic high-rise near the Financial District with elite amenities, crafted for refined living in Luxury Apartments in Kokapet Hyderabad.",
+              "uploadDate": "2025-10-07T05:42:24+00:00",
+              "contentUrl": "https://sasinfra.com/wp-content/uploads/2025/10/Crown-Page_Video-CopyC.mp4",
+              "width": "1920",
+              "height": "1080",
+              "isFamilyFriendly": "True",
+              "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#schema-61379",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/tallest-residential-tower-in-south-india/#webpage"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            }
+          ]
+        }
+      ]
+    },
+    "project_commercial": {
+      "url": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/",
+      "ld_json_blocks": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Place",
+              "@id": "https://sasinfra.com/#place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              }
+            },
+            {
+              "@type": [
+                "RealEstateAgent",
+                "Organization"
+              ],
+              "@id": "https://sasinfra.com/#organization",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com",
+              "sameAs": [
+                "https://www.facebook.com/SasInfraHyderabad",
+                "https://twitter.com/https://x.com/SAS_INFRA",
+                "https://www.instagram.com/sasinfra/",
+                "https://www.linkedin.com/company/sasinfra/",
+                "https://www.youtube.com/channel/UCGG8lm_JDU66xznitCsK7TQ"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              },
+              "logo": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/#logo",
+                "url": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "caption": "https://sasinfra.com/",
+                "inLanguage": "en-US"
+              },
+              "openingHours": [
+                "Monday,Tuesday,Wednesday,Thursday 10:00-18:00",
+                "Friday 10:0-18:00",
+                "Saturday 10:00-17:00"
+              ],
+              "description": "SAS Infra is a leading construction and development company in Hyderabad, redefining the city’s skyline through architectural excellence and innovation. We are driven by a commitment to quality and a belief in turning the impossible into possible.\n",
+              "location": {
+                "@id": "https://sasinfra.com/#place"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/#logo"
+              },
+              "telephone": "+91-9718662299"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://sasinfra.com/#website",
+              "url": "https://sasinfra.com",
+              "name": "https://sasinfra.com/",
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "ImageObject",
+              "@id": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-iTower-Logo.svg",
+              "url": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-iTower-Logo.svg",
+              "width": "200",
+              "height": "200",
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": "1",
+                  "item": {
+                    "@id": "https://sasinfra.com",
+                    "name": "Home"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": "2",
+                  "item": {
+                    "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/",
+                    "name": "SAS iTower"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#webpage",
+              "url": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/",
+              "name": "Premium Commercial Spaces Nanakramguda Khajaguda | SAS Infra",
+              "datePublished": "2025-10-09T05:14:05+00:00",
+              "dateModified": "2026-04-28T12:12:25+00:00",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#website"
+              },
+              "primaryImageOfPage": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-iTower-Logo.svg"
+              },
+              "inLanguage": "en-US",
+              "breadcrumb": {
+                "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#breadcrumb"
+              }
+            },
+            {
+              "@type": "Person",
+              "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "image": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "url": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "caption": "SAS Infra",
+                "inLanguage": "en-US"
+              },
+              "sameAs": [
+                "https://sasinfra.com"
+              ],
+              "worksFor": {
+                "@id": "https://sasinfra.com/#organization"
+              }
+            },
+            {
+              "headline": "Premium Commercial Spaces Nanakramguda Khajaguda | SAS Infra",
+              "description": "Discover premium Commercial Spaces Nanakramguda Khajaguda with prime connectivity, modern infrastructure, and strong investment potential in Hyderabad’s Financial District.",
+              "datePublished": "2025-10-09T05:14:05+00:00",
+              "dateModified": "2026-04-28T12:12:25+00:00",
+              "keywords": "Commercial Spaces Nanakramguda Khajaguda, office space nanakramguda, commercial property nanakramguda, financial district offices",
+              "image": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/SAS-iTower-Logo.svg"
+              },
+              "author": {
+                "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+                "name": "SAS Infra"
+              },
+              "@type": "Article",
+              "name": "Premium Commercial Spaces Nanakramguda Khajaguda | SAS Infra",
+              "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#schema-20015",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#webpage"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US",
+              "mainEntityOfPage": {
+                "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#webpage"
+              }
+            },
+            {
+              "@type": "VideoObject",
+              "name": "Premium Commercial Spaces Nanakramguda Khajaguda | SAS Infra",
+              "description": "Discover premium Commercial Spaces Nanakramguda Khajaguda with prime connectivity, modern infrastructure, and strong investment potential in Hyderabad’s Financial District.",
+              "uploadDate": "2025-10-09T05:14:05+00:00",
+              "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/04/WhatsApp-Video-2026-04-28-at-17.33.09.mp4",
+              "width": "1920",
+              "height": "1080",
+              "isFamilyFriendly": "True",
+              "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#schema-64822",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/sas-itower-commercial-spaces-nanakramguda-khajaguda/#webpage"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            }
+          ]
+        }
+      ]
+    },
+    "blog_post": {
+      "url": "https://sasinfra.com/hydra-explained/",
+      "ld_json_blocks": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Place",
+              "@id": "https://sasinfra.com/#place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              }
+            },
+            {
+              "@type": [
+                "RealEstateAgent",
+                "Organization"
+              ],
+              "@id": "https://sasinfra.com/#organization",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com",
+              "sameAs": [
+                "https://www.facebook.com/SasInfraHyderabad",
+                "https://twitter.com/https://x.com/SAS_INFRA",
+                "https://www.instagram.com/sasinfra/",
+                "https://www.linkedin.com/company/sasinfra/",
+                "https://www.youtube.com/channel/UCGG8lm_JDU66xznitCsK7TQ"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              },
+              "logo": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/#logo",
+                "url": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "caption": "https://sasinfra.com/",
+                "inLanguage": "en-US"
+              },
+              "openingHours": [
+                "Monday,Tuesday,Wednesday,Thursday 10:00-18:00",
+                "Friday 10:0-18:00",
+                "Saturday 10:00-17:00"
+              ],
+              "description": "SAS Infra is a leading construction and development company in Hyderabad, redefining the city’s skyline through architectural excellence and innovation. We are driven by a commitment to quality and a belief in turning the impossible into possible.\n",
+              "location": {
+                "@id": "https://sasinfra.com/#place"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/#logo"
+              },
+              "telephone": "+91-9718662299"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://sasinfra.com/#website",
+              "url": "https://sasinfra.com",
+              "name": "https://sasinfra.com/",
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "ImageObject",
+              "@id": "https://sasinfra.com/wp-content/uploads/2024/09/blog-12-1-1024x576-1.webp",
+              "url": "https://sasinfra.com/wp-content/uploads/2024/09/blog-12-1-1024x576-1.webp",
+              "width": "1600",
+              "height": "900",
+              "caption": "HYDRA demolition drive removing an illegal lakeside building in Hyderabad using heavy machinery.",
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://sasinfra.com/hydra-explained/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": "1",
+                  "item": {
+                    "@id": "https://sasinfra.com",
+                    "name": "Home"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": "2",
+                  "item": {
+                    "@id": "https://sasinfra.com/category/blogs/",
+                    "name": "Blogs"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": "3",
+                  "item": {
+                    "@id": "https://sasinfra.com/hydra-explained/",
+                    "name": "HYDRA—Here’s Everything You Need to Know"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://sasinfra.com/hydra-explained/#webpage",
+              "url": "https://sasinfra.com/hydra-explained/",
+              "name": "hydra explained | SAS Infra",
+              "datePublished": "2024-09-10T11:08:00+00:00",
+              "dateModified": "2026-02-19T10:44:52+00:00",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#website"
+              },
+              "primaryImageOfPage": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2024/09/blog-12-1-1024x576-1.webp"
+              },
+              "inLanguage": "en-US",
+              "breadcrumb": {
+                "@id": "https://sasinfra.com/hydra-explained/#breadcrumb"
+              }
+            },
+            {
+              "@type": "Person",
+              "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com/author/marketingsasinfra-com/",
+              "image": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "url": "https://sasinfra.com/wp-content/litespeed/avatar/5e6d89df07fd76220591e913f30eb076.jpg?ver=1779810975",
+                "caption": "SAS Infra",
+                "inLanguage": "en-US"
+              },
+              "sameAs": [
+                "https://sasinfra.com"
+              ],
+              "worksFor": {
+                "@id": "https://sasinfra.com/#organization"
+              }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "hydra explained | SAS Infra",
+              "keywords": "hydra explained",
+              "datePublished": "2024-09-10T11:08:00+00:00",
+              "dateModified": "2026-02-19T10:44:52+00:00",
+              "articleSection": "Blogs",
+              "author": {
+                "@id": "https://sasinfra.com/author/marketingsasinfra-com/",
+                "name": "SAS Infra"
+              },
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "description": "hydra explained provides a clear overview of its purpose, regulatory framework, and impact on urban planning and real estate. This guide breaks down key objectives, operational scope, and how HYDRA influences development policies, infrastructure control, and property compliance in Hyderabad.",
+              "name": "hydra explained | SAS Infra",
+              "@id": "https://sasinfra.com/hydra-explained/#richSnippet",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/hydra-explained/#webpage"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2024/09/blog-12-1-1024x576-1.webp"
+              },
+              "inLanguage": "en-US",
+              "mainEntityOfPage": {
+                "@id": "https://sasinfra.com/hydra-explained/#webpage"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "url": "https://sasinfra.com/contact/",
+      "ld_json_blocks": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Place",
+              "@id": "https://sasinfra.com/#place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              }
+            },
+            {
+              "@type": [
+                "RealEstateAgent",
+                "Organization"
+              ],
+              "@id": "https://sasinfra.com/#organization",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com",
+              "sameAs": [
+                "https://www.facebook.com/SasInfraHyderabad",
+                "https://twitter.com/https://x.com/SAS_INFRA",
+                "https://www.instagram.com/sasinfra/",
+                "https://www.linkedin.com/company/sasinfra/",
+                "https://www.youtube.com/channel/UCGG8lm_JDU66xznitCsK7TQ"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              },
+              "logo": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/#logo",
+                "url": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "caption": "https://sasinfra.com/",
+                "inLanguage": "en-US"
+              },
+              "openingHours": [
+                "Monday,Tuesday,Wednesday,Thursday 10:00-18:00",
+                "Friday 10:0-18:00",
+                "Saturday 10:00-17:00"
+              ],
+              "description": "SAS Infra is a leading construction and development company in Hyderabad, redefining the city’s skyline through architectural excellence and innovation. We are driven by a commitment to quality and a belief in turning the impossible into possible.\n",
+              "location": {
+                "@id": "https://sasinfra.com/#place"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/#logo"
+              },
+              "telephone": "+91-9718662299"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://sasinfra.com/#website",
+              "url": "https://sasinfra.com",
+              "name": "https://sasinfra.com/",
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "ImageObject",
+              "@id": "https://sasinfra.com/wp-content/uploads/2025/10/download-29.png",
+              "url": "https://sasinfra.com/wp-content/uploads/2025/10/download-29.png",
+              "width": "200",
+              "height": "200",
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://sasinfra.com/contact/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": "1",
+                  "item": {
+                    "@id": "https://sasinfra.com",
+                    "name": "Home"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": "2",
+                  "item": {
+                    "@id": "https://sasinfra.com/contact/",
+                    "name": "Contact"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "ContactPage",
+              "@id": "https://sasinfra.com/contact/#webpage",
+              "url": "https://sasinfra.com/contact/",
+              "name": "Contact SAS Infra | Office Details &amp; Enquiries",
+              "datePublished": "2025-10-03T12:19:32+00:00",
+              "dateModified": "2026-04-25T09:56:53+00:00",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#website"
+              },
+              "primaryImageOfPage": {
+                "@id": "https://sasinfra.com/wp-content/uploads/2025/10/download-29.png"
+              },
+              "inLanguage": "en-US",
+              "breadcrumb": {
+                "@id": "https://sasinfra.com/contact/#breadcrumb"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "blog_index": {
+      "url": "https://sasinfra.com/sas-infra-blog/",
+      "ld_json_blocks": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Place",
+              "@id": "https://sasinfra.com/#place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              }
+            },
+            {
+              "@type": "RealEstateAgent",
+              "@id": "https://sasinfra.com/#organization",
+              "name": "SAS Infra",
+              "url": "https://sasinfra.com",
+              "sameAs": [
+                "https://www.facebook.com/SasInfraHyderabad",
+                "https://twitter.com/https://x.com/SAS_INFRA",
+                "https://www.instagram.com/sasinfra/",
+                "https://www.linkedin.com/company/sasinfra/",
+                "https://www.youtube.com/channel/UCGG8lm_JDU66xznitCsK7TQ"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ACE TECH PARK, 12th floor, 1201,Narsingi Nanakramguda Service Rd, Financial District.",
+                "addressRegion": "Telangana",
+                "postalCode": "500032",
+                "addressCountry": "India",
+                "addressLocality": "Hyderabad"
+              },
+              "logo": {
+                "@type": "ImageObject",
+                "@id": "https://sasinfra.com/#logo",
+                "url": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "contentUrl": "https://sasinfra.com/wp-content/uploads/2026/02/SAS-Infra-Logo.png",
+                "caption": "https://sasinfra.com/",
+                "inLanguage": "en-US"
+              },
+              "openingHours": [
+                "Monday,Tuesday,Wednesday,Thursday 10:00-18:00",
+                "Friday 10:0-18:00",
+                "Saturday 10:00-17:00"
+              ],
+              "description": "SAS Infra is a leading construction and development company in Hyderabad, redefining the city’s skyline through architectural excellence and innovation. We are driven by a commitment to quality and a belief in turning the impossible into possible.\n",
+              "location": {
+                "@id": "https://sasinfra.com/#place"
+              },
+              "image": {
+                "@id": "https://sasinfra.com/#logo"
+              },
+              "telephone": "+91-9718662299"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://sasinfra.com/#website",
+              "url": "https://sasinfra.com",
+              "name": "https://sasinfra.com/",
+              "publisher": {
+                "@id": "https://sasinfra.com/#organization"
+              },
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://sasinfra.com/sas-infra-blog/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": "1",
+                  "item": {
+                    "@id": "https://sasinfra.com",
+                    "name": "Home"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "CollectionPage",
+              "@id": "https://sasinfra.com/sas-infra-blog/#webpage",
+              "url": "https://sasinfra.com/sas-infra-blog/",
+              "name": "SAS Infra Blog",
+              "isPartOf": {
+                "@id": "https://sasinfra.com/#website"
+              },
+              "inLanguage": "en-US",
+              "breadcrumb": {
+                "@id": "https://sasinfra.com/sas-infra-blog/#breadcrumb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
