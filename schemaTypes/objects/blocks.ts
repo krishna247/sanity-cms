@@ -24,6 +24,9 @@ const iconTokenOptions = [
   {title: 'Retail', value: 'retail'},
   {title: 'Parking', value: 'parking'},
   {title: 'Security', value: 'security'},
+  {title: 'Cafe', value: 'cafe'},
+  {title: 'Promenade', value: 'promenade'},
+  {title: 'Kids', value: 'kids'},
   {title: 'Fallback', value: 'fallback'},
 ]
 
@@ -495,6 +498,22 @@ export const floorPlansBlock = defineType({
     headField,
     ctaField,
     defineField({
+      name: 'metrics',
+      title: 'Metrics Strip',
+      description: 'The four key/value tiles above the floor-plate tabs (e.g. Typical Plate · 1,20,000 sq ft).',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+          ],
+          preview: {select: {title: 'value', subtitle: 'label'}},
+        }),
+      ],
+    }),
+    defineField({
       name: 'plans',
       title: 'Plans',
       type: 'array',
@@ -506,7 +525,24 @@ export const floorPlansBlock = defineType({
             defineField({name: 'seq', title: 'Sequence', type: 'number'}),
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'size', title: 'Size', type: 'string'}),
-            defineField({name: 'planImage', title: 'Plan Image', type: 'imageWithAlt', validation: (rule) => rule.required()}),
+            defineField({
+              name: 'planImage',
+              title: 'Plan Image',
+              type: 'imageWithAlt',
+              description: 'Leave empty to render the placeholder card instead (e.g. plates not yet released).',
+            }),
+            defineField({
+              name: 'placeholder',
+              title: 'Placeholder Card',
+              description: 'Rendered only when Plan Image is empty.',
+              type: 'object',
+              fields: [
+                defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+                defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+                defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string'}),
+                defineField({name: 'ctaPrefill', title: 'CTA Prefill', type: 'string'}),
+              ],
+            }),
           ],
           preview: {select: {title: 'label', subtitle: 'size', media: 'planImage.image'}},
         }),
@@ -620,6 +656,12 @@ export const locationMapBlock = defineType({
       ],
     }),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
+    defineField({
+      name: 'editorialCard',
+      title: 'Editorial Card Heading',
+      description: 'The overlay headline on the map (allows inline <em> html), e.g. "Anchored in Hyderabad\'s CBD spine."',
+      type: 'string',
+    }),
     defineField({name: 'address', title: 'Street Address', type: 'text', rows: 2}),
     defineField({
       name: 'travelTimes',
@@ -751,8 +793,14 @@ export const towerAnatomyBlock = defineType({
             defineField({name: 'cat', title: 'Category', type: 'string'}),
             defineField({name: 'heading', title: 'Heading', type: 'string'}),
             defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+            defineField({
+              name: 'image',
+              title: 'Band Image',
+              type: 'imageWithAlt',
+              description: 'Shown in the elevation frame when this band is the active selection.',
+            }),
           ],
-          preview: {select: {title: 'heading', subtitle: 'range'}},
+          preview: {select: {title: 'heading', subtitle: 'range', media: 'image.image'}},
         }),
       ],
     }),
@@ -1032,6 +1080,42 @@ export const addressSectionBlock = defineType({
   preview: {select: {title: 'intro.heading', subtitle: 'intro.eyebrow', media: 'wordmark.image'}},
 })
 
+export const constructionFeedBlock = defineType({
+  name: 'constructionFeedBlock',
+  title: 'Construction Progress',
+  type: 'object',
+  icon: PlayIcon,
+  description: 'The "Watch It Rise" video feed — hand-curated cards with YouTube embeds.',
+  fields: [
+    headField,
+    defineField({
+      name: 'items',
+      title: 'Progress Cards',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'embedUrl',
+              title: 'Video Embed URL',
+              type: 'url',
+              description: 'Full YouTube embed URL, e.g. https://www.youtube.com/embed/XXXX?rel=0&modestbranding=1',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({name: 'category', title: 'Category', type: 'string'}),
+            defineField({name: 'date', title: 'Date Label', type: 'string'}),
+            defineField({name: 'headline', title: 'Headline', type: 'text', rows: 2, validation: (rule) => rule.required()}),
+            defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string', initialValue: 'Download PDF'}),
+          ],
+          preview: {select: {title: 'headline', subtitle: 'date'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
 export const homePageBuilder = defineType({
   name: 'homePageBuilder',
   title: 'Home Page Builder',
@@ -1096,6 +1180,7 @@ export const projectPageBuilder = defineType({
     defineArrayMember({type: 'consultantsBlock'}),
     defineArrayMember({type: 'brochureBlock'}),
     defineArrayMember({type: 'addressSectionBlock'}),
+    defineArrayMember({type: 'constructionFeedBlock'}),
   ],
 })
 
@@ -1129,6 +1214,7 @@ export const blockTypes = [
   consultantsBlock,
   brochureBlock,
   addressSectionBlock,
+  constructionFeedBlock,
   homePageBuilder,
   pagePageBuilder,
   projectPageBuilder,
