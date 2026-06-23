@@ -14,14 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
-      # Use `npm run build` (not `npx sanity build`) so the package.json
+      # Use `pnpm run build` (not `npx sanity build`) so the package.json
       # `postbuild` script fires and copies _headers + _redirects into dist/.
       - name: Build
         env:
@@ -33,7 +35,7 @@ jobs:
           # can authenticate. Without this the config falls back to localhost:4321 and
           # the iframe never loads. Set as a repo variable.
           SANITY_STUDIO_PREVIEW_URL: ${{ vars.SANITY_STUDIO_PREVIEW_URL }}
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4

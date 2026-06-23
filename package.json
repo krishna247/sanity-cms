@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.33.4",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -14,6 +15,7 @@
     "typegen": "sanity typegen generate"
   },
   "dependencies": {
+    "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^4.0.0",
     "react": "^19.0.0",
