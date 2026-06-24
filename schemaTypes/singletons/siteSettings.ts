@@ -1,4 +1,4 @@
-import {defineType, defineField} from 'sanity'
+import {defineType, defineField, defineArrayMember} from 'sanity'
 
 export default defineType({
   name: 'siteSettings',
@@ -179,6 +179,58 @@ export default defineType({
         defineField({name: 'whatsappLabel', title: 'WhatsApp Label', type: 'string'}),
         defineField({name: 'whatsappNumber', title: 'WhatsApp Number', type: 'string'}),
         defineField({name: 'prefilledMessage', title: 'Prefilled Message', type: 'string'}),
+      ],
+    }),
+
+    // ─── Canonical contact details ───────────────────────────────────────
+    // Single source of truth for the phones, emails, address and hours shown
+    // across pages. Each is optional and falls back to the exact current
+    // literal in the component.
+    defineField({
+      name: 'phones',
+      title: 'Phones',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'role', title: 'Role', type: 'string'}),
+            defineField({name: 'display', title: 'Display', type: 'string'}),
+            defineField({name: 'tel', title: 'Tel (href)', type: 'string'}),
+          ],
+          preview: {select: {title: 'display', subtitle: 'role'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'careersEmail',
+      title: 'Careers Email',
+      type: 'string',
+    }),
+    defineField({
+      name: 'addressLines',
+      title: 'Address Lines',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+    }),
+    defineField({
+      name: 'addressShort',
+      title: 'Address (Short)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'hours',
+      title: 'Hours',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Label', type: 'string'}),
+            defineField({name: 'value', title: 'Value', type: 'string'}),
+          ],
+          preview: {select: {title: 'label', subtitle: 'value'}},
+        }),
       ],
     }),
   ],

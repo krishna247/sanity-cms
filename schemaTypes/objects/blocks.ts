@@ -1146,6 +1146,39 @@ export const constructionFeedBlock = defineType({
   preview: {select: {title: 'head.heading'}},
 })
 
+export const partnerDisciplinesBlock = defineType({
+  name: 'partnerDisciplinesBlock',
+  title: 'Partner Disciplines',
+  type: 'object',
+  icon: ComposeIcon,
+  fields: [
+    headField,
+    defineField({
+      name: 'disciplines',
+      title: 'Disciplines',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'num', title: 'Numeral', type: 'string'}),
+            defineField({name: 'title', title: 'Title', type: 'string'}),
+            defineField({name: 'desc', title: 'Description', type: 'text', rows: 3}),
+            defineField({
+              name: 'partners',
+              title: 'Partners',
+              type: 'array',
+              of: [defineArrayMember({type: 'reference', to: [{type: 'partner'}]})],
+            }),
+          ],
+          preview: {select: {title: 'title', subtitle: 'num'}},
+        }),
+      ],
+    }),
+  ],
+  preview: {select: {title: 'head.heading'}},
+})
+
 export const homePageBuilder = defineType({
   name: 'homePageBuilder',
   title: 'Home Page Builder',
@@ -1180,6 +1213,7 @@ export const pagePageBuilder = defineType({
     defineArrayMember({type: 'mapBlock'}),
     defineArrayMember({type: 'cardGridBlock'}),
     defineArrayMember({type: 'feedBlock'}),
+    defineArrayMember({type: 'partnerDisciplinesBlock'}),
   ],
 })
 
@@ -1245,6 +1279,7 @@ export const blockTypes = [
   brochureBlock,
   addressSectionBlock,
   constructionFeedBlock,
+  partnerDisciplinesBlock,
   homePageBuilder,
   pagePageBuilder,
   projectPageBuilder,
