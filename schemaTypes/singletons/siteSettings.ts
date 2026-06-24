@@ -150,6 +150,37 @@ export default defineType({
         },
       ],
     }),
+
+    // ─── Shared chrome (footer / nav / concierge) ────────────────────────
+    // CMS-backed copy for components that render on every page. Each is
+    // optional and falls back to the exact current literal in the component.
+    defineField({
+      name: 'reraLine',
+      title: 'RERA Registration Line',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaLabel',
+      title: 'Header CTA Label',
+      type: 'string',
+    }),
+    defineField({
+      name: 'vrTourLabel',
+      title: 'VR Tour Button Label',
+      type: 'string',
+    }),
+    defineField({
+      name: 'concierge',
+      title: 'Concierge Widget',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'contactLabel', title: 'Contact Label', type: 'string'}),
+        defineField({name: 'whatsappLabel', title: 'WhatsApp Label', type: 'string'}),
+        defineField({name: 'whatsappNumber', title: 'WhatsApp Number', type: 'string'}),
+        defineField({name: 'prefilledMessage', title: 'Prefilled Message', type: 'string'}),
+      ],
+    }),
   ],
   fieldsets: [
     {
