@@ -233,6 +233,24 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'projectEmail',
+      title: 'Project Email',
+      type: 'string',
+      description: 'Project/legal contact email.',
+    }),
+    defineField({
+      name: 'notFound',
+      title: 'Not Found (404)',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'heading', title: 'Heading', type: 'string'}),
+        defineField({name: 'body', title: 'Body', type: 'text'}),
+        defineField({name: 'seoTitle', title: 'SEO Title', type: 'string'}),
+        defineField({name: 'seoDescription', title: 'SEO Description', type: 'text'}),
+      ],
+    }),
   ],
   fieldsets: [
     {

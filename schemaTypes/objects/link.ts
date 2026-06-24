@@ -111,6 +111,13 @@ export default defineType({
       validation: (rule) => rule.email(),
     }),
     defineField({
+      name: 'emailSubject',
+      title: 'Email Subject',
+      type: 'string',
+      description: 'Optional. Prefills the mailto ?subject=.',
+      hidden: ({parent}) => parent?.kind !== 'email',
+    }),
+    defineField({
       name: 'phone',
       title: 'Phone',
       type: 'string',
