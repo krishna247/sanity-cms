@@ -421,6 +421,28 @@ export const contactFormBlock = defineType({
     }),
     defineField({name: 'formTarget', title: 'Form Target', type: 'string'}),
     defineField({
+      name: 'formCopy',
+      title: 'Form Field Copy',
+      description:
+        'Optional overrides for the field labels, placeholders and submit button. ' +
+        'Leave any field empty to use the built-in default.',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'nameLabel', title: 'Name — Label', type: 'string'}),
+        defineField({name: 'namePlaceholder', title: 'Name — Placeholder', type: 'string'}),
+        defineField({name: 'emailLabel', title: 'Email — Label', type: 'string'}),
+        defineField({name: 'emailPlaceholder', title: 'Email — Placeholder', type: 'string'}),
+        defineField({name: 'phoneLabel', title: 'Phone — Label', type: 'string'}),
+        defineField({name: 'phonePlaceholder', title: 'Phone — Placeholder', type: 'string'}),
+        defineField({name: 'interestLabel', title: 'Interest — Label', type: 'string'}),
+        defineField({name: 'interestPlaceholder', title: 'Interest — Default Option', type: 'string'}),
+        defineField({name: 'messageLabel', title: 'Message — Label', type: 'string'}),
+        defineField({name: 'messagePlaceholder', title: 'Message — Placeholder', type: 'string'}),
+        defineField({name: 'submitLabel', title: 'Submit Button', type: 'string'}),
+      ],
+    }),
+    defineField({
       name: 'leadOptions',
       title: 'Lead Options',
       type: 'array',
@@ -1088,6 +1110,13 @@ export const constructionFeedBlock = defineType({
   description: 'The "Watch It Rise" video feed — hand-curated cards with YouTube embeds.',
   fields: [
     headField,
+    defineField({
+      name: 'ctaLabel',
+      title: 'Timeline CTA Label',
+      description: 'The link above the cards (points to the Updates timeline).',
+      type: 'string',
+      initialValue: 'View Full Construction Timeline',
+    }),
     defineField({
       name: 'items',
       title: 'Progress Cards',
