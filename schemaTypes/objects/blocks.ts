@@ -469,6 +469,7 @@ export const mapBlock = defineType({
   fields: [
     headField,
     defineField({name: 'location', title: 'Location', type: 'location'}),
+    defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
   ],
   preview: {select: {title: 'head.heading'}},
 })

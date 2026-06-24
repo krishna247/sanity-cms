@@ -10,6 +10,7 @@ export default defineType({
   groups: [
     {name: 'content', title: 'Content', default: true},
     {name: 'builder', title: 'Page Builder'},
+    {name: 'catalogue', title: 'Home Catalogue Card'},
     {name: 'structuredData', title: 'SEO and Structured Data'},
     {name: 'settings', title: 'Settings'},
   ],
@@ -173,6 +174,26 @@ export default defineType({
       group: 'structuredData',
       description: 'Optional, e.g. "Starts from INR X cr". Published as priceRange if set.',
     }),
+    defineField({name: 'catalogueKind', title: 'Catalogue Kind', type: 'string', group: 'catalogue'}),
+    defineField({name: 'catalogueTitleHtml', title: 'Catalogue Title (HTML)', type: 'string', group: 'catalogue'}),
+    defineField({name: 'catalogueCta', title: 'Catalogue CTA', type: 'string', group: 'catalogue'}),
+    defineField({
+      name: 'catalogueStats',
+      title: 'Catalogue Stats',
+      type: 'array',
+      group: 'catalogue',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Label', type: 'string'}),
+            defineField({name: 'valueHtml', title: 'Value (HTML)', type: 'string'}),
+          ],
+          preview: {select: {title: 'valueHtml', subtitle: 'label'}},
+        }),
+      ],
+    }),
+    defineField({name: 'catalogueImage', title: 'Catalogue Image', type: 'imageWithAlt', group: 'catalogue'}),
   ],
   preview: {
     select: {
