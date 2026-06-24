@@ -27,6 +27,7 @@ const iconTokenOptions = [
   {title: 'Cafe', value: 'cafe'},
   {title: 'Promenade', value: 'promenade'},
   {title: 'Kids', value: 'kids'},
+  {title: 'Medical', value: 'medical'},
   {title: 'Fallback', value: 'fallback'},
 ]
 
