@@ -471,6 +471,80 @@ export const mapBlock = defineType({
     headField,
     defineField({name: 'location', title: 'Location', type: 'location'}),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
+    defineField({
+      name: 'markerCategories',
+      title: 'Marker Categories',
+      description:
+        'Palette for the home locality map. Each category sets a marker colour + glyph ' +
+        'icon token. Leave empty to use the built-in defaults (healthcare, education, ' +
+        'corporate, hospitality, retail, leisure, heritage, convention, transit).',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'markerCategory',
+          fields: [
+            defineField({name: 'key', title: 'Key', type: 'string', description: 'Lowercase id referenced by each POI, e.g. "healthcare".', validation: (rule) => rule.required()}),
+            defineField({name: 'label', title: 'Label', type: 'string', description: 'Shown in the hover tip, e.g. "Healthcare".'}),
+            defineField({name: 'color', title: 'Colour', type: 'string', description: 'Hex, e.g. #C0524F.'}),
+            defineField({
+              name: 'icon',
+              title: 'Icon token',
+              type: 'string',
+              description: 'Glyph token: cross, cap, building, dining, bag, flag, dome, star, train, dot.',
+              options: {list: ['cross', 'cap', 'building', 'dining', 'bag', 'flag', 'dome', 'star', 'train', 'dot']},
+            }),
+          ],
+          preview: {select: {title: 'label', subtitle: 'key'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'pointsOfInterest',
+      title: 'Points of Interest',
+      description:
+        'Curated landmarks for the home locality map, rendered as category-coloured ' +
+        'markers. `category` must match a Marker Category key. Coordinates are geocoded ' +
+        'via Google Places. Use the projects + corporate office for SAS pins ' +
+        '(category "project" / "office").',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'localityPoi',
+          icon: PinIcon,
+          fields: [
+            defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'category', title: 'Category key', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'location', title: 'Location', type: 'geopoint', validation: (rule) => rule.required()}),
+            defineField({name: 'driveMinutes', title: 'Drive time (min)', type: 'number', description: 'Optional. Shown in the hover tip; falls back to straight-line distance.', validation: (rule) => rule.min(0).integer()}),
+            defineField({
+              name: 'labelSide',
+              title: 'Label side',
+              type: 'string',
+              description: 'Which side the name label sits. Auto keeps it inside the frame.',
+              initialValue: 'auto',
+              options: {layout: 'radio', list: ['auto', 'left', 'right']},
+            }),
+            defineField({name: 'labelNudge', title: 'Label vertical nudge (px)', type: 'number', description: 'Optional. Nudge the label up (negative) / down (positive) to de-clutter clusters.'}),
+          ],
+          preview: {
+            select: {title: 'name', category: 'category', mins: 'driveMinutes'},
+            prepare({title, category, mins}) {
+              const bits = [category, mins != null ? `${mins} min` : null].filter(Boolean)
+              return {title, subtitle: bits.join(' · ')}
+            },
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'hiddenLocalities',
+      title: 'Hidden locality labels',
+      description: 'Basemap neighbourhood labels to hide (cuts noise). Leave empty for the built-in default set.',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+    }),
   ],
   preview: {select: {title: 'head.heading'}},
 })
