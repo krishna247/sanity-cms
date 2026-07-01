@@ -444,6 +444,19 @@ export const contactFormBlock = defineType({
       ],
     }),
     defineField({
+      name: 'asideCopy',
+      title: 'Aside Card Titles',
+      description:
+        'Headings for the contact-page aside cards (the "Visit us" address card and the ' +
+        '"Follow the journey" social card). Leave any field empty to use the built-in default.',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'visitTitle', title: 'Visit-us Card — Title', type: 'string'}),
+        defineField({name: 'followTitle', title: 'Follow Card — Title', type: 'string'}),
+      ],
+    }),
+    defineField({
       name: 'leadOptions',
       title: 'Lead Options',
       type: 'array',

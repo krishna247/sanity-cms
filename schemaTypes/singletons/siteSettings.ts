@@ -219,6 +219,27 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'enquiries',
+      title: 'Enquiry Desks',
+      description:
+        'The contact-page “desk” cards (e.g. Retail, Other enquiries). Each renders as a card ' +
+        'with its own email + phone. Leave empty to use the built-in defaults.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'title', title: 'Title', type: 'string'}),
+            defineField({name: 'desc', title: 'Subtitle', type: 'string'}),
+            defineField({name: 'email', title: 'Email', type: 'string'}),
+            defineField({name: 'phoneDisplay', title: 'Phone — Display', type: 'string'}),
+            defineField({name: 'phoneTel', title: 'Phone — tel: href', type: 'string'}),
+          ],
+          preview: {select: {title: 'title', subtitle: 'email'}},
+        }),
+      ],
+    }),
+    defineField({
       name: 'hours',
       title: 'Hours',
       type: 'array',
