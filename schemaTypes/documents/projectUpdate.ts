@@ -42,6 +42,13 @@ export default defineType({
       },
     }),
     defineField({name: 'headline', title: 'Headline', type: 'string', validation: (rule) => rule.required()}),
+    defineField({
+      name: 'cardLink',
+      title: 'Card link',
+      type: 'link',
+      description:
+        'Where the update card links to on the home page — a blog post, the media page, any internal document, or an external URL. Leave empty to link to the update’s project page.',
+    }),
     defineField({name: 'body', title: 'Body', type: 'portableText'}),
     defineField({
       name: 'media',
