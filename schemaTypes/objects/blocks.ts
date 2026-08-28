@@ -154,6 +154,12 @@ export const statsStripBlock = defineType({
         defineArrayMember({
           type: 'object',
           fields: [
+            defineField({
+              name: 'prefix',
+              title: 'Prefix',
+              type: 'string',
+              description: 'Static text before the number, e.g. "G+" (the number itself stays numeric so it can count up).',
+            }),
             defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'suffix', title: 'Suffix', type: 'string'}),
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
