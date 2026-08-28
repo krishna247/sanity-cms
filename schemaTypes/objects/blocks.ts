@@ -861,6 +861,52 @@ export const masterPlanBlock = defineType({
     headField,
     defineField({name: 'image', title: 'Plan Image', type: 'imageWithAlt'}),
     defineField({
+      name: 'areaTables',
+      title: 'Area statement tables',
+      description: 'Rendered as real site-styled tables below the plan (replaces the tables baked into the old brochure image).',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'title', title: 'Table title', type: 'string'}),
+            defineField({
+              name: 'columns',
+              title: 'Column headings',
+              type: 'array',
+              of: [{type: 'string'}],
+            }),
+            defineField({
+              name: 'rows',
+              title: 'Rows',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'cells',
+                      title: 'Cells (one per column)',
+                      type: 'array',
+                      of: [{type: 'string'}],
+                    }),
+                    defineField({
+                      name: 'emphasis',
+                      title: 'Emphasis row (e.g. Total)',
+                      type: 'boolean',
+                      initialValue: false,
+                    }),
+                  ],
+                  preview: {select: {title: 'cells.0'}},
+                }),
+              ],
+            }),
+          ],
+          preview: {select: {title: 'title'}},
+        }),
+      ],
+    }),
+    defineField({
       name: 'cinema',
       title: 'Cinema Caption',
       type: 'object',
