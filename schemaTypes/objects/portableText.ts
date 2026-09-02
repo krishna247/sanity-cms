@@ -13,6 +13,12 @@ export default defineType({
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
         {title: 'Blockquote', value: 'blockquote'},
+        // Text-style picks for a single paragraph (see objects/textStyle.ts):
+        // the frontend renders these as <p class="ts-role-…"> in the site's
+        // Lede / Caption / Eyebrow styles.
+        {title: 'Lede', value: 'lede'},
+        {title: 'Caption', value: 'caption'},
+        {title: 'Eyebrow', value: 'eyebrow'},
       ],
       marks: {
         decorators: [

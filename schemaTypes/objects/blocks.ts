@@ -11,6 +11,7 @@ import {
   TiersIcon,
 } from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {textStyleField, textStylesFieldset} from './textStyle'
 
 const iconTokenOptions = [
   {title: 'Building', value: 'building'},
@@ -33,55 +34,18 @@ const iconTokenOptions = [
 
 const richTextMember = defineArrayMember({type: 'block', styles: [{title: 'Normal', value: 'normal'}]})
 
-// Text-style pickers. Every option is one of the site's system text styles
-// (see repos/frontend/TYPOGRAPHY.md), so an editor can retune an individual
-// heading or deck without ever leaving the scale. The frontend resolves the
-// value through an allowlist — an empty or unknown value renders the default.
-const headingStyleField = defineField({
-  name: 'headingStyle',
-  title: 'Heading style',
-  description:
-    'Size of this heading, from the site\'s type scale. Standard keeps the size the page was designed with. Statement is one step larger, for a single line that should carry the screen. Compact is one step smaller, for a short, quieter heading.',
-  type: 'string',
-  options: {
-    list: [
-      {title: 'Standard (as designed)', value: 'standard'},
-      {title: 'Statement heading (larger)', value: 'statement'},
-      {title: 'Compact heading (smaller)', value: 'compact'},
-    ],
-    layout: 'radio',
-    direction: 'horizontal',
-  },
-  initialValue: 'standard',
-})
-
-const dekStyleField = defineField({
-  name: 'dekStyle',
-  title: 'Deck style',
-  description:
-    'Size of the deck under the heading. Lede is the opening size the page was designed with. Body matches ordinary paragraph text — use it when the deck runs long.',
-  type: 'string',
-  options: {
-    list: [
-      {title: 'Lede (as designed)', value: 'lede'},
-      {title: 'Body (smaller)', value: 'body'},
-    ],
-    layout: 'radio',
-    direction: 'horizontal',
-  },
-  initialValue: 'lede',
-})
-
 const headField = defineField({
   name: 'head',
   title: 'Section Head',
   type: 'object',
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
-    headingStyleField,
     defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
-    dekStyleField,
+    textStyleField('eyebrowStyle', 'Eyebrow'),
+    textStyleField('headingStyle', 'Heading'),
+    textStyleField('dekStyle', 'Deck'),
   ],
 })
 
@@ -144,6 +108,7 @@ export const heroBlock = defineType({
   title: 'Hero',
   type: 'object',
   icon: StarIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({
       name: 'variant',
@@ -154,25 +119,12 @@ export const heroBlock = defineType({
     }),
     defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
     defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
-    defineField({
-      name: 'titleStyle',
-      title: 'Title style',
-      description:
-        'Page title is the size the page was designed with. Hero is the largest size on the site — one tier up, for a landing-page opener.',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Page title (as designed)', value: 'title'},
-          {title: 'Hero (largest)', value: 'hero'},
-        ],
-        layout: 'radio',
-        direction: 'horizontal',
-      },
-      initialValue: 'title',
-    }),
     defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
     mediaField,
     ctasField,
+    textStyleField('eyebrowStyle', 'Eyebrow'),
+    textStyleField('titleStyle', 'Title'),
+    textStyleField('dekStyle', 'Deck'),
   ],
   preview: {select: {title: 'title', subtitle: 'eyebrow', media: 'media.image.image'}},
 })
@@ -210,6 +162,7 @@ export const statsStripBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({
               name: 'prefix',
@@ -220,6 +173,8 @@ export const statsStripBlock = defineType({
             defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'suffix', title: 'Suffix', type: 'string'}),
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
+            textStyleField('valueStyle', 'Value', 'Prefix and suffix follow it.'),
+            textStyleField('labelStyle', 'Label'),
           ],
           preview: {select: {title: 'value', subtitle: 'label'}},
         }),
@@ -244,10 +199,14 @@ export const timelineBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'year', title: 'Year', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+            textStyleField('yearStyle', 'Year'),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('bodyStyle', 'Body'),
           ],
           preview: {select: {title: 'title', subtitle: 'year'}},
         }),
@@ -262,6 +221,7 @@ export const peopleBlock = defineType({
   title: 'People',
   type: 'object',
   icon: ComposeIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     headField,
     defineField({
@@ -278,6 +238,9 @@ export const peopleBlock = defineType({
       of: [defineArrayMember({type: 'reference', to: [{type: 'person'}]})],
       validation: (rule) => rule.min(1),
     }),
+    textStyleField('nameStyle', 'Name'),
+    textStyleField('jobTitleStyle', 'Job title'),
+    textStyleField('bioStyle', 'Bio'),
   ],
   preview: {select: {title: 'head.heading', subtitle: 'variant'}},
 })
@@ -287,6 +250,7 @@ export const logoWallBlock = defineType({
   title: 'Logo Wall',
   type: 'object',
   icon: TiersIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     headField,
     defineField({
@@ -296,6 +260,7 @@ export const logoWallBlock = defineType({
       of: [defineArrayMember({type: 'reference', to: [{type: 'partner'}]})],
       validation: (rule) => rule.min(1),
     }),
+    textStyleField('nameStyle', 'Partner name', 'Shown only when a partner has no logo.'),
   ],
   preview: {select: {title: 'head.heading'}},
 })
@@ -323,6 +288,7 @@ export const galleryBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'image', title: 'Image', type: 'imageWithAlt', validation: (rule) => rule.required()}),
             defineField({
@@ -332,6 +298,7 @@ export const galleryBlock = defineType({
               initialValue: 'default',
               options: {list: ['default', 'tall']},
             }),
+            textStyleField('captionStyle', 'Caption'),
           ],
           preview: {select: {title: 'image.alt', media: 'image.image', subtitle: 'size'}},
         }),
@@ -364,11 +331,15 @@ export const quoteBlock = defineType({
   title: 'Quote',
   type: 'object',
   icon: BlockContentIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({name: 'quote', title: 'Quote', type: 'text', rows: 4, validation: (rule) => rule.required()}),
     defineField({name: 'person', title: 'Person', type: 'reference', to: [{type: 'person'}]}),
     defineField({name: 'nameOverride', title: 'Name Override', type: 'string'}),
     defineField({name: 'roleOverride', title: 'Role Override', type: 'string'}),
+    textStyleField('quoteStyle', 'Quote'),
+    textStyleField('nameStyle', 'Name'),
+    textStyleField('jobTitleStyle', 'Role'),
   ],
   preview: {select: {title: 'quote', subtitle: 'person.name'}},
 })
@@ -397,10 +368,13 @@ export const featureGridBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'icon', title: 'Icon', type: 'string', options: {list: iconTokenOptions}}),
             defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'text', title: 'Text', type: 'text', rows: 3}),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('textStyle', 'Text'),
           ],
           preview: {select: {title: 'title', subtitle: 'icon'}},
         }),
@@ -425,11 +399,14 @@ export const cardGridBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
             defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
             defineField({name: 'link', title: 'Link', type: 'link'}),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('bodyStyle', 'Body'),
           ],
           preview: {select: {title: 'title', media: 'image.image'}},
         }),
@@ -444,6 +421,7 @@ export const feedBlock = defineType({
   title: 'Feed',
   type: 'object',
   icon: ThListIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     headField,
     ctaField,
@@ -464,6 +442,40 @@ export const feedBlock = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({name: 'limit', title: 'Limit', type: 'number', initialValue: 3}),
+    // List feeds (Updates / Press) render title + meta + excerpt per item.
+    defineField({
+      ...textStyleField('itemTitleStyle', 'Item title', 'Updates and Press feeds.'),
+      hidden: ({parent}) => !['updates', 'press'].includes(parent?.source),
+    }),
+    defineField({
+      ...textStyleField('itemMetaStyle', 'Item meta', 'Updates and Press feeds.'),
+      hidden: ({parent}) => !['updates', 'press'].includes(parent?.source),
+    }),
+    defineField({
+      ...textStyleField('itemExcerptStyle', 'Item excerpt', 'Updates and Press feeds.'),
+      hidden: ({parent}) => !['updates', 'press'].includes(parent?.source),
+    }),
+    // The Projects feed renders catalogue cards.
+    defineField({
+      ...textStyleField('cardNameStyle', 'Card name', 'Projects feed.'),
+      hidden: ({parent}) => parent?.source !== 'projects',
+    }),
+    defineField({
+      ...textStyleField('cardStatusStyle', 'Card status', 'Projects feed.'),
+      hidden: ({parent}) => parent?.source !== 'projects',
+    }),
+    defineField({
+      ...textStyleField('cardTitleStyle', 'Card title', 'Projects feed.'),
+      hidden: ({parent}) => parent?.source !== 'projects',
+    }),
+    defineField({
+      ...textStyleField('cardStatLabelStyle', 'Card stat label', 'Projects feed.'),
+      hidden: ({parent}) => parent?.source !== 'projects',
+    }),
+    defineField({
+      ...textStyleField('cardStatValueStyle', 'Card stat value', 'Projects feed.'),
+      hidden: ({parent}) => parent?.source !== 'projects',
+    }),
   ],
   preview: {select: {title: 'head.heading', subtitle: 'source'}},
 })
@@ -514,9 +526,12 @@ export const contactFormBlock = defineType({
         '"Follow the journey" social card). Leave any field empty to use the built-in default.',
       type: 'object',
       options: {collapsible: true, collapsed: true},
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'visitTitle', title: 'Visit-us Card — Title', type: 'string'}),
         defineField({name: 'followTitle', title: 'Follow Card — Title', type: 'string'}),
+        textStyleField('visitTitleStyle', 'Visit-us card title'),
+        textStyleField('followTitleStyle', 'Follow card title'),
       ],
     }),
     defineField({
@@ -630,6 +645,7 @@ export const projectHeroBlock = defineType({
   title: 'Project Hero',
   type: 'object',
   icon: StarIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     mediaField,
     defineField({name: 'logo', title: 'Project Wordmark', type: 'imageWithAlt'}),
@@ -643,14 +659,19 @@ export const projectHeroBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+            textStyleField('labelStyle', 'Label'),
+            textStyleField('valueStyle', 'Value'),
           ],
           preview: {select: {title: 'value', subtitle: 'label'}},
         }),
       ],
     }),
+    textStyleField('eyebrowStyle', 'Eyebrow'),
+    textStyleField('titleStyle', 'Title'),
   ],
   preview: {select: {title: 'title', subtitle: 'eyebrow', media: 'logo.image'}},
 })
@@ -679,9 +700,12 @@ export const floorPlansBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+            textStyleField('labelStyle', 'Label'),
+            textStyleField('valueStyle', 'Value'),
           ],
           preview: {select: {title: 'value', subtitle: 'label'}},
         }),
@@ -695,6 +719,7 @@ export const floorPlansBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'seq', title: 'Sequence', type: 'number'}),
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
@@ -710,13 +735,18 @@ export const floorPlansBlock = defineType({
               title: 'Placeholder Card',
               description: 'Rendered only when Plan Image is empty.',
               type: 'object',
+              fieldsets: [textStylesFieldset],
               fields: [
                 defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
                 defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
                 defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string'}),
                 defineField({name: 'ctaPrefill', title: 'CTA Prefill', type: 'string'}),
+                textStyleField('eyebrowStyle', 'Eyebrow'),
+                textStyleField('bodyStyle', 'Body'),
               ],
             }),
+            textStyleField('labelStyle', 'Label'),
+            textStyleField('sizeStyle', 'Size'),
           ],
           preview: {select: {title: 'label', subtitle: 'size', media: 'planImage.image'}},
         }),
@@ -731,6 +761,7 @@ export const signatureFeatureBlock = defineType({
   title: 'Signature Feature',
   type: 'object',
   icon: StarIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({
       name: 'variant',
@@ -745,6 +776,10 @@ export const signatureFeatureBlock = defineType({
     defineField({name: 'heading', title: 'Heading', type: 'string', validation: (rule) => rule.required()}),
     defineField({name: 'body', title: 'Body', type: 'text', rows: 4}),
     defineField({name: 'items', title: 'Items', type: 'array', of: [defineArrayMember({type: 'string'})]}),
+    textStyleField('eyebrowStyle', 'Eyebrow'),
+    textStyleField('headingStyle', 'Heading'),
+    textStyleField('bodyStyle', 'Body'),
+    textStyleField('itemsStyle', 'List items', 'One style for every item.'),
   ],
   preview: {select: {title: 'heading', subtitle: 'variant', media: 'image.image'}},
 })
@@ -760,11 +795,15 @@ export const amenityZonesBlock = defineType({
       name: 'anchor',
       title: 'Anchor Story',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'body', title: 'Body', type: 'text', rows: 4}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('bodyStyle', 'Body'),
       ],
     }),
     defineField({
@@ -775,10 +814,13 @@ export const amenityZonesBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'seq', title: 'Sequence', type: 'number'}),
             defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'items', title: 'Items', type: 'array', of: [defineArrayMember({type: 'string'})]}),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('itemsStyle', 'Items', 'One style for the whole list.'),
           ],
           preview: {select: {title: 'title'}},
         }),
@@ -793,15 +835,20 @@ export const locationMapBlock = defineType({
   title: 'Location Map',
   type: 'object',
   icon: PinIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({
       name: 'overture',
       title: 'Overture',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('dekStyle', 'Deck'),
       ],
     }),
     defineField({
@@ -823,10 +870,13 @@ export const locationMapBlock = defineType({
       name: 'locationCard',
       title: 'Location Card',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('dekStyle', 'Deck'),
       ],
     }),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
@@ -899,6 +949,8 @@ export const locationMapBlock = defineType({
         }),
       ],
     }),
+    textStyleField('editorialCardStyle', 'Editorial card heading'),
+    textStyleField('footnoteStyle', 'Footnote'),
   ],
   preview: {select: {title: 'overture.heading', subtitle: 'mapConfig.mapProject'}},
 })
@@ -914,6 +966,7 @@ export const masterPlanBlock = defineType({
   title: 'Master Plan',
   type: 'object',
   icon: PinIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     headField,
     defineField({name: 'image', title: 'Plan Image', type: 'imageWithAlt'}),
@@ -967,10 +1020,14 @@ export const masterPlanBlock = defineType({
       name: 'cinema',
       title: 'Cinema Caption',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('bodyStyle', 'Body'),
       ],
     }),
     defineField({
@@ -980,14 +1037,21 @@ export const masterPlanBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'building', title: 'Building', type: 'string'}),
             defineField({name: 'detail', title: 'Detail', type: 'string'}),
+            textStyleField('buildingStyle', 'Building'),
+            textStyleField('detailStyle', 'Detail (first segment)'),
+            textStyleField('detailSubStyle', 'Detail (remaining segments)'),
           ],
           preview: {select: {title: 'building', subtitle: 'detail'}},
         }),
       ],
     }),
+    textStyleField('tableTitleStyle', 'Table title', 'Area statement tables.'),
+    textStyleField('tableHeadStyle', 'Table column headings', 'Area statement tables.'),
+    textStyleField('tableCellStyle', 'Table cells', 'Area statement tables.'),
   ],
   preview: {select: {title: 'head.heading'}},
 })
@@ -1007,6 +1071,7 @@ export const towerAnatomyBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'band', title: 'Band Key', type: 'string'}),
             defineField({name: 'range', title: 'Floor Range', type: 'string'}),
@@ -1019,6 +1084,10 @@ export const towerAnatomyBlock = defineType({
               type: 'imageWithAlt',
               description: 'Shown in the elevation frame when this band is the active selection.',
             }),
+            textStyleField('rangeStyle', 'Floor range'),
+            textStyleField('catStyle', 'Category'),
+            textStyleField('headingStyle', 'Heading'),
+            textStyleField('bodyStyle', 'Body'),
           ],
           preview: {select: {title: 'heading', subtitle: 'range', media: 'image.image'}},
         }),
@@ -1067,11 +1136,15 @@ export const tenantsBlock = defineType({
       name: 'anchor',
       title: 'Editorial Anchor',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('bodyStyle', 'Body'),
       ],
     }),
     defineField({
@@ -1081,10 +1154,14 @@ export const tenantsBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'seq', title: 'Sequence', type: 'string'}),
             defineField({name: 'title', title: 'Title', type: 'string'}),
             defineField({name: 'body', title: 'Body', type: 'text', rows: 2}),
+            textStyleField('seqStyle', 'Sequence'),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('bodyStyle', 'Body'),
           ],
           preview: {select: {title: 'title', subtitle: 'seq'}},
         }),
@@ -1110,9 +1187,12 @@ export const engineeredNumbersBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'num', title: 'Number', type: 'string'}),
             defineField({name: 'lab', title: 'Label', type: 'string'}),
+            textStyleField('numStyle', 'Number'),
+            textStyleField('labStyle', 'Label'),
           ],
           preview: {select: {title: 'num', subtitle: 'lab'}},
         }),
@@ -1208,6 +1288,7 @@ export const addressSectionBlock = defineType({
       name: 'intro',
       title: 'Intro',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string', description: 'Allows inline <em> html.'}),
@@ -1218,6 +1299,9 @@ export const addressSectionBlock = defineType({
           of: [defineArrayMember({type: 'string'})],
         }),
         defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('bodyStyle', 'Paragraphs', 'One style for all paragraphs.'),
       ],
     }),
     defineField({
@@ -1227,9 +1311,12 @@ export const addressSectionBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+            textStyleField('valueStyle', 'Value'),
+            textStyleField('labelStyle', 'Label'),
           ],
           preview: {select: {title: 'value', subtitle: 'label'}},
         }),
@@ -1239,6 +1326,7 @@ export const addressSectionBlock = defineType({
       name: 'mix',
       title: 'The Mix',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string', description: 'Allows inline <em> html.'}),
@@ -1251,22 +1339,31 @@ export const addressSectionBlock = defineType({
           of: [
             defineArrayMember({
               type: 'object',
+              fieldsets: [textStylesFieldset],
               fields: [
                 defineField({name: 'category', title: 'Category', type: 'string', validation: (rule) => rule.required()}),
                 defineField({name: 'share', title: 'Share', type: 'string'}),
                 defineField({name: 'gla', title: 'GLA', type: 'string'}),
                 defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+                textStyleField('categoryStyle', 'Category'),
+                textStyleField('shareStyle', 'Share'),
+                textStyleField('glaStyle', 'GLA'),
+                textStyleField('bodyStyle', 'Body'),
               ],
               preview: {select: {title: 'category', subtitle: 'share'}},
             }),
           ],
         }),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('bodyStyle', 'Body'),
       ],
     }),
     defineField({
       name: 'amenities',
       title: 'Amenities',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string', description: 'Allows inline <em> html.'}),
@@ -1277,9 +1374,11 @@ export const addressSectionBlock = defineType({
           of: [
             defineArrayMember({
               type: 'object',
+              fieldsets: [textStylesFieldset],
               fields: [
                 defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
                 defineField({name: 'icon', title: 'Icon', type: 'string', options: {list: iconTokenOptions}}),
+                textStyleField('nameStyle', 'Name'),
               ],
               preview: {select: {title: 'name', subtitle: 'icon'}},
             }),
@@ -1294,6 +1393,8 @@ export const addressSectionBlock = defineType({
             defineField({name: 'prefill', title: 'Prefill', type: 'string'}),
           ],
         }),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
       ],
     }),
   ],
@@ -1322,6 +1423,7 @@ export const constructionFeedBlock = defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({
               name: 'embedUrl',
@@ -1334,6 +1436,9 @@ export const constructionFeedBlock = defineType({
             defineField({name: 'date', title: 'Date Label', type: 'string'}),
             defineField({name: 'headline', title: 'Headline', type: 'text', rows: 2, validation: (rule) => rule.required()}),
             defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string', initialValue: 'Download PDF'}),
+            textStyleField('categoryStyle', 'Category'),
+            textStyleField('dateStyle', 'Date'),
+            textStyleField('headlineStyle', 'Headline'),
           ],
           preview: {select: {title: 'headline', subtitle: 'date'}},
         }),

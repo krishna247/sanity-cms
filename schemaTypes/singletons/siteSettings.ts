@@ -1,4 +1,5 @@
 import {defineType, defineField, defineArrayMember} from 'sanity'
+import {textStyleField, textStylesFieldset} from '../objects/textStyle'
 
 export default defineType({
   name: 'siteSettings',
@@ -228,12 +229,15 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'title', title: 'Title', type: 'string'}),
             defineField({name: 'desc', title: 'Subtitle', type: 'string'}),
             defineField({name: 'email', title: 'Email', type: 'string'}),
             defineField({name: 'phoneDisplay', title: 'Phone — Display', type: 'string'}),
             defineField({name: 'phoneTel', title: 'Phone — tel: href', type: 'string'}),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('descStyle', 'Subtitle'),
           ],
           preview: {select: {title: 'title', subtitle: 'email'}},
         }),
@@ -264,12 +268,16 @@ export default defineType({
       name: 'notFound',
       title: 'Not Found (404)',
       type: 'object',
+      fieldsets: [textStylesFieldset],
       fields: [
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'body', title: 'Body', type: 'text'}),
         defineField({name: 'seoTitle', title: 'SEO Title', type: 'string'}),
         defineField({name: 'seoDescription', title: 'SEO Description', type: 'text'}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
+        textStyleField('headingStyle', 'Heading'),
+        textStyleField('bodyStyle', 'Body'),
       ],
     }),
   ],

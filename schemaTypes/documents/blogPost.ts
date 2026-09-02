@@ -1,11 +1,13 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
+import {textStyleField, textStylesFieldset} from '../objects/textStyle'
 
 export default defineType({
   name: 'blogPost',
   title: 'Blog Post',
   type: 'document',
   icon: DocumentTextIcon,
+  fieldsets: [textStylesFieldset],
   groups: [
     {name: 'content', title: 'Content', default: true},
     {name: 'seo', title: 'SEO'},
@@ -80,6 +82,14 @@ export default defineType({
       title: 'SEO',
       type: 'seo',
       group: 'seo',
+    }),
+    // This document uses field groups, so the pickers are pinned to Content
+    // (a field with no group would only surface under "All fields").
+    defineField({...textStyleField('titleStyle', 'Title'), group: 'content'}),
+    defineField({...textStyleField('excerptStyle', 'Excerpt'), group: 'content'}),
+    defineField({
+      ...textStyleField('metaStyle', 'Meta', 'Category, date, reading time, byline.'),
+      group: 'content',
     }),
   ],
   orderings: [

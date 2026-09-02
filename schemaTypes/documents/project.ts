@@ -1,6 +1,7 @@
 import {HomeIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {iconTokenOptions} from '../objects/blocks'
+import {textStyleField, textStylesFieldset} from '../objects/textStyle'
 
 export default defineType({
   name: 'project',
@@ -84,10 +85,13 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'icon', title: 'Icon', type: 'string', options: {list: iconTokenOptions}}),
             defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+            textStyleField('labelStyle', 'Label'),
+            textStyleField('valueStyle', 'Value'),
           ],
           preview: {select: {title: 'value', subtitle: 'label'}},
         }),
@@ -101,10 +105,13 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
             defineField({name: 'icon', title: 'Icon', type: 'string', options: {list: iconTokenOptions}}),
             defineField({name: 'description', title: 'Description', type: 'text'}),
+            textStyleField('nameStyle', 'Name'),
+            textStyleField('descriptionStyle', 'Description'),
           ],
           preview: {select: {title: 'name', subtitle: 'icon'}},
         }),
