@@ -67,8 +67,10 @@ export default defineType({
       },
     }),
     defineField({name: 'tagline', title: 'Tagline', type: 'string', group: 'content'}),
+    defineField({name: 'navCtaLabel', title: 'Nav CTA label', type: 'string', group: 'content', description: 'Label of the top-right header button on this project page. Empty = "Book a Tour".'}),
     defineField({name: 'description', title: 'Description', type: 'portableText', group: 'content'}),
     defineField({name: 'heroImage', title: 'Hero Image', type: 'imageWithAlt', group: 'content'}),
+    defineField({name: 'navLogo', title: 'Header logo (lockup)', type: 'imageWithAlt', group: 'content', description: 'Optional. Replaces the site logo in the header on this project page only (SAS Crown uses its "SAS INFRA · Creating Landmarks" lockup). Empty = the site logo.'}),
     defineField({name: 'gallery', title: 'Legacy Gallery', type: 'array', of: [{type: 'imageWithAlt'}], group: 'content'}),
     defineField({name: 'location', title: 'Location', type: 'location', group: 'content'}),
     defineField({
@@ -183,7 +185,9 @@ export default defineType({
     }),
     defineField({name: 'catalogueKind', title: 'Catalogue Kind', type: 'string', group: 'catalogue'}),
     defineField({name: 'catalogueTitleHtml', title: 'Catalogue Title (HTML)', type: 'string', group: 'catalogue'}),
+    defineField({name: 'flyoutTitleHtml', title: 'Flyout Title (HTML)', type: 'string', group: 'catalogue', description: 'Title on the nav-flyout card; may carry <br> and <em>. Falls back to the Catalogue Title.'}),
     defineField({name: 'catalogueCta', title: 'Catalogue CTA', type: 'string', group: 'catalogue'}),
+    defineField({name: 'catalogueOrder', title: 'Catalogue order', type: 'number', group: 'catalogue', description: 'Position in the home catalogue and the nav flyout (1 = first). Projects without a value follow, iTower then Crown, then the rest alphabetically.'}),
     defineField({
       name: 'catalogueStats',
       title: 'Catalogue Stats',

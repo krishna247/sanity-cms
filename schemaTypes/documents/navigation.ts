@@ -31,9 +31,18 @@ export default defineType({
       placeholder: 'Call',
     }),
     defineField({
+      name: 'officeLabel',
+      title: 'Office column heading',
+      description: 'Heading of the footer address column (defaults to "Office"). The address itself comes from Site Settings → Address.',
+      type: 'string',
+      placeholder: 'Office',
+    }),
+    defineField({
       name: 'footer',
       title: 'Footer Menu',
-      description: 'Not used by the site yet — the footer links are still fixed in code.',
+      description:
+        "The footer menu — four groups in this order: Quick Links, Projects, Contact, Legal. Each group's Label is a column heading and its Children are the links under it. Contact is heading-only (its phone and email rows come from Site Settings → Phones / Email); Legal is the small link row in the bottom bar. A group with no children falls back to the site's built-in list.",
+      validation: (rule) => rule.max(4),
       type: 'array',
       of: [defineArrayMember({type: 'navItem'})],
     }),

@@ -16,12 +16,14 @@ export default defineType({
       name: 'tagline',
       title: 'Tagline',
       type: 'string',
+      description: 'Brand tagline. Used with the company name as the share-card alt text.',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
       rows: 4,
+      description: 'Fallback meta description, used only by a page that has no description of its own.',
     }),
     defineField({
       name: 'logo',
@@ -30,16 +32,6 @@ export default defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: 'favicon',
-      title: 'Favicon',
-      type: 'image',
-    }),
-    defineField({
-      name: 'phone',
-      title: 'Phone',
-      type: 'string',
     }),
     defineField({
       name: 'email',
@@ -68,6 +60,7 @@ export default defineType({
       name: 'defaultSeo',
       title: 'Default SEO',
       type: 'seo',
+      description: 'Site-wide defaults for pages without their own SEO. The share image should be 1200×630.',
     }),
 
     // ─── Structured data (Organization JSON-LD) ──────────────────────────
@@ -109,7 +102,6 @@ export default defineType({
       fieldset: 'structuredData',
       fields: [
         defineField({name: 'name', title: 'Name', type: 'string'}),
-        defineField({name: 'title', title: 'Title / Honorific', type: 'string'}),
       ],
     }),
     defineField({
@@ -166,16 +158,10 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'vrTourLabel',
-      title: 'VR Tour Button Label',
-      type: 'string',
-    }),
-    defineField({
       name: 'concierge',
       title: 'Concierge Widget',
       type: 'object',
       fields: [
-        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'contactLabel', title: 'Contact Label', type: 'string'}),
         defineField({name: 'whatsappLabel', title: 'WhatsApp Label', type: 'string'}),
         defineField({name: 'whatsappNumber', title: 'WhatsApp Number', type: 'string'}),
@@ -273,6 +259,7 @@ export default defineType({
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'body', title: 'Body', type: 'text'}),
+        defineField({name: 'links', title: 'Recovery links', type: 'array', of: [defineArrayMember({type: 'link'})], description: 'The "Try one of these instead" links under the 404 body, in order (defaults to Home · SAS Crown · SAS iTower · Blog · Contact).'}),
         defineField({name: 'seoTitle', title: 'SEO Title', type: 'string'}),
         defineField({name: 'seoDescription', title: 'SEO Description', type: 'text'}),
         textStyleField('eyebrowStyle', 'Eyebrow'),

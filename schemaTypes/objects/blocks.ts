@@ -30,6 +30,32 @@ const iconTokenOptions = [
   {title: 'Kids', value: 'kids'},
   {title: 'Medical', value: 'medical'},
   {title: 'Fallback', value: 'fallback'},
+  {title: 'Dining', value: 'dining'},
+  {title: 'Gym', value: 'gym'},
+  {title: 'Home · Dividers (design)', value: 'home-design'},
+  {title: 'Home · Map pin (location)', value: 'home-location'},
+  {title: 'Home · Gridded globe (global standard)', value: 'home-global'},
+  {title: 'Home · Skyline + spire (future-ready)', value: 'home-future'},
+  {title: 'Home · Open ledger (transparent)', value: 'home-transparent'},
+  {title: 'Home · Interlocking rings (partnership)', value: 'home-partnership'},
+  {title: 'Home · Globe on horizon (global, local)', value: 'home-global-local'},
+  {title: 'Home · Truss (engineering)', value: 'home-engineering'},
+  {title: 'Crown · Status (clock)', value: 'crown-status'},
+  {title: 'Crown · Land plot (grid)', value: 'crown-land'},
+  {title: 'Crown · Towers (cube)', value: 'crown-towers'},
+  {title: 'Crown · Flats (house)', value: 'crown-flats'},
+  {title: 'Crown · Configuration (panels)', value: 'crown-configuration'},
+  {title: 'Crown · Type (star)', value: 'crown-type'},
+  {title: 'Crown · Banquet (cloche)', value: 'crown-banquet'},
+  {title: 'Crown · EV charging (van)', value: 'crown-ev'},
+  {title: 'Crown · Car wash (car)', value: 'crown-car-wash'},
+  {title: 'Crown · Games (controller)', value: 'crown-games'},
+  {title: 'Crown · Mini mart (bag)', value: 'crown-mini-mart'},
+  {title: 'Crown · Swimming pool (waves)', value: 'crown-pool'},
+  {title: 'Crown · Theatre (screen)', value: 'crown-theatre'},
+  {title: 'Crown · Spa (steam)', value: 'crown-spa'},
+  {title: 'Crown · Yoga (figure)', value: 'crown-yoga'},
+  {title: 'Crown · Massage (waves + head)', value: 'crown-massage'},
 ]
 
 const richTextMember = defineArrayMember({type: 'block', styles: [{title: 'Normal', value: 'normal'}]})
@@ -349,7 +375,13 @@ export const ctaBlock = defineType({
   title: 'CTA',
   type: 'object',
   icon: PlayIcon,
-  fields: [headField, defineField({name: 'actions', title: 'Actions', type: 'array', of: [defineArrayMember({type: 'link'})]})],
+  fieldsets: [textStylesFieldset],
+  fields: [
+    headField,
+    defineField({name: 'actions', title: 'Actions', type: 'array', of: [defineArrayMember({type: 'link'})]}),
+    defineField({name: 'note', title: 'Note', type: 'string', description: 'Optional short line under the actions. On the Media page it precedes the press-desk email link (default: “or write to”).'}),
+    textStyleField('noteStyle', 'Note'),
+  ],
   preview: {select: {title: 'head.heading', subtitle: 'head.eyebrow'}},
 })
 
@@ -358,8 +390,11 @@ export const featureGridBlock = defineType({
   title: 'Feature Grid',
   type: 'object',
   icon: TiersIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     headField,
+    defineField({...ctaField, description: "Optional link under the section intro (home: 'Know more about SAS Infra' → About page)."}),
+    textStyleField('ctaStyle', 'CTA label'),
     defineField({
       name: 'features',
       title: 'Features',
@@ -442,6 +477,20 @@ export const feedBlock = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({name: 'limit', title: 'Limit', type: 'number', initialValue: 3}),
+    defineField({
+      name: 'itemCtaLabel', title: 'Item link text', type: 'string', placeholder: 'Read more',
+      description: 'Text of the link at the foot of each card in an Updates / Press / Blog / Jobs feed (defaults to "Read more").',
+      hidden: ({parent}) => parent?.source === 'projects',
+    }),
+    // Media-wall chrome — only the bespoke /media wall renders these.
+    defineField({name: 'filterLabel', title: 'Filter label', type: 'string', description: 'The small kicker before the category pills on the media wall (default: “Filter”).', hidden: ({parent}) => parent?.source !== 'press'}),
+    defineField({name: 'allLabel', title: '“All” pill label', type: 'string', description: 'Text of the first filter pill, which shows every item (default: “All”). The other pills are the press items’ categories.', hidden: ({parent}) => parent?.source !== 'press'}),
+    defineField({name: 'countNoun', title: 'Item count — singular noun', type: 'string', description: 'The noun after the count when it is 1, e.g. “item” → “1 item” (default: “item”).', hidden: ({parent}) => parent?.source !== 'press'}),
+    defineField({name: 'countNounPlural', title: 'Item count — plural noun', type: 'string', description: 'The noun after the count otherwise, e.g. “items” → “20 items” (default: “items”).', hidden: ({parent}) => parent?.source !== 'press'}),
+    defineField({...textStyleField('itemCtaLabelStyle', 'Item link text', 'Updates and Press feeds.'), hidden: ({parent}) => parent?.source === 'projects'}),
+    defineField({...textStyleField('filterLabelStyle', 'Filter label'), hidden: ({parent}) => parent?.source !== 'press'}),
+    defineField({...textStyleField('allLabelStyle', 'Filter pills', 'One style for every pill, incl. All.'), hidden: ({parent}) => parent?.source !== 'press'}),
+    defineField({...textStyleField('countNounStyle', 'Item count', 'The “20 items” counter.'), hidden: ({parent}) => parent?.source !== 'press'}),
     // List feeds (Updates / Press) render title + meta + excerpt per item.
     defineField({
       ...textStyleField('itemTitleStyle', 'Item title', 'Updates and Press feeds.'),
@@ -507,6 +556,8 @@ export const contactFormBlock = defineType({
       fields: [
         defineField({name: 'nameLabel', title: 'Name — Label', type: 'string'}),
         defineField({name: 'namePlaceholder', title: 'Name — Placeholder', type: 'string'}),
+        defineField({name: 'companyLabel', title: 'Company — Label', type: 'string'}),
+        defineField({name: 'companyPlaceholder', title: 'Company — Placeholder', type: 'string'}),
         defineField({name: 'emailLabel', title: 'Email — Label', type: 'string'}),
         defineField({name: 'emailPlaceholder', title: 'Email — Placeholder', type: 'string'}),
         defineField({name: 'phoneLabel', title: 'Phone — Label', type: 'string'}),
@@ -558,10 +609,13 @@ export const mapBlock = defineType({
   title: 'Map',
   type: 'object',
   icon: PinIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     headField,
     defineField({name: 'location', title: 'Location', type: 'location'}),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
+    defineField({name: 'mapQuery', title: 'Map search query', type: 'string', description: 'Google Maps search query for the embedded map on the Contact page — plain words, e.g. “ACE Tech Park Nanakramguda Financial District Hyderabad”. The site URL-encodes it (spaces → +).'}),
+    textStyleField('footnoteStyle', 'Footnote'),
     defineField({
       name: 'markerCategories',
       title: 'Marker Categories',
@@ -606,9 +660,11 @@ export const mapBlock = defineType({
           icon: PinIcon,
           fields: [
             defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
-            defineField({name: 'category', title: 'Category key', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'category', title: 'Category key', type: 'string', description: 'One of the marker categories above. Two values are reserved: “project” draws the SAS project pin (wordmark / logo lockup, see Project mark) and “office” draws the SAS Infra logo marker — neither is a category disc.', validation: (rule) => rule.required()}),
+            defineField({name: 'projectKey', title: 'Project mark', type: 'string', description: 'For category "project" points only: which SAS mark to draw — crown (the SAS Crown wordmark) or itower (the iTower logo lockup). Derived from the name when left unset ("SAS iTower" → itower).', options: {layout: 'radio', list: ['crown', 'itower']}, hidden: ({parent}) => parent?.category !== 'project'}),
             defineField({name: 'location', title: 'Location', type: 'geopoint', validation: (rule) => rule.required()}),
             defineField({name: 'driveMinutes', title: 'Drive time (min)', type: 'number', description: 'Optional. Shown in the hover tip; falls back to straight-line distance.', validation: (rule) => rule.min(0).integer()}),
+            defineField({name: 'showOnMobile', title: 'Show on mobile', type: 'boolean', description: 'Also show this point on phones (the mobile map shows a handful of anchors).', initialValue: false}),
             defineField({
               name: 'labelSide',
               title: 'Label side',
@@ -875,10 +931,13 @@ export const locationMapBlock = defineType({
         defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
+        textStyleField('eyebrowStyle', 'Eyebrow'),
         textStyleField('headingStyle', 'Heading'),
         textStyleField('dekStyle', 'Deck'),
       ],
     }),
+    defineField({name: 'ruleLabel', title: 'Vertical rule label', type: 'string', description: 'Text on the vertical rule beside the disc location card. Default: “Strategic Locations · IX Sites”. Only rendered on pages that show the rule.'}),
+    defineField({name: 'editorialLabel', title: 'Editorial card label', type: 'string', description: 'Small label on the editorial-only location card. Default: “Strategic Locations”.'}),
     defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
     defineField({
       name: 'editorialCard',
@@ -950,6 +1009,8 @@ export const locationMapBlock = defineType({
       ],
     }),
     textStyleField('editorialCardStyle', 'Editorial card heading'),
+    textStyleField('ruleLabelStyle', 'Vertical rule label'),
+    textStyleField('editorialLabelStyle', 'Editorial card label'),
     textStyleField('footnoteStyle', 'Footnote'),
   ],
   preview: {select: {title: 'overture.heading', subtitle: 'mapConfig.mapProject'}},
@@ -1436,6 +1497,7 @@ export const constructionFeedBlock = defineType({
             defineField({name: 'date', title: 'Date Label', type: 'string'}),
             defineField({name: 'headline', title: 'Headline', type: 'text', rows: 2, validation: (rule) => rule.required()}),
             defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string', initialValue: 'Download PDF'}),
+            defineField({name: 'link', title: 'Card link', type: 'link', description: 'Where the card\'s CTA ("Download PDF") goes — e.g. a File link to the month\'s progress PDF. Empty = the enquiry form (#contact).'}),
             textStyleField('categoryStyle', 'Category'),
             textStyleField('dateStyle', 'Date'),
             textStyleField('headlineStyle', 'Headline'),
@@ -1461,17 +1523,43 @@ export const partnerDisciplinesBlock = defineType({
       type: 'array',
       of: [
         defineArrayMember({
+          // Named so seeded items (`_type: 'discipline'`) resolve in the Studio —
+          // an anonymous member only accepts `_type: 'object'`.
+          name: 'discipline',
           type: 'object',
+          fieldsets: [textStylesFieldset],
           fields: [
             defineField({name: 'num', title: 'Numeral', type: 'string'}),
             defineField({name: 'title', title: 'Title', type: 'string'}),
             defineField({name: 'desc', title: 'Description', type: 'text', rows: 3}),
             defineField({
+              name: 'firms',
+              title: 'Firms',
+              description:
+                'The logos shown on this row (About partner wall). Name doubles as the logo alt text. ' +
+                'A firm seeded from the site keeps its own /images/partners file until a logo is uploaded here.',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  name: 'firm',
+                  type: 'object',
+                  fields: [
+                    defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
+                    defineField({name: 'logo', title: 'Logo', type: 'imageWithAlt'}),
+                  ],
+                  preview: {select: {title: 'name', media: 'logo.image'}},
+                }),
+              ],
+            }),
+            defineField({
               name: 'partners',
-              title: 'Partners',
+              title: 'Partners (legacy references)',
+              description: 'Superseded by Firms above — the About wall no longer reads these.',
               type: 'array',
               of: [defineArrayMember({type: 'reference', to: [{type: 'partner'}]})],
             }),
+            textStyleField('titleStyle', 'Title'),
+            textStyleField('descStyle', 'Description'),
           ],
           preview: {select: {title: 'title', subtitle: 'num'}},
         }),
@@ -1479,6 +1567,108 @@ export const partnerDisciplinesBlock = defineType({
     }),
   ],
   preview: {select: {title: 'head.heading'}},
+})
+
+// ─── About bespoke set-pieces ────────────────────────────────────────────
+// Models the VISIBLE content of the About page's Phase-3 sections so it becomes
+// CMS-editable while AboutPage.astro keeps the exact bespoke DOM.
+
+export const letterBlock = defineType({
+  name: 'letterBlock',
+  title: 'Letter',
+  type: 'object',
+  icon: DocumentTextIcon,
+  description: "Plain paragraphs of first-person copy (About: the chairman's letter, shown inside the chairman profile).",
+  fieldsets: [textStylesFieldset],
+  fields: [
+    defineField({
+      name: 'paragraphs',
+      title: 'Paragraphs',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      validation: (rule) => rule.min(1),
+    }),
+    textStyleField('paragraphsStyle', 'Paragraphs', 'One style for every paragraph.'),
+  ],
+  preview: {
+    select: {first: 'paragraphs.0'},
+    prepare: ({first}) => ({title: 'Letter', subtitle: first}),
+  },
+})
+
+export const credentialsBlock = defineType({
+  name: 'credentialsBlock',
+  title: 'Recognition & Credentials',
+  type: 'object',
+  icon: StarIcon,
+  description: 'One credibility band: an award, certification marks, and RERA registrations.',
+  fieldsets: [textStylesFieldset],
+  fields: [
+    headField,
+    defineField({
+      name: 'award',
+      title: 'Award',
+      type: 'object',
+      fieldsets: [textStylesFieldset],
+      fields: [
+        defineField({name: 'name', title: 'Award', type: 'string'}),
+        defineField({name: 'line', title: 'Citation', type: 'string'}),
+        defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+        defineField({name: 'source', title: 'Awarding body', type: 'string', description: 'Also the alt text of the source logo.'}),
+        defineField({name: 'laurel', title: 'Award laurel', type: 'imageWithAlt'}),
+        defineField({name: 'sourceLogo', title: 'Source logo', type: 'imageWithAlt'}),
+        textStyleField('nameStyle', 'Award'),
+        textStyleField('lineStyle', 'Citation'),
+        textStyleField('bodyStyle', 'Body'),
+      ],
+    }),
+    defineField({
+      name: 'credentials',
+      title: 'Certifications',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'credential',
+          type: 'object',
+          fieldsets: [textStylesFieldset],
+          fields: [
+            defineField({name: 'mark', title: 'Mark', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'org', title: 'Certifying body', type: 'string'}),
+            defineField({name: 'body', title: 'Body', type: 'text', rows: 3}),
+            defineField({name: 'image', title: 'Badge', type: 'imageWithAlt'}),
+            textStyleField('markStyle', 'Mark'),
+            textStyleField('orgStyle', 'Certifying body'),
+            textStyleField('bodyStyle', 'Body'),
+          ],
+          preview: {select: {title: 'mark', subtitle: 'org', media: 'image.image'}},
+        }),
+      ],
+    }),
+    defineField({name: 'reraHeading', title: 'Registrations heading', type: 'string'}),
+    defineField({
+      name: 'rera',
+      title: 'RERA registrations',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'reraRegistration',
+          type: 'object',
+          fieldsets: [textStylesFieldset],
+          fields: [
+            defineField({name: 'project', title: 'Project', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'body', title: 'Registration line', type: 'string'}),
+            textStyleField('projectStyle', 'Project'),
+            textStyleField('bodyStyle', 'Registration line'),
+          ],
+          preview: {select: {title: 'project', subtitle: 'body'}},
+        }),
+      ],
+    }),
+    defineField({name: 'reraNote', title: 'Registrations note', type: 'text', rows: 2}),
+    textStyleField('reraHeadingStyle', 'Registrations heading'),
+    textStyleField('reraNoteStyle', 'Registrations note'),
+  ],
+  preview: {select: {title: 'head.heading', subtitle: 'award.name'}},
 })
 
 export const homePageBuilder = defineType({
@@ -1516,6 +1706,8 @@ export const pagePageBuilder = defineType({
     defineArrayMember({type: 'cardGridBlock'}),
     defineArrayMember({type: 'feedBlock'}),
     defineArrayMember({type: 'partnerDisciplinesBlock'}),
+    defineArrayMember({type: 'letterBlock'}),
+    defineArrayMember({type: 'credentialsBlock'}),
   ],
 })
 
@@ -1582,6 +1774,8 @@ export const blockTypes = [
   addressSectionBlock,
   constructionFeedBlock,
   partnerDisciplinesBlock,
+  letterBlock,
+  credentialsBlock,
   homePageBuilder,
   pagePageBuilder,
   projectPageBuilder,

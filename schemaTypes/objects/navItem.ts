@@ -33,9 +33,7 @@ export default defineType({
       title: 'Children',
       type: 'array',
       of: [defineArrayMember({type: 'navItem'})],
-      // Nested menus are not rendered anywhere on the site; hidden so the editor
-      // is not invited to build a structure that never appears.
-      hidden: true,
+      description: 'Links listed under this item. The footer renders a group\'s children as its column links; the header menu ignores them.',
     }),
   ],
   preview: {
