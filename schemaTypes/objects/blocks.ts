@@ -33,6 +33,45 @@ const iconTokenOptions = [
 
 const richTextMember = defineArrayMember({type: 'block', styles: [{title: 'Normal', value: 'normal'}]})
 
+// Text-style pickers. Every option is one of the site's system text styles
+// (see repos/frontend/TYPOGRAPHY.md), so an editor can retune an individual
+// heading or deck without ever leaving the scale. The frontend resolves the
+// value through an allowlist — an empty or unknown value renders the default.
+const headingStyleField = defineField({
+  name: 'headingStyle',
+  title: 'Heading style',
+  description:
+    'Size of this heading, from the site\'s type scale. Standard keeps the size the page was designed with. Statement is one step larger, for a single line that should carry the screen. Compact is one step smaller, for a short, quieter heading.',
+  type: 'string',
+  options: {
+    list: [
+      {title: 'Standard (as designed)', value: 'standard'},
+      {title: 'Statement heading (larger)', value: 'statement'},
+      {title: 'Compact heading (smaller)', value: 'compact'},
+    ],
+    layout: 'radio',
+    direction: 'horizontal',
+  },
+  initialValue: 'standard',
+})
+
+const dekStyleField = defineField({
+  name: 'dekStyle',
+  title: 'Deck style',
+  description:
+    'Size of the deck under the heading. Lede is the opening size the page was designed with. Body matches ordinary paragraph text — use it when the deck runs long.',
+  type: 'string',
+  options: {
+    list: [
+      {title: 'Lede (as designed)', value: 'lede'},
+      {title: 'Body (smaller)', value: 'body'},
+    ],
+    layout: 'radio',
+    direction: 'horizontal',
+  },
+  initialValue: 'lede',
+})
+
 const headField = defineField({
   name: 'head',
   title: 'Section Head',
@@ -40,7 +79,9 @@ const headField = defineField({
   fields: [
     defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
+    headingStyleField,
     defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
+    dekStyleField,
   ],
 })
 
@@ -113,6 +154,22 @@ export const heroBlock = defineType({
     }),
     defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
     defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
+    defineField({
+      name: 'titleStyle',
+      title: 'Title style',
+      description:
+        'Page title is the size the page was designed with. Hero is the largest size on the site — one tier up, for a landing-page opener.',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Page title (as designed)', value: 'title'},
+          {title: 'Hero (largest)', value: 'hero'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      initialValue: 'title',
+    }),
     defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
     mediaField,
     ctasField,
