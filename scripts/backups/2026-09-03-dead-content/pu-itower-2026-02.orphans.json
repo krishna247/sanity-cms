@@ -1,0 +1,57 @@
+{
+  "_createdAt": "2026-05-31T11:19:10Z",
+  "_id": "pu-itower-2026-02",
+  "_rev": "CliFX4MbV5EiWMo3hnZ5hQ",
+  "_type": "projectUpdate",
+  "_updatedAt": "2026-06-02T08:01:29Z",
+  "body": [
+    {
+      "_key": "k5",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "k6",
+          "_type": "span",
+          "marks": [],
+          "text": "Core completion proceeding ahead of schedule. Building-systems installation (Siemens, Honeywell, Bosch) underway across the lower podium floors."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "category": "construction",
+  "date": "2026-02-01",
+  "headline": "SASPHERE — February progress overview",
+  "media": {
+    "image": {
+      "_type": "imageWithAlt",
+      "alt": "SAS iTower progress overview, February 2026",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9643f81708ac4eb8502cee7f2ec79424403a3e66-2368x1328-png",
+          "_type": "reference"
+        }
+      }
+    },
+    "kind": "image"
+  },
+  "pdf": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-a9986973f584bcab0cffeaf97740e1e12c83f9a6-pdf",
+      "_type": "reference"
+    }
+  },
+  "project": {
+    "_ref": "project-sas-itower",
+    "_type": "reference"
+  },
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "itower-2026-02"
+    }
+  }
+}

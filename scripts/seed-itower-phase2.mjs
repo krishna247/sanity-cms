@@ -1,3 +1,6 @@
+// HISTORICAL SEED — predates the 2026-09-03 schema trim (partner discipline/country,
+// projectUpdate body/pdf, updatesIndexPage, plateAnatomy/consultants/brochure blocks
+// no longer exist). Do NOT run against production; kept for reference only.
 import {getCliClient} from 'sanity/cli'
 import {readFileSync} from 'node:fs'
 

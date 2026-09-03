@@ -30,14 +30,14 @@ export function resolveHref(doc: RoutableDocument | null | undefined): string {
       return '/'
     case 'blogIndexPage':
       return '/blog'
-    case 'updatesIndexPage':
-      return '/projects/updates'
     case 'blogPost':
       return segment ? `/blog/${segment}` : '/blog'
     case 'project':
       return segment ? `/projects/${segment}` : '/projects'
     case 'projectUpdate':
-      return segment ? `/projects/updates#${segment}` : '/projects/updates'
+      // Updates render inline on their project page / the media feed (mirrors
+      // the frontend: the standalone /projects/updates index is retired).
+      return '/media'
     case 'page': {
       const parts = [doc.route?.section, segment].filter(Boolean)
       return `/${parts.join('/')}`

@@ -97,7 +97,6 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Updates')
             .items([
-              singleton(S, 'updatesIndexPage', 'Updates Index', ThListIcon),
               S.listItem()
                 .id('project-update-items')
                 .title('Update Items')
@@ -174,7 +173,6 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem('person').title('People'),
               S.documentTypeListItem('partner').title('Partners'),
               S.documentTypeListItem('pressItem').title('Press Items'),
-              S.documentTypeListItem('jobPosting').title('Job Postings'),
             ]),
         ),
     ])

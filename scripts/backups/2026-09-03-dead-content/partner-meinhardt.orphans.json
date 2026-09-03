@@ -1,0 +1,11 @@
+{
+  "_createdAt": "2026-06-30T07:37:50Z",
+  "_id": "partner-meinhardt",
+  "_rev": "yvLBTJSmLZxRcxXLPBVbEv",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:37:52Z",
+  "country": "Singapore",
+  "discipline": "Structural Engineering",
+  "name": "Meinhardt",
+  "shortCountry": "Singapore"
+}

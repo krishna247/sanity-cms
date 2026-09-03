@@ -11,19 +11,11 @@ export default defineType({
   fields: [
     defineField({name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required()}),
     textStyleField('nameStyle', 'Name', 'Wins over the block-level style wherever this partner is shown as text.'),
-    defineField({name: 'discipline', title: 'Discipline', type: 'string'}),
-    defineField({name: 'country', title: 'Country', type: 'string'}),
-    defineField({
-      name: 'shortCountry',
-      title: 'Short Country',
-      type: 'string',
-      description: 'Abbreviated label shown under the logo on the partner wall, e.g. "UK / HK". Falls back to Country.',
-    }),
     defineField({name: 'logo', title: 'Logo', type: 'imageWithAlt'}),
     defineField({name: 'website', title: 'Website', type: 'url', validation: (rule) => rule.uri({scheme: ['http', 'https']})}),
   ],
   preview: {
-    select: {title: 'name', subtitle: 'discipline', media: 'logo.image'},
+    select: {title: 'name', subtitle: 'website', media: 'logo.image'},
   },
 })
 

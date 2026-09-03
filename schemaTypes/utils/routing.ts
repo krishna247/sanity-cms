@@ -6,7 +6,6 @@ export const SINGLETON_IDS = [
   'navigation',
   'homePage',
   'blogIndexPage',
-  'updatesIndexPage',
 ] as const
 
 export const FIXED_PAGE_IDS = [
@@ -64,7 +63,7 @@ export async function validateRoute(value: RouteValue | undefined, context: Vali
   if (hasBadSegment(segment)) return 'Use a single path segment only. Do not include slashes, query strings, or anchors.'
 
   if (type === 'project' && RESERVED_PROJECT_SEGMENTS.includes(segment as never)) {
-    return '`updates` is reserved for /projects/updates.'
+    return '`updates` is a reserved project segment.'
   }
 
   if (type === 'page' && !section && RESERVED_TOP_LEVEL_SEGMENTS.includes(segment as never)) {
@@ -72,7 +71,7 @@ export async function validateRoute(value: RouteValue | undefined, context: Vali
   }
 
   const candidateHref = resolveHref({_type: type, route: value})
-  const staticHrefs = new Set(['/', '/blog', '/projects/updates'])
+  const staticHrefs = new Set(['/', '/blog'])
   if (staticHrefs.has(candidateHref)) return `${candidateHref} is owned by an index singleton.`
 
   const id = cleanId(document?._id)

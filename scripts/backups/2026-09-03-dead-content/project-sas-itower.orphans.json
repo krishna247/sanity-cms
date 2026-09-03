@@ -1,0 +1,1662 @@
+{
+  "_createdAt": "2026-05-31T16:19:48Z",
+  "_id": "project-sas-itower",
+  "_rev": "NYtiIxqee7F0fOwpqz2FIM",
+  "_system": {
+    "base": {
+      "id": "project-sas-itower",
+      "rev": "uxRLJECnas3LKdMORtym1c"
+    }
+  },
+  "_type": "project",
+  "_updatedAt": "2026-09-03T06:15:06Z",
+  "amenities": [
+    {
+      "_key": "amen-0",
+      "_type": "amenity",
+      "icon": "dining",
+      "name": "Multi-cuisine Food Court"
+    },
+    {
+      "_key": "amen-1",
+      "_type": "amenity",
+      "icon": "theatre",
+      "name": "9-Screen Multiplex"
+    },
+    {
+      "_key": "amen-2",
+      "_type": "amenity",
+      "icon": "retail",
+      "name": "Luxury Retail"
+    },
+    {
+      "_key": "amen-3",
+      "_type": "amenity",
+      "icon": "security",
+      "name": "Executive Club"
+    },
+    {
+      "_key": "amen-4",
+      "_type": "amenity",
+      "icon": "pool",
+      "name": "Wellness Deck & Pool"
+    },
+    {
+      "_key": "amen-5",
+      "_type": "amenity",
+      "icon": "gym",
+      "name": "Health Club"
+    },
+    {
+      "_key": "amen-6",
+      "_type": "amenity",
+      "icon": "retail",
+      "name": "Mini Mart"
+    },
+    {
+      "_key": "amen-7",
+      "_type": "amenity",
+      "icon": "ev",
+      "name": "EV Charging & Valet"
+    },
+    {
+      "_key": "amen-8",
+      "_type": "amenity",
+      "icon": "building",
+      "name": "Conference Suites"
+    },
+    {
+      "_key": "amen-9",
+      "_type": "amenity",
+      "icon": "medical",
+      "name": "Clinic & Pharmacy"
+    }
+  ],
+  "brochure": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-9da4dda78a53f661c5a06f2e15ae927513429f81-pdf",
+      "_type": "reference"
+    }
+  },
+  "catalogueCta": "Explore iTower",
+  "catalogueKind": "Commercial",
+  "catalogueOrder": 1,
+  "catalogueStats": [
+    {
+      "_key": "stat-height",
+      "label": "Floor",
+      "valueHtml": "G+37"
+    },
+    {
+      "_key": "stat-storeys",
+      "label": "Storeys",
+      "valueHtml": "37"
+    },
+    {
+      "_key": "stat-grade",
+      "label": "Grade",
+      "valueHtml": "A"
+    }
+  ],
+  "catalogueTitleHtml": "Tallest commercial tower in <em>Hyderabad</em>.",
+  "flyoutTitleHtml": "Tallest commercial<br>tower in <em>Hyderabad</em>.",
+  "heroImage": {
+    "_type": "imageWithAlt",
+    "alt": "SAS iTower commercial tower in Nanakramguda",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-72e2d5a0b2748cf0ca714ffa7ff913d888d50b12-1800x1350-webp",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0,
+        "right": 0.17030569010592753,
+        "top": 0.3889420359177284
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.6110579640822715,
+        "width": 0.8296943098940724,
+        "x": 0.4148471549470362,
+        "y": 0.6944710179588642
+      }
+    }
+  },
+  "location": {
+    "_type": "location",
+    "city": "Nanakramguda",
+    "geopoint": {
+      "_type": "geopoint",
+      "lat": 17.419178,
+      "lng": 78.360555
+    },
+    "state": "Telangana"
+  },
+  "navCtaLabel": "Book a Tour",
+  "numberOfFloors": 38,
+  "pageBuilder": [
+    {
+      "_key": "k337",
+      "_type": "projectHeroBlock",
+      "ctas": [
+        {
+          "_key": "k329",
+          "_type": "link",
+          "anchorId": "contact",
+          "kind": "anchor",
+          "label": "Get in Touch",
+          "reference": {
+            "_ref": "project-sas-itower",
+            "_type": "reference"
+          },
+          "variant": "primary"
+        },
+        {
+          "_key": "k330",
+          "_type": "link",
+          "file": {
+            "_type": "file",
+            "asset": {
+              "_ref": "file-9da4dda78a53f661c5a06f2e15ae927513429f81-pdf",
+              "_type": "reference"
+            }
+          },
+          "kind": "file",
+          "label": "Download Brochure",
+          "variant": "secondary"
+        }
+      ],
+      "eyebrow": "Commercial · Nanakramguda, Hyderabad",
+      "logo": {
+        "_type": "imageWithAlt",
+        "alt": "SAS iTower",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-69290068d4490576bdce0224684608a26d2f2b38-838x1600-png",
+            "_type": "reference"
+          }
+        }
+      },
+      "media": {
+        "kind": "video",
+        "poster": {
+          "_type": "imageWithAlt",
+          "alt": "SAS iTower commercial tower in Nanakramguda",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-c0ea8583865eb8cf9c5fd01b9e619ea668c0ec8c-2000x1498-webp",
+              "_type": "reference"
+            }
+          }
+        },
+        "video": {
+          "_type": "file",
+          "asset": {
+            "_ref": "file-06e0c2f266d20f8ab3d888cefd77c6599ee54af4-mp4",
+            "_type": "reference"
+          }
+        }
+      },
+      "stats": [
+        {
+          "_key": "k331",
+          "label": "Height",
+          "value": "171 m"
+        },
+        {
+          "_key": "k332",
+          "label": "Floors",
+          "value": "G + 37"
+        },
+        {
+          "_key": "k333",
+          "label": "Floor Plate",
+          "value": "1.2 L sq ft"
+        },
+        {
+          "_key": "k334",
+          "label": "Total Built-up",
+          "value": "6.1 M sq ft"
+        },
+        {
+          "_key": "k335",
+          "label": "Land",
+          "value": "10.36 acres"
+        },
+        {
+          "_key": "k336",
+          "label": "Capacity",
+          "value": "50K+ employees"
+        }
+      ],
+      "title": "The tallest <em>commercial</em><br />tower in Hyderabad."
+    },
+    {
+      "_key": "k342",
+      "_type": "statsStripBlock",
+      "countUp": true,
+      "items": [
+        {
+          "_key": "k338",
+          "label": "Tower height — tallest commercial in Hyderabad",
+          "suffix": "m",
+          "value": "171"
+        },
+        {
+          "_key": "k339",
+          "label": "Floors of Grade-A office",
+          "value": "37"
+        },
+        {
+          "_key": "k340",
+          "label": "Typical floor plate — city's largest",
+          "suffix": "k sq ft",
+          "value": "120"
+        },
+        {
+          "_key": "k341",
+          "label": "Total mixed-use development",
+          "suffix": "M sq ft",
+          "value": "6.1"
+        }
+      ]
+    },
+    {
+      "_key": "k343",
+      "_type": "specsRefBlock",
+      "head": {
+        "eyebrow": "Specifications",
+        "heading": "Engineered for those who <em>build</em> the future."
+      }
+    },
+    {
+      "_key": "k350",
+      "_type": "proseBlock",
+      "body": [
+        {
+          "_key": "pv1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "pvs1",
+              "_type": "span",
+              "marks": [],
+              "text": "SAS iTower rises 171 metres above Nanakramguda, between HITEC City and the Financial District. G + 37 floors. 6.1 million sq ft of mixed-use development across 10.36 acres. One of the four largest commercial developments in the world."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "pv2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "pvs2",
+              "_type": "span",
+              "marks": [],
+              "text": "The typical floor plate runs 1.2 lakh sq ft, the city's largest. Every storey has a 4.1-metre floor-to-ceiling height. Full-floor BFSI tenants, Global Capability Centres, and Indian corporates — the plate is designed around all three. The digital LED façade wraps the tower in a 171-metre programmable surface, a first for any commercial project in Hyderabad."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "pv3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "pvs3",
+              "_type": "span",
+              "marks": [],
+              "text": "Designed by Aedas. Targeting LEED Gold and WELL Silver certification."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "head": {
+        "eyebrow": "The Vision",
+        "heading": "Premium commercial spaces in <em>Nanakramguda</em>, Hyderabad."
+      }
+    },
+    {
+      "_key": "k351",
+      "_type": "amenitiesRefBlock",
+      "head": {
+        "dek": "A complete ecosystem on site — across the office floors, the wellness deck, and the podium retail block.",
+        "eyebrow": "Amenities",
+        "heading": "Crafted for <em>work-life</em> balance."
+      }
+    },
+    {
+      "_key": "k358",
+      "_type": "contactFormBlock",
+      "formTarget": "itower-enquiry",
+      "head": {
+        "dek": "Leave the details below and our leasing team — alongside CBRE — will be in touch within one business day to arrange a private tour of the experience centre and a walk-through of available floor plates.",
+        "eyebrow": "Get in Touch",
+        "heading": "Tour <em>SAS iTower</em><br />at Nanakramguda."
+      },
+      "leadOptions": [
+        {
+          "_key": "lo1",
+          "label": "Office Space, Full Floor (1,20,000 sq ft)",
+          "value": "office-full"
+        },
+        {
+          "_key": "lo2",
+          "label": "Office Space, Half Floor (60,000 sq ft)",
+          "value": "office-half"
+        },
+        {
+          "_key": "lo3",
+          "label": "Office Space, Quarter Floor (30,000 sq ft)",
+          "value": "office-quarter"
+        },
+        {
+          "_key": "lo4",
+          "label": "Full Building, Block 2 (0.45 M sq ft)",
+          "value": "full-building"
+        },
+        {
+          "_key": "lo5",
+          "label": "Retail / F&B at The Address",
+          "value": "retail"
+        },
+        {
+          "_key": "lo6",
+          "label": "Download Brochure",
+          "value": "brochure"
+        },
+        {
+          "_key": "lo7",
+          "label": "Custom Requirement",
+          "value": "custom"
+        }
+      ],
+      "variant": "leasing"
+    },
+    {
+      "_key": "itSig",
+      "_type": "signatureFeatureBlock",
+      "body": "A 171-metre digital surface — the first for any commercial project in Hyderabad. Programmable, daylight-readable, and built to turn the building itself into a brand canvas for anchor tenants.",
+      "eyebrow": "Signature · Digital Façade",
+      "heading": "South India's largest <em>LED façade</em>.",
+      "image": {
+        "_type": "imageWithAlt",
+        "alt": "Digital façade · SAS iTower",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-05d68efc407e623a56f6f3236954bf8083767547-1800x1262-webp",
+            "_type": "reference"
+          }
+        }
+      },
+      "items": [
+        "Programmable LED skin",
+        "Daylight-readable luminance",
+        "Tenant branding rights",
+        "City-scale visibility",
+        "Integrated wayfinding",
+        "BMS-controlled scenes"
+      ],
+      "variant": "cinema"
+    },
+    {
+      "_key": "itGal",
+      "_type": "galleryBlock",
+      "head": {
+        "eyebrow": "Gallery",
+        "heading": "An <em>uninterrupted</em> view of the CBD."
+      },
+      "images": [
+        {
+          "_key": "itg1",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower — slender tower at dawn",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-9bc341272e14475f2a59a3f49d2d23eda19f2f34-1800x1272-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "tall"
+        },
+        {
+          "_key": "itg2",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower under construction at dusk, April 2026",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-b22f336562e7d0ab66dfb9852c74be4822851dcd-1800x1350-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "itg3",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower main lobby",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-876d864f463047828fa7f6f4ea360b1a6d53fdbb-1800x1012-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "itg4",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "Typical office floor — perimeter glazing",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-4373a5b6cb9532988636daa21d0635b5b6770a26-1800x1012-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "itg5",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "On-site food court",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-645ca3341d6ef5dd66eb0ca8dcc02f4d3041f8ac-1800x1012-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "itg6",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower viewed across the lake at dusk",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-33a6c91d55dc233c3455b18e3fc44462f2cf15a6-1800x2400-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        }
+      ],
+      "variant": "carousel"
+    },
+    {
+      "_key": "itPlans",
+      "_type": "floorPlansBlock",
+      "cta": {
+        "_type": "link",
+        "file": {
+          "_type": "file",
+          "asset": {
+            "_ref": "file-f39c07a83af1c04115ad0ec1d8746467cd7ab3d6-pdf",
+            "_type": "reference"
+          }
+        },
+        "kind": "file",
+        "label": "Download Brochure"
+      },
+      "head": {
+        "dek": "A 1.2 lakh sq ft typical plate, engineered for tenants who plan in whole floors. Half- and quarter-floor splits available for smaller occupiers.",
+        "eyebrow": "Floor Plates",
+        "heading": "The city's largest <em>floor plate</em>."
+      },
+      "metrics": [
+        {
+          "_key": "m1",
+          "label": "Typical Plate",
+          "value": "1,20,000 sq ft"
+        },
+        {
+          "_key": "m2",
+          "label": "Floor-to-ceiling",
+          "value": "4.1 m"
+        },
+        {
+          "_key": "m3",
+          "label": "Refuge Floors",
+          "value": "Yes"
+        },
+        {
+          "_key": "m4",
+          "label": "Min. Lease",
+          "value": "30,000 sq ft"
+        }
+      ],
+      "mode": "list",
+      "plans": [
+        {
+          "_key": "itp1",
+          "label": "Tower A · Block A1",
+          "seq": 1,
+          "size": "1,20,000 sq ft"
+        },
+        {
+          "_key": "itp2",
+          "label": "Refuge / Non-refuge split",
+          "seq": 2,
+          "size": "Block 1 detail"
+        },
+        {
+          "_key": "itp3",
+          "label": "Tower A · Block A2",
+          "placeholder": {
+            "body": "35,000 sq ft typical plate — an 18-floor office-and-amenity stack with the Floor 7 wellness deck. Detailed plate available on request.",
+            "ctaLabel": "Request the plate →",
+            "ctaPrefill": "office-quarter",
+            "eyebrow": "Tower A · Block A2"
+          },
+          "seq": 3,
+          "size": "35,000 sq ft plate"
+        },
+        {
+          "_key": "itp4",
+          "label": "Tower B · Phase 2",
+          "placeholder": {
+            "body": "Detailed plates released alongside Phase 2 launch. Plate footprint — 50–55,000 sq ft typical, 30 floors planned.",
+            "ctaLabel": "Request a preview →",
+            "eyebrow": "Phase 2 · Tower B"
+          },
+          "seq": 4,
+          "size": "Plates available H2 · 2026"
+        }
+      ]
+    },
+    {
+      "_key": "itMap",
+      "_type": "locationMapBlock",
+      "locationCard": {
+        "dek": "A majestic sentinel between the twin giants of commerce — HITEC City and the Financial District.",
+        "heading": "SAS <em>iTower</em>."
+      },
+      "mapConfig": {
+        "frameStyle": "disc",
+        "mapProject": "itower"
+      },
+      "overture": {
+        "dek": "Seven minutes to the Financial District. Fifteen to HITEC City.",
+        "eyebrow": "Location",
+        "heading": "A sentinel of the <em>CBD</em>."
+      },
+      "pointsOfInterest": [
+        {
+          "_key": "poi01",
+          "_type": "poi",
+          "category": "Hospital",
+          "driveMinutes": 10,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4194192,
+            "lng": 78.3540305
+          },
+          "name": "Star Hospitals"
+        },
+        {
+          "_key": "poi02",
+          "_type": "poi",
+          "category": "Hotel",
+          "driveMinutes": 16,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4180912,
+            "lng": 78.3424841
+          },
+          "name": "Hyatt Gachibowli"
+        },
+        {
+          "_key": "poi03",
+          "_type": "poi",
+          "category": "Hospital",
+          "driveMinutes": 17,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4175264,
+            "lng": 78.3394579
+          },
+          "name": "Continental Hospitals"
+        },
+        {
+          "_key": "poi04",
+          "_type": "poi",
+          "category": "Tech Campus",
+          "driveMinutes": 18,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.425742,
+            "lng": 78.3437191
+          },
+          "name": "Wipro"
+        },
+        {
+          "_key": "poi05",
+          "_type": "poi",
+          "category": "Business",
+          "driveMinutes": 18,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4419076,
+            "lng": 78.3690159
+          },
+          "name": "Deloitte Towers"
+        },
+        {
+          "_key": "poi06",
+          "_type": "poi",
+          "category": "Convention",
+          "driveMinutes": 19,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4183845,
+            "lng": 78.3286676
+          },
+          "name": "Anvaya Conventions"
+        },
+        {
+          "_key": "poi07",
+          "_type": "poi",
+          "category": "Tech Campus",
+          "driveMinutes": 20,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.431233,
+            "lng": 78.3429951
+          },
+          "name": "Microsoft"
+        },
+        {
+          "_key": "poi08",
+          "_type": "poi",
+          "category": "Retail",
+          "driveMinutes": 20,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4575952,
+            "lng": 78.3639493
+          },
+          "name": "Sarath City Mall"
+        },
+        {
+          "_key": "poi09",
+          "_type": "poi",
+          "category": "Tech Campus",
+          "driveMinutes": 21,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4584134,
+            "lng": 78.3725586
+          },
+          "name": "Google Hyderabad"
+        },
+        {
+          "_key": "poi10",
+          "_type": "poi",
+          "category": "Hotel",
+          "driveMinutes": 22,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4320616,
+            "lng": 78.3850482
+          },
+          "name": "ITC Kohenur"
+        },
+        {
+          "_key": "poi11",
+          "_type": "poi",
+          "category": "Institution",
+          "driveMinutes": 22,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4351337,
+            "lng": 78.3406751
+          },
+          "name": "Indian School of Business"
+        },
+        {
+          "_key": "poi12",
+          "_type": "poi",
+          "category": "Metro",
+          "driveMinutes": 23,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4420806,
+            "lng": 78.3771549
+          },
+          "name": "Raidurg Metro"
+        },
+        {
+          "_key": "poi13",
+          "_type": "poi",
+          "category": "Retail",
+          "driveMinutes": 25,
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4335554,
+            "lng": 78.3865168
+          },
+          "name": "Inorbit Mall"
+        }
+      ]
+    },
+    {
+      "_key": "itMaster",
+      "_type": "masterPlanBlock",
+      "annotations": [
+        {
+          "_key": "ann1",
+          "building": "Tower A · Block A1",
+          "detail": "Approx 3.5M sq ft · 37 Floors"
+        },
+        {
+          "_key": "ann2",
+          "building": "Tower A · Block A2",
+          "detail": "Approx 0.45M sq ft · 18 Floors"
+        },
+        {
+          "_key": "ann3",
+          "building": "Tower B (Proposed Phase 2)",
+          "detail": "Approx 1.5M sq ft"
+        },
+        {
+          "_key": "ann4",
+          "building": "Retail Block (The Address)",
+          "detail": "Approx 0.8M sq ft · Ground + 6 Floors"
+        }
+      ],
+      "areaTables": [
+        {
+          "_key": "atOffice",
+          "_type": "object",
+          "columns": [
+            "Tower",
+            "Office space (million sq ft)",
+            "Typical floor plate (approx sq ft)",
+            "No. of floors (basement + floors)",
+            "Floor use"
+          ],
+          "rows": [
+            {
+              "_key": "r1",
+              "_type": "object",
+              "cells": [
+                "Tower A Block 1",
+                "3.5",
+                "1,20,000",
+                "6 B + 37 F",
+                "Floors 1–6: Retail · Floors 7–37: Office"
+              ]
+            },
+            {
+              "_key": "r2",
+              "_type": "object",
+              "cells": [
+                "Tower A Block 2",
+                "0.45",
+                "35,000",
+                "6 B + 18 F",
+                "Floors 1–7: Retail · Floors 8–18: Office"
+              ]
+            },
+            {
+              "_key": "r3",
+              "_type": "object",
+              "cells": [
+                "Tower B",
+                "1.5",
+                "50,000–55,000",
+                "6 B + 30 F",
+                "—"
+              ]
+            }
+          ],
+          "title": "Commercial office area statement"
+        },
+        {
+          "_key": "atRetail",
+          "_type": "object",
+          "columns": [
+            "Floor",
+            "F–F height (m)",
+            "GLA (sq ft)",
+            "Carpet area (sq ft)"
+          ],
+          "rows": [
+            {
+              "_key": "g",
+              "_type": "object",
+              "cells": [
+                "Ground",
+                "5.82",
+                "59,983",
+                "57,261"
+              ]
+            },
+            {
+              "_key": "l1",
+              "_type": "object",
+              "cells": [
+                "Level 1",
+                "4.5",
+                "114,482",
+                "106,084"
+              ]
+            },
+            {
+              "_key": "l2",
+              "_type": "object",
+              "cells": [
+                "Level 2",
+                "4.5",
+                "137,492",
+                "129,411"
+              ]
+            },
+            {
+              "_key": "l3",
+              "_type": "object",
+              "cells": [
+                "Level 3",
+                "4.5",
+                "131,635",
+                "123,673"
+              ]
+            },
+            {
+              "_key": "l4",
+              "_type": "object",
+              "cells": [
+                "Level 4",
+                "4.5",
+                "138,073",
+                "130,112"
+              ]
+            },
+            {
+              "_key": "l5",
+              "_type": "object",
+              "cells": [
+                "Level 5",
+                "6",
+                "134,917",
+                "126,963"
+              ]
+            },
+            {
+              "_key": "l6",
+              "_type": "object",
+              "cells": [
+                "Level 6",
+                "6",
+                "96,067",
+                "91,504"
+              ]
+            },
+            {
+              "_key": "tot",
+              "_type": "object",
+              "cells": [
+                "Total",
+                "",
+                "812,649",
+                "765,009"
+              ],
+              "emphasis": true
+            }
+          ],
+          "title": "Retail mall area statement"
+        }
+      ],
+      "cinema": {
+        "body": "Block A1 carries 37 floors and the headline 1.2 lakh sq ft plate. Block A2 has an 18-floor office-and-amenity stack with a dedicated wellness deck on Floor 7. Tower B is reserved for Phase 2 with 1.5 million sq ft of development potential. The retail podium — home to The Address — sits on G + 6 floors with its own entry and exit.",
+        "eyebrow": "Master Plan",
+        "heading": "Tower A (Block A1 + A2), <em>Tower B</em>, and a podium retail block."
+      },
+      "head": {
+        "dek": "10.36 acres at the spine of Nanakramguda — two-sided road access with a 120 ft wide approach road, separate office and retail entries, and 6.1 million sq ft of mixed-use development phased across two towers, an annexe block, and a podium retail building.",
+        "eyebrow": "Master Plan",
+        "heading": "One site. Four <em>buildings</em>. A complete ecosystem."
+      },
+      "image": {
+        "_type": "imageWithAlt",
+        "alt": "SAS iTower master plan — top-down site plan with Tower A (Block 1 + 2), Tower B and the retail block",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-74e9c134f9cec6f5f603765ad6764956bbc5282f-1600x1543-webp",
+            "_type": "reference"
+          }
+        }
+      }
+    },
+    {
+      "_key": "itAnatomy",
+      "_type": "towerAnatomyBlock",
+      "bands": [
+        {
+          "_key": "ab1",
+          "band": "sky",
+          "body": "Twenty floors of 1.2 lakh sq ft floor plate — the tallest, deepest commercial offer in Hyderabad. 4.1 m floor-to-ceiling, refuge cuts on alternating storeys, a dedicated sky-rise lift bank.",
+          "cat": "Office",
+          "heading": "The headline plates.",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower — Sky (L17–L36 · Office)",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-c264f31a1f2e317fcb56027bde5d6f88c8cc2b95-1351x1800-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "range": "L17 — L36"
+        },
+        {
+          "_key": "ab2",
+          "band": "food",
+          "body": "Multi-cuisine food courts and tenant-only lounges on a sky-deck level that doubles as the mid-rise / sky-rise lift transfer floor.",
+          "cat": "Food Courts",
+          "heading": "A two-floor sky lobby.",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower — Sky-lobby (L15–L16 · Food Courts)",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-54c77f0a3e0179005443dbad8aba6d07b2a66519-2000x1125-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "range": "L15 — L16"
+        },
+        {
+          "_key": "ab3",
+          "band": "midrise",
+          "body": "Eight floors served by a dedicated low/mid-rise lift bank — ideal for full-floor BFSI and GCC tenants who want podium proximity without sky-rise commute.",
+          "cat": "Office",
+          "heading": "Mid-rise office stack.",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower — Mid-rise (L7–L14 · Office)",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-695c434e2d89c05f51fd9facf7b6894b3de526ee-2400x1453-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "range": "L7 — L14"
+        },
+        {
+          "_key": "ab4",
+          "band": "podium",
+          "body": "Seven levels of curated luxury retail, fine dining, entertainment, and a nine-screen multiplex. Branded and operated as The Address.",
+          "cat": "The Address",
+          "heading": "The retail podium.",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower — Podium (G–L6 · The Address)",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-3a9a139e939f6b761c856a2b8d151da459486962-2000x1414-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "range": "G — L6"
+        },
+        {
+          "_key": "ab5",
+          "band": "basement",
+          "body": "Five basement levels of app-controlled parking with EV charging, valet drop-off, and direct lift-lobby access for tenants and retail visitors alike.",
+          "cat": "Basement Parking",
+          "heading": "App-based, multi-level parking.",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS iTower — Basement (B1–B5 · Parking)",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-6ae21cc5a59f9fac73668a7062dbdbd2828cdffa-2400x1453-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "range": "B1 — B5"
+        }
+      ],
+      "head": {
+        "dek": "Five distinct programs stacked across G + 37 floors — pulled straight from Aedas's north-facing elevation drawing.",
+        "eyebrow": "The Vertical Program",
+        "heading": "The <em>anatomy</em> of a 171-metre tower."
+      },
+      "image": {
+        "_type": "imageWithAlt",
+        "alt": "North-facing elevation of Tower A1 and A2",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-a39d9aae492ffcbf9f07e7dabe1f90808939f4e6-2400x1452-webp",
+            "_type": "reference"
+          }
+        }
+      }
+    },
+    {
+      "_key": "itPlate",
+      "_type": "plateAnatomyBlock",
+      "head": {
+        "dek": "Five features that make Block 1's typical plate the city's most lease-able floor.",
+        "eyebrow": "Inside the Plate",
+        "heading": "Anatomy of a <em>1.2 lakh sq ft</em> plate."
+      },
+      "image": {
+        "_type": "imageWithAlt",
+        "alt": "SAS iTower — annotated typical floor plate",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-ed0f353dab64373ffba0d63d179142329eb11117-2400x1452-webp",
+            "_type": "reference"
+          }
+        }
+      },
+      "pins": [
+        {
+          "_key": "pp1",
+          "body": "Lift banks, service shafts, washrooms and staircases — concentrated to maximise leasable perimeter.",
+          "title": "Central Core"
+        },
+        {
+          "_key": "pp2",
+          "body": "Code-compliant refuge floor cut on alternating storeys — entered through the same core-side fire lobby.",
+          "title": "Refuge Cut · West"
+        },
+        {
+          "_key": "pp3",
+          "body": "Five service lifts isolated from the passenger banks; service pantries on every floor for F&B tenants.",
+          "title": "Service Lifts & Pantries"
+        },
+        {
+          "_key": "pp4",
+          "body": "Continuous 4.1 m floor-to-ceiling glazing. Daylight to a depth of ~12 m before any partition — best in class for the city.",
+          "title": "Perimeter Office Band"
+        },
+        {
+          "_key": "pp5",
+          "body": "Wide-bay structural grid pulled to the core line — only the perimeter columns interrupt the open plan.",
+          "title": "Column Grid"
+        }
+      ]
+    },
+    {
+      "_key": "itTenants",
+      "_type": "tenantsBlock",
+      "anchor": {
+        "body": "Three tenant categories at the heart of Grade-A demand in Hyderabad — each matched to a floor-split, lift-bank, and amenity stack tuned for their workflow.",
+        "eyebrow": "For Whom We Build",
+        "heading": "Where the city's <em>top occupiers</em> belong.",
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "SAS iTower — tenants editorial anchor render",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-20e3ba87f778a5a43ab8050946cdb78da2942485-1800x1272-webp",
+              "_type": "reference"
+            }
+          }
+        }
+      },
+      "head": {
+        "dek": "Three tenant categories at the core of every Grade-A pitch in the CBD — and the layouts and floor splits engineered for each.",
+        "eyebrow": "Built For",
+        "heading": "Designed for the <em>occupiers</em> who set the standard."
+      },
+      "zones": [
+        {
+          "_key": "tz1",
+          "body": "Full-floor leases (1.2 L sq ft) · dedicated lift banks · executive arrival sequence · tenant-controlled access.",
+          "seq": "I",
+          "title": "BFSI & Insurance"
+        },
+        {
+          "_key": "tz2",
+          "body": "Half-floor splits (60 K sq ft) · BMS-integrated tenant zones · LEED Gold + WELL Silver target · 4.1 m ceilings throughout.",
+          "seq": "II",
+          "title": "Global Capability Centres"
+        },
+        {
+          "_key": "tz3",
+          "body": "Quarter-floor splits (30 K sq ft) · shared lobby · Block 2 floor-7 wellness deck · podium retail at the ground.",
+          "seq": "III",
+          "title": "Indian Corporates"
+        }
+      ]
+    },
+    {
+      "_key": "itEng",
+      "_type": "engineeredNumbersBlock",
+      "banks": [
+        {
+          "_key": "eb1",
+          "floors": "G — L11",
+          "zone": "Low"
+        },
+        {
+          "_key": "eb2",
+          "floors": "G · L11 — L20",
+          "zone": "Low-Mid"
+        },
+        {
+          "_key": "eb3",
+          "floors": "G · L11, L15 · L20 — L28",
+          "zone": "High-Mid"
+        },
+        {
+          "_key": "eb4",
+          "floors": "G · L11, L15 · L20, L28 — L36",
+          "zone": "High"
+        }
+      ],
+      "banksHeading": "Lift banks · floors served",
+      "frameCaption": "Aedas · typical-floor split for Tower A · Block 1",
+      "head": {
+        "dek": "Pulled directly from the architects' typical-floor split — the vertical-transport, life-safety and air-handling figures behind a 50,000-employee day.",
+        "eyebrow": "Engineered for Scale",
+        "heading": "Forty high-speed lifts. <em>Numbers</em> that move a city."
+      },
+      "image": {
+        "_type": "imageWithAlt",
+        "alt": "Tower A · refuge / non-refuge floor split with lift bank schedule",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e13d647c82716456feeb997b280b063735643451-2400x1452-webp",
+            "_type": "reference"
+          }
+        }
+      },
+      "stats": [
+        {
+          "_key": "es1",
+          "lab": "High-speed passenger lifts",
+          "num": "40"
+        },
+        {
+          "_key": "es2",
+          "lab": "Service lifts",
+          "num": "5"
+        },
+        {
+          "_key": "es5",
+          "lab": "Parking lifts",
+          "num": "9"
+        },
+        {
+          "_key": "es6",
+          "lab": "Retail escalators",
+          "num": "20"
+        }
+      ]
+    },
+    {
+      "_key": "itConsult",
+      "_type": "consultantsBlock",
+      "cells": [
+        {
+          "_key": "cc1",
+          "name": "Aedas",
+          "role": "Architecture"
+        },
+        {
+          "_key": "cc2",
+          "name": "CBRE",
+          "role": "Leasing"
+        },
+        {
+          "_key": "cc3",
+          "name": "Coffey",
+          "role": "Geotechnical"
+        },
+        {
+          "_key": "cc4",
+          "name": "Exova",
+          "role": "Façade & Fire"
+        },
+        {
+          "_key": "cc5",
+          "name": "Godrej",
+          "role": "Lifts & Security"
+        },
+        {
+          "_key": "cc6",
+          "name": "L'Avenir",
+          "role": "MEP"
+        }
+      ],
+      "head": {
+        "eyebrow": "Consultants",
+        "heading": "Empowering every dream that <em>builds</em> our world."
+      }
+    },
+    {
+      "_key": "itBrochure",
+      "_type": "brochureBlock",
+      "cards": [
+        {
+          "_key": "bc1",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "Master Plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-41ad84776f6258f39f249ad418cb82a618d9628c-2400x1452-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "num": "i",
+          "sub": "10.36 acres · four buildings · area schedules",
+          "title": "Master Plan"
+        },
+        {
+          "_key": "bc2",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "Typical Floor Plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-897f4368335239c31b18dc646038bd676df3a17a-2400x1452-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "num": "ii",
+          "sub": "1,20,000 sq ft plate · structural grid",
+          "title": "Typical Floor Plan"
+        },
+        {
+          "_key": "bc3",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "Refuge Split",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-e13d647c82716456feeb997b280b063735643451-2400x1452-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "num": "iii",
+          "sub": "Refuge / non-refuge floors · lift bank schedule",
+          "title": "Refuge Split — Tower A · Block 1"
+        },
+        {
+          "_key": "bc4",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "North-facing Elevation",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-a39d9aae492ffcbf9f07e7dabe1f90808939f4e6-2400x1452-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "num": "iv",
+          "sub": "Tower A1 + A2 · floor-by-floor program",
+          "title": "North-facing Elevation"
+        },
+        {
+          "_key": "bc5",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "West-facing Elevation",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-cc44967716611abd151bce3155959994ed0ecc41-2400x1452-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "num": "v",
+          "sub": "Tower A1 · long-axis section",
+          "title": "West-facing Elevation"
+        }
+      ],
+      "ctaLabel": "Download Full Brochure (PDF)",
+      "head": {
+        "dek": "Five plates pulled directly from Aedas's design package — the master plan, the typical 1.2 lakh sq ft plate, the refuge split, and the tower elevations on both axes.",
+        "eyebrow": "VII — The Architects' Deck",
+        "heading": "Read the building like a <em>brochure</em>."
+      }
+    },
+    {
+      "_key": "itAddress",
+      "_type": "addressSectionBlock",
+      "amenities": {
+        "cta": {
+          "label": "Leasing at The Address",
+          "prefill": "retail"
+        },
+        "eyebrow": "At The Address",
+        "heading": "Everything under <em>one roof</em>.",
+        "items": [
+          {
+            "_key": "am1",
+            "icon": "dining",
+            "name": "High-End Restaurants"
+          },
+          {
+            "_key": "am2",
+            "icon": "promenade",
+            "name": "Wide Open Promenade"
+          },
+          {
+            "_key": "am3",
+            "icon": "theatre",
+            "name": "Gaming and Entertainment"
+          },
+          {
+            "_key": "am4",
+            "icon": "cafe",
+            "name": "Coffee Shops and Cafes"
+          },
+          {
+            "_key": "am5",
+            "icon": "kids",
+            "name": "Kids Playzone"
+          },
+          {
+            "_key": "am6",
+            "icon": "theatre",
+            "name": "Movie Screening (9 screens)"
+          },
+          {
+            "_key": "am7",
+            "icon": "retail",
+            "name": "Retail Stores"
+          },
+          {
+            "_key": "am8",
+            "icon": "parking",
+            "name": "Dedicated Basement Parking"
+          }
+        ]
+      },
+      "intro": {
+        "body": [
+          "The Address is SAS Infra's curated luxury retail brand. The first location opens at SAS iTower, occupying the development's first seven storeys. Fine dining, premium retail, entertainment, and the everyday rituals of luxury, all under one roof.",
+          "Further locations across Hyderabad are in development."
+        ],
+        "eyebrow": "Retail · SAS iTower, Nanakramguda",
+        "heading": "The <em>destination</em> within the tower.",
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "The Address — retail interior",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-392c6368ac37549833221b8ac5932f0be5604040-2000x1125-webp",
+              "_type": "reference"
+            }
+          }
+        }
+      },
+      "mix": {
+        "body": "Over 15,000 premium apartments sit within walking distance. Another 18,000+ units fall within a 3 km radius. The Address is not trying to pull footfall from across the city. The spending power is already at the doorstep. The retail mix is built around that reality.",
+        "cards": [
+          {
+            "_key": "mc1",
+            "body": "Premium restaurants, multi-cuisine food courts, cafes, and sky-level dining.",
+            "category": "F&B",
+            "gla": "2,40,000–2,80,000 sq ft GLA",
+            "share": "30–35%"
+          },
+          {
+            "_key": "mc2",
+            "body": "Nine-screen multiplex, gaming and entertainment zones, kids' play area.",
+            "category": "Entertainment",
+            "gla": "1,60,000–2,00,000 sq ft GLA",
+            "share": "20–25%"
+          },
+          {
+            "_key": "mc3",
+            "body": "In-line stores, luxury anchor tenants, wide-open promenades, and coffee shops.",
+            "category": "Retail & Anchor",
+            "gla": "3,20,000–4,00,000 sq ft GLA",
+            "share": "40–50%"
+          }
+        ],
+        "eyebrow": "The Mix",
+        "heading": "Fine dining. Premium retail. <em>Entertainment</em>. Under one roof.",
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "The Address — the retail mix",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-86e5f04de1cec34a321d91061dc373faaea347d1-2400x1350-webp",
+              "_type": "reference"
+            }
+          }
+        }
+      },
+      "stats": [
+        {
+          "_key": "st1",
+          "label": "Floors",
+          "value": "Ground + 6"
+        },
+        {
+          "_key": "st2",
+          "label": "GLA",
+          "value": "~8,00,000 sq ft"
+        }
+      ],
+      "wordmark": {
+        "_type": "imageWithAlt",
+        "alt": "The Address",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-d3cfc3daf8d1469b45fadef26692ae76ed3ee3e5-1519x320-png",
+            "_type": "reference"
+          }
+        }
+      }
+    },
+    {
+      "_key": "itConstr",
+      "_type": "constructionFeedBlock",
+      "head": {
+        "eyebrow": "Watch It Rise",
+        "heading": "Construction milestones from <em>Nanakramguda</em>."
+      },
+      "items": [
+        {
+          "_key": "c1",
+          "category": "Construction",
+          "ctaLabel": "Download PDF",
+          "date": "March 2026",
+          "embedUrl": "https://www.youtube.com/embed/UibIqbVFNuE?rel=0&modestbranding=1",
+          "headline": "Block 1 crosses the 25th storey — Hyderabad's tallest commercial frame takes shape."
+        },
+        {
+          "_key": "c2",
+          "category": "Construction",
+          "ctaLabel": "Download PDF",
+          "date": "February 2026",
+          "embedUrl": "https://www.youtube.com/embed/-2vWU5XjI3E?rel=0&modestbranding=1",
+          "headline": "Block 2 wellness deck (Floor 7) shell completed — pool basin pour scheduled."
+        },
+        {
+          "_key": "c3",
+          "category": "Media",
+          "ctaLabel": "Download PDF",
+          "date": "January 2026",
+          "embedUrl": "https://www.youtube.com/embed/F9e1Sv2ELDQ?rel=0&modestbranding=1",
+          "headline": "Digital façade panels arrive on site — first commercial LED skin in Hyderabad."
+        }
+      ]
+    }
+  ],
+  "projectType": "commercial",
+  "reraNumber": "P02400000878",
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "sas-itower"
+    }
+  },
+  "seo": {
+    "_type": "seo",
+    "metaDescription": "SAS iTower: 171 m, 6.1 million sq ft of Grade-A office and luxury retail at Nanakramguda. Home to The Address. LEED Gold targeted. Leasing by CBRE.",
+    "metaTitle": "SAS iTower, Tallest Commercial Tower in Hyderabad",
+    "ogImage": {
+      "_type": "imageWithAlt",
+      "alt": "SAS iTower aerial view at dusk, Nanakramguda, Hyderabad",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-483b00f0dff4779cd78ee6420bc536bdb2f066b9-1430x804-jpg",
+          "_type": "reference"
+        }
+      }
+    }
+  },
+  "seoDescription": "SAS iTower: 171 m, 6.1 million sq ft of Grade-A office and luxury retail at Nanakramguda. Home to The Address. LEED Gold targeted. Leasing by CBRE.",
+  "seoSchemaType": "LocalBusiness",
+  "slug": {
+    "_type": "slug",
+    "current": "sas-itower"
+  },
+  "specifications": [
+    {
+      "_key": "spec-0",
+      "_type": "spec",
+      "icon": "fallback",
+      "label": "Status",
+      "value": "Under<br />Construction"
+    },
+    {
+      "_key": "spec-1",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Total Land",
+      "value": "10.36 Acres"
+    },
+    {
+      "_key": "spec-2",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Tower Height",
+      "value": "171 m<br />G + 37"
+    },
+    {
+      "_key": "spec-3",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Floor Plate",
+      "value": "1.2 L sq ft<br />(typical)"
+    },
+    {
+      "_key": "spec-4",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Built-up",
+      "value": "6.0 M sq ft<br />mixed-use"
+    },
+    {
+      "_key": "spec-5",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Ceiling",
+      "value": "4.1 m<br />floor-to-ceiling"
+    },
+    {
+      "_key": "spec-6",
+      "_type": "spec",
+      "icon": "security",
+      "label": "Refuge Floors",
+      "value": "Code-compliant<br />throughout"
+    },
+    {
+      "_key": "spec-7",
+      "_type": "spec",
+      "icon": "parking",
+      "label": "Parking",
+      "value": "App-based<br />multi-level"
+    },
+    {
+      "_key": "spec-8",
+      "_type": "spec",
+      "icon": "fallback",
+      "label": "Sustainability",
+      "value": "LEED Gold +<br />WELL Silver"
+    },
+    {
+      "_key": "spec-9",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Architect",
+      "value": "Aedas"
+    },
+    {
+      "_key": "spec-10",
+      "_type": "spec",
+      "icon": "retail",
+      "label": "Leasing",
+      "value": "CBRE"
+    },
+    {
+      "_key": "spec-11",
+      "_type": "spec",
+      "icon": "building",
+      "label": "Location",
+      "value": "Nanakramguda<br />Hyderabad CBD"
+    }
+  ],
+  "status": "under-construction",
+  "tagline": "Tallest commercial tower in Hyderabad",
+  "title": "SAS iTower"
+}

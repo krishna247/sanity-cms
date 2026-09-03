@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:57Z",
+  "_id": "partner-otis",
+  "_rev": "r8QPoU0XLRPq9k38d6bWLm",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:33Z",
+  "country": "USA",
+  "discipline": "Elevators",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Otis logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-6caf8c47aa77b825b44976892830d37c2ae091c6-286x94-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Otis",
+  "shortCountry": "USA"
+}

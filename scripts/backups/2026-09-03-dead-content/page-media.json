@@ -1,0 +1,78 @@
+{
+  "_createdAt": "2026-05-31T11:20:23Z",
+  "_id": "page-media",
+  "_rev": "NYtiIxqee7F0fOwpqsGhRy",
+  "_system": {
+    "base": {
+      "id": "page-media",
+      "rev": "1MbbdeQfbHTwuPn94VlpPg"
+    }
+  },
+  "_type": "page",
+  "_updatedAt": "2026-09-02T14:43:23Z",
+  "pageBuilder": [
+    {
+      "_key": "k165",
+      "_type": "heroBlock",
+      "dek": "A curated record of media coverage on SAS Infra's milestones, landmark achievements, and project successes — as documented by leading publications across the industry.",
+      "eyebrow": "Media",
+      "title": "Press &amp; <em>coverage</em>.",
+      "variant": "minimal"
+    },
+    {
+      "_key": "k166",
+      "_type": "feedBlock",
+      "allLabel": "All",
+      "countNoun": "item",
+      "countNounPlural": "items",
+      "filterLabel": "Filter",
+      "head": {
+        "heading": "In the press"
+      },
+      "limit": 40,
+      "source": "press"
+    },
+    {
+      "_key": "k168",
+      "_type": "ctaBlock",
+      "actions": [
+        {
+          "_key": "k167",
+          "_type": "link",
+          "email": "sales@sasinfra.com",
+          "emailSubject": "Press / Media Enquiry",
+          "kind": "email",
+          "label": "Email Press Desk",
+          "variant": "primary"
+        }
+      ],
+      "head": {
+        "dek": "Our team responds within one business day. Logos, renders, fact-sheets, and leadership bios available on request.",
+        "heading": "For interviews, image requests, or <em>media kit access</em>."
+      },
+      "note": "or write to"
+    }
+  ],
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "media"
+    }
+  },
+  "seo": {
+    "metaDescription": "Browse SAS Infra media coverage: press features, interviews, and third-party coverage highlighting projects and milestones.",
+    "metaTitle": "Media & Press Coverage | SAS Infra",
+    "ogImage": {
+      "_type": "imageWithAlt",
+      "alt": "SAS Infra media and press — coverage, features and milestones.",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1968fd880aaa20fee47a42869e0efd9813791697-1200x630-png",
+          "_type": "reference"
+        }
+      }
+    }
+  },
+  "title": "Media"
+}

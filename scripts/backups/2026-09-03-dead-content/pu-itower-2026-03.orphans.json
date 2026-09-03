@@ -1,0 +1,57 @@
+{
+  "_createdAt": "2026-05-31T11:19:08Z",
+  "_id": "pu-itower-2026-03",
+  "_rev": "G7YlKsuTzImMUWMpuI9slg",
+  "_type": "projectUpdate",
+  "_updatedAt": "2026-06-02T08:01:27Z",
+  "body": [
+    {
+      "_key": "k1",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "k2",
+          "_type": "span",
+          "marks": [],
+          "text": "Cladding panels installed across the south-facing facade. Vertical-transport shafts now visible from the Service Road perspective. Image set captured by SASPHERE on 12 March 2026."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "category": "construction",
+  "date": "2026-03-01",
+  "headline": "SASPHERE — March aerial sweep over Nanakramguda",
+  "media": {
+    "image": {
+      "_type": "imageWithAlt",
+      "alt": "SAS iTower construction progress, March 2026",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-483b00f0dff4779cd78ee6420bc536bdb2f066b9-1430x804-jpg",
+          "_type": "reference"
+        }
+      }
+    },
+    "kind": "image"
+  },
+  "pdf": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-5f9a92e65ed312667a0f9b76d0e3851837b7cbd2-pdf",
+      "_type": "reference"
+    }
+  },
+  "project": {
+    "_ref": "project-sas-itower",
+    "_type": "reference"
+  },
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "itower-2026-03"
+    }
+  }
+}

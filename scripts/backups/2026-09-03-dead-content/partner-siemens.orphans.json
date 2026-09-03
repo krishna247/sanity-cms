@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:51Z",
+  "_id": "partner-siemens",
+  "_rev": "MScPNk9ueXiUZ6ZHtV0I6e",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:27Z",
+  "country": "Germany",
+  "discipline": "Building Automation",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Siemens logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f8e364037618ab5705006e7f0ac351bc27f205b3-595x142-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Siemens",
+  "shortCountry": "Germany"
+}

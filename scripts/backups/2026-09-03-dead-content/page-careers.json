@@ -1,0 +1,155 @@
+{
+  "_createdAt": "2026-05-31T11:20:23Z",
+  "_id": "page-careers",
+  "_rev": "NYtiIxqee7F0fOwpqsGhtp",
+  "_system": {
+    "base": {
+      "id": "page-careers",
+      "rev": "vcKOa9z2SlosfobWk6t9EI"
+    }
+  },
+  "_type": "page",
+  "_updatedAt": "2026-09-02T14:43:28Z",
+  "pageBuilder": [
+    {
+      "_key": "k121",
+      "_type": "heroBlock",
+      "dek": "SAS Infra builds South India's tallest residential tower and Hyderabad's tallest commercial development — alongside Aedas, Arup, Siemens and KONE. We're looking for people whose work will matter on the skyline.",
+      "eyebrow": "Careers",
+      "title": "Build what <em>Hyderabad</em> will be known for.",
+      "variant": "minimal"
+    },
+    {
+      "_key": "k130",
+      "_type": "proseBlock",
+      "body": [
+        {
+          "_key": "why0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "why0a",
+              "_type": "span",
+              "marks": [],
+              "text": "A forward-looking team guided by a clear long-term vision — built for people eager to "
+            },
+            {
+              "_key": "why0b",
+              "_type": "span",
+              "marks": [
+                "strong"
+              ],
+              "text": "learn, contribute and grow"
+            },
+            {
+              "_key": "why0c",
+              "_type": "span",
+              "marks": [],
+              "text": ". We offer structured career paths, continuous learning, exposure to international partnerships and a healthy work–life balance. SAS Infra is an equal opportunity employer."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "head": {
+        "eyebrow": "Why join us",
+        "heading": "A team built for the <em>long term</em>."
+      }
+    },
+    {
+      "_key": "k137",
+      "_type": "featureGridBlock",
+      "features": [
+        {
+          "_key": "k131",
+          "text": "Structural, MEP & site engineering with Arup and Coffey.",
+          "title": "Engineering"
+        },
+        {
+          "_key": "k132",
+          "text": "Master planning & execution with Aedas on landmark towers.",
+          "title": "Architecture & Design"
+        },
+        {
+          "_key": "k133",
+          "text": "Build management at Kokapet & Nanakramguda.",
+          "title": "Operations & Site"
+        },
+        {
+          "_key": "k134",
+          "text": "Brand, channel & high-touch buyer experience.",
+          "title": "Sales & Marketing"
+        },
+        {
+          "_key": "k135",
+          "text": "RERA, approvals, contracts & governance.",
+          "title": "Legal & Compliance"
+        },
+        {
+          "_key": "k136",
+          "text": "Capital planning & project economics.",
+          "title": "Finance & Strategy"
+        }
+      ],
+      "head": {
+        "dek": "We hire across the company. Below are the broad areas — but specific openings vary. Reach out even if you don't see your function listed.",
+        "eyebrow": "Where you'd fit",
+        "heading": "Six disciplines.<br />One <em>operating culture</em>."
+      }
+    },
+    {
+      "_key": "k140",
+      "_type": "ctaBlock",
+      "actions": [
+        {
+          "_key": "k138",
+          "_type": "link",
+          "email": "careers@sasinfra.com",
+          "emailSubject": "Application — SAS Infra",
+          "kind": "email",
+          "label": "Email careers",
+          "variant": "primary"
+        },
+        {
+          "_key": "k139",
+          "_type": "link",
+          "kind": "internal",
+          "label": "Contact Us",
+          "reference": {
+            "_ref": "page-contact",
+            "_type": "reference"
+          },
+          "variant": "secondary"
+        }
+      ],
+      "head": {
+        "dek": "We review every application personally. Send your CV and a short note on the role and team you're looking for.",
+        "eyebrow": "How to apply",
+        "heading": "Send us your <em>profile</em>."
+      }
+    }
+  ],
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "careers"
+    }
+  },
+  "seo": {
+    "metaDescription": "Explore SAS Infra careers across engineering, design, operations, sales, and management roles in Hyderabad.",
+    "metaTitle": "SAS Infra Careers | Real Estate Jobs in Hyderabad",
+    "ogImage": {
+      "_type": "imageWithAlt",
+      "alt": "Careers at SAS Infra — build what Hyderabad is known for.",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-884491972479df20a9f97b6f7bc0cbdb35213cf1-1200x630-png",
+          "_type": "reference"
+        }
+      }
+    }
+  },
+  "title": "Careers"
+}

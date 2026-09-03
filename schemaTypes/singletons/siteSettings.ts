@@ -230,21 +230,6 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'hours',
-      title: 'Hours',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({name: 'label', title: 'Label', type: 'string'}),
-            defineField({name: 'value', title: 'Value', type: 'string'}),
-          ],
-          preview: {select: {title: 'label', subtitle: 'value'}},
-        }),
-      ],
-    }),
-    defineField({
       name: 'projectEmail',
       title: 'Project Email',
       type: 'string',

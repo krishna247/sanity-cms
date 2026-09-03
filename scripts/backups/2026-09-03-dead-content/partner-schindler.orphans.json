@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:57Z",
+  "_id": "partner-schindler",
+  "_rev": "GEXMKa47MWvz5tPnIoLva6",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:38:11Z",
+  "country": "Switzerland",
+  "discipline": "Vertical Transport",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Schindler logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-945ba19ca39f067ca38125ce803d168bd89ad172-250x215-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Schindler",
+  "shortCountry": "Switzerland"
+}

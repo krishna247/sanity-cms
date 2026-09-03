@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:01Z",
+  "_id": "partner-saint-gobain",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "France",
+  "discipline": "Glass",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Saint-Gobain logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-6eed9a51a6f31c316b08f599cb9284bfa2566269-173x73-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Saint-Gobain"
+}

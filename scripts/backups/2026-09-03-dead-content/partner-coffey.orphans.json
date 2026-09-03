@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:49Z",
+  "_id": "partner-coffey",
+  "_rev": "r8QPoU0XLRPq9k38d6bTmj",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:25Z",
+  "country": "Australia",
+  "discipline": "Structural Engineering",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Coffey logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-aaaba58a245dcca24a9beef4074ee632d0ccf711-74x74-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Coffey",
+  "shortCountry": "Australia"
+}

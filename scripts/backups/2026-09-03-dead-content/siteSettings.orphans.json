@@ -1,0 +1,213 @@
+{
+  "_createdAt": "2026-05-30T03:15:30Z",
+  "_id": "siteSettings",
+  "_rev": "3FNnBfBkFQPDeq3cGFqDOo",
+  "_system": {
+    "base": {
+      "id": "siteSettings",
+      "rev": "kHltHVDDYZYSymrFMQ12pP"
+    }
+  },
+  "_type": "siteSettings",
+  "_updatedAt": "2026-09-02T14:49:42Z",
+  "address": {
+    "_type": "location",
+    "address": "12th Floor, ACE Tech Park, 1201, Narsingi, Nanakramguda Service Rd, Financial District",
+    "city": "Hyderabad",
+    "pincode": "500032",
+    "state": "Telangana"
+  },
+  "addressLines": [
+    "12th Floor, ACE Tech Park · 1201",
+    "Narsingi · Nanakramguda Service Rd",
+    "Financial District · Hyderabad",
+    "Telangana 500032"
+  ],
+  "addressShort": "ACE Tech Park · Financial District · Hyderabad 500032",
+  "areaServed": "Hyderabad",
+  "careersEmail": "careers@sasinfra.com",
+  "companyName": "SAS Infra",
+  "concierge": {
+    "_type": "concierge",
+    "contactLabel": "Contact Us",
+    "eyebrow": "Concierge",
+    "prefilledMessage": "Hello SAS Infra, I'd like to learn more about your projects.",
+    "whatsappLabel": "WhatsApp",
+    "whatsappNumber": "919718662299"
+  },
+  "contactPoints": [
+    {
+      "_key": "cp-sales",
+      "_type": "contactPoint",
+      "contactType": "sales",
+      "email": "sales@sasinfra.com",
+      "telephone": "+91-97186-62299"
+    },
+    {
+      "_key": "cp-support",
+      "_type": "contactPoint",
+      "contactType": "customer support",
+      "telephone": "+91-40-6776-8999"
+    }
+  ],
+  "ctaLabel": "Contact Us",
+  "description": "SAS Infra — Creating landmarks that define Hyderabad.",
+  "email": "sales@sasinfra.com",
+  "enquiries": [
+    {
+      "_key": "enq-retail",
+      "desc": "Sales, bookings & site visits",
+      "email": "retail@sasinfra.com",
+      "phoneDisplay": "+91 97186 62299",
+      "phoneTel": "+919718662299",
+      "title": "Retail"
+    },
+    {
+      "_key": "enq-other",
+      "desc": "Press, careers & partnerships",
+      "email": "info@sasinfra.com",
+      "phoneDisplay": "+91 40 6776 8999",
+      "phoneTel": "+914067768999",
+      "title": "Other enquiries"
+    }
+  ],
+  "founder": {
+    "name": "Dr. G.V. Rao"
+  },
+  "foundingDate": "2000",
+  "hours": [
+    {
+      "_key": "hr-weekday",
+      "label": "Mon–Fri",
+      "value": "10:00 — 18:00"
+    },
+    {
+      "_key": "hr-sat",
+      "label": "Saturday",
+      "value": "10:00 — 17:00"
+    },
+    {
+      "_key": "hr-sun",
+      "label": "Sunday",
+      "value": "Closed"
+    }
+  ],
+  "legalName": "SRIAS DEVELOPERS LLP",
+  "notFound": {
+    "body": "The link you followed may be out of date or mistyped. Try one of these instead:",
+    "eyebrow": "404",
+    "heading": "This page <em>has moved on</em>.",
+    "links": [
+      {
+        "_key": "nf-home",
+        "_type": "link",
+        "kind": "internal",
+        "label": "Home",
+        "reference": {
+          "_ref": "homePage",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "nf-crown",
+        "_type": "link",
+        "kind": "internal",
+        "label": "SAS Crown",
+        "reference": {
+          "_ref": "project-sas-crown",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "nf-itower",
+        "_type": "link",
+        "kind": "internal",
+        "label": "SAS iTower",
+        "reference": {
+          "_ref": "project-sas-itower",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "nf-blog",
+        "_type": "link",
+        "kind": "internal",
+        "label": "Blog",
+        "reference": {
+          "_ref": "blogIndexPage",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "nf-contact",
+        "_type": "link",
+        "kind": "internal",
+        "label": "Contact",
+        "reference": {
+          "_ref": "page-contact",
+          "_type": "reference"
+        }
+      }
+    ],
+    "seoDescription": "The page you were looking for couldn't be found. Explore SAS Crown, SAS iTower, or visit the homepage.",
+    "seoTitle": "Page not found - SAS Infra"
+  },
+  "organizationType": "RealEstateAgent",
+  "phone": "+91 97186 62299",
+  "phones": [
+    {
+      "_key": "ph-sales",
+      "display": "+91 97186 62299",
+      "role": "sales",
+      "tel": "+919718662299"
+    },
+    {
+      "_key": "ph-support",
+      "display": "+91 40 6776 8999",
+      "role": "support",
+      "tel": "+914067768999"
+    },
+    {
+      "_key": "ph-careers",
+      "display": "+91 91543 49716",
+      "role": "careers",
+      "tel": "+919154349716"
+    }
+  ],
+  "projectEmail": "krishna.j@sasinfra.com",
+  "reraLine": "RERA registration · SAS Crown: P02400002786 · SAS iTower: P02400000878. Project information available at telangana.rera.gov.in.",
+  "socialLinks": [
+    {
+      "_key": "soc-ig",
+      "_type": "socialLink",
+      "platform": "instagram",
+      "url": "https://www.instagram.com/sasinfra/"
+    },
+    {
+      "_key": "soc-li",
+      "_type": "socialLink",
+      "platform": "linkedin",
+      "url": "https://in.linkedin.com/company/sasinfra"
+    },
+    {
+      "_key": "soc-yt",
+      "_type": "socialLink",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@SAS_Infra"
+    },
+    {
+      "_key": "soc-x",
+      "_type": "socialLink",
+      "platform": "twitter",
+      "url": "https://x.com/SAS_INFRA"
+    },
+    {
+      "_key": "soc-fb",
+      "_type": "socialLink",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/SasInfraHyderabad"
+    }
+  ],
+  "tagline": "Creating Landmarks That Define Hyderabad",
+  "vrTourLabel": "Explore VR"
+}

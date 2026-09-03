@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:00Z",
+  "_id": "partner-toto",
+  "_rev": "GEXMKa47MWvz5tPnIoLvxE",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:38:12Z",
+  "country": "Japan",
+  "discipline": "Finishes & Sanitaryware",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "TOTO logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f05cbd067b368ddbb4fee1fbeb529e635d7867a6-116x26-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "TOTO"
+}

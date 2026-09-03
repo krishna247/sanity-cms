@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:58Z",
+  "_id": "partner-mitsubishi",
+  "_rev": "GEXMKa47MWvz5tPnIoLvCy",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:34Z",
+  "country": "Japan",
+  "discipline": "Vertical Transport",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Mitsubishi Electric logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ea6b760e7063b8ac6f3e5aff9f192ea1d7360c70-794x242-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Mitsubishi Electric",
+  "shortCountry": "Japan"
+}

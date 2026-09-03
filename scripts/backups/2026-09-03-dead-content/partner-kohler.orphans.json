@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:04Z",
+  "_id": "partner-kohler",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "USA",
+  "discipline": "Sanitaryware",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Kohler logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-34fc99d8f977cde85a5a50361e352cf4d3f3015c-448x97-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Kohler"
+}

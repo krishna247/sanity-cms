@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:07Z",
+  "_id": "partner-carrier",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "USA",
+  "discipline": "HVAC",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Carrier logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-4541f3c7c7c3703eedba78c4c0a29417abc080bb-300x121-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Carrier"
+}

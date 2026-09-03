@@ -71,7 +71,6 @@ export default defineType({
       to: [
         {type: 'homePage'},
         {type: 'blogIndexPage'},
-        {type: 'updatesIndexPage'},
         {type: 'page'},
         {type: 'project'},
         {type: 'blogPost'},

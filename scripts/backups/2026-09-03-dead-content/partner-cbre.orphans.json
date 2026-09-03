@@ -1,0 +1,11 @@
+{
+  "_createdAt": "2026-06-30T07:38:03Z",
+  "_id": "partner-cbre",
+  "_rev": "GEXMKa47MWvz5tPnIoLtDc",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:38:04Z",
+  "country": "United States",
+  "discipline": "Leasing & Advisory",
+  "name": "CBRE",
+  "shortCountry": "USA"
+}

@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:05Z",
+  "_id": "partner-hansgrohe",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "Germany",
+  "discipline": "Bathroom Fittings",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Hansgrohe logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-5d6fd8bdb790db25406948861182790a6ed83370-827x127-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Hansgrohe"
+}

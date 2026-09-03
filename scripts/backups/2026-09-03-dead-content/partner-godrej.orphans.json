@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:50Z",
+  "_id": "partner-godrej",
+  "_rev": "yvLBTJSmLZxRcxXLPBVhs1",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:26Z",
+  "country": "India",
+  "discipline": "Building Systems & Automation",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Godrej logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-eed13cb9d80bf3e8c37b699c6076717e9acd07d8-74x73-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Godrej",
+  "shortCountry": "India"
+}

@@ -1,0 +1,43 @@
+{
+  "_createdAt": "2026-05-31T11:19:11Z",
+  "_id": "pu-crown-2026-01",
+  "_rev": "h6RIlqYooS2c3gLVEZp8V8",
+  "_type": "projectUpdate",
+  "_updatedAt": "2026-05-31T16:19:52Z",
+  "body": [
+    {
+      "_key": "k7",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "k8",
+          "_type": "span",
+          "marks": [],
+          "text": "Show-home wing for prospective residents now open by appointment. Aedas-designed lobby experience and a fully fit-out 4-BHK reference apartment available to walk through."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "category": "milestone",
+  "date": "2026-01-01",
+  "headline": "January — show-home opens at Kokapet",
+  "pdf": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-5ab6a604492c64f57e0a0ef4d0336a055bda690c-pdf",
+      "_type": "reference"
+    }
+  },
+  "project": {
+    "_ref": "project-sas-crown",
+    "_type": "reference"
+  },
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "crown-2026-01"
+    }
+  }
+}

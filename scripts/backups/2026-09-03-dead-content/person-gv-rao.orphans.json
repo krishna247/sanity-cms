@@ -1,0 +1,125 @@
+{
+  "_createdAt": "2026-05-31T11:18:38Z",
+  "_id": "person-gv-rao",
+  "_rev": "GEXMKa47MWvz5tPnIoPtEZ",
+  "_system": {
+    "base": {
+      "id": "person-gv-rao",
+      "rev": "MScPNk9ueXiUZ6ZHtRa8Ls"
+    }
+  },
+  "_type": "person",
+  "_updatedAt": "2026-06-30T07:46:31Z",
+  "bio": "Founder and Chairman of SAS Infra. An industry outsider — a background in veterinary science and organic farming — who built the company by hiring professional talent and partnering with the best firms in the world at each layer of the build.",
+  "image": {
+    "_type": "imageWithAlt",
+    "alt": "Dr. G.V. Rao, Founder and Chairman of SAS Infra, seated in a modern office lounge.",
+    "asset": {
+      "_ref": "image-8f7745b1350a06434e4cf7f8133338aecdc98006-841x1024-webp",
+      "_type": "reference"
+    },
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-8f7745b1350a06434e4cf7f8133338aecdc98006-841x1024-webp",
+        "_type": "reference"
+      }
+    }
+  },
+  "jobTitle": "Chairman",
+  "name": "Dr. G.V. Rao",
+  "profile": [
+    {
+      "_key": "cp1",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "cp1a",
+          "_type": "span",
+          "marks": [],
+          "text": "Dr. G.V. Rao entered real estate in 2000, an industry outsider with a background in "
+        },
+        {
+          "_key": "cp1b",
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "veterinary science"
+        },
+        {
+          "_key": "cp1c",
+          "_type": "span",
+          "marks": [],
+          "text": " and a deep interest in "
+        },
+        {
+          "_key": "cp1d",
+          "_type": "span",
+          "marks": [
+            "strong"
+          ],
+          "text": "organic farming"
+        },
+        {
+          "_key": "cp1e",
+          "_type": "span",
+          "marks": [],
+          "text": ". Without an inherited portfolio or industry connections, he built SAS Infra from the ground up by hiring professional talent and partnering with the best firms in the world at each layer of the build."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "cp2",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "cp2a",
+          "_type": "span",
+          "marks": [],
+          "text": "Under his leadership, the company has grown into a portfolio that includes the tallest residential and commercial developments in its region, with a consistent preference for long-term value over short-term volume."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "cp3",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "cp3a",
+          "_type": "span",
+          "marks": [],
+          "text": "His operating philosophy is direct: "
+        },
+        {
+          "_key": "cp3b",
+          "_type": "span",
+          "marks": [
+            "em"
+          ],
+          "text": "think globally, execute locally, never compromise on structural integrity."
+        },
+        {
+          "_key": "cp3c",
+          "_type": "span",
+          "marks": [],
+          "text": " He is personally involved in land selection, master planning, and partner selection for every SAS Infra development."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "roles": [
+    "founder",
+    "leadership"
+  ],
+  "slug": {
+    "_type": "slug",
+    "current": "dr-gv-rao"
+  }
+}

@@ -1,0 +1,729 @@
+{
+  "_createdAt": "2026-05-31T11:20:23Z",
+  "_id": "homePage",
+  "_rev": "NYtiIxqee7F0fOwpqsGLy0",
+  "_system": {
+    "base": {
+      "id": "homePage",
+      "rev": "9LCiSJlzJ0ismCrmbSxJvf"
+    }
+  },
+  "_type": "homePage",
+  "_updatedAt": "2026-09-02T14:40:38Z",
+  "pageBuilder": [
+    {
+      "_key": "k56",
+      "_type": "heroBlock",
+      "ctas": [
+        {
+          "_key": "k55",
+          "_type": "link",
+          "anchorId": "projects",
+          "kind": "anchor",
+          "label": "Explore Projects",
+          "reference": {
+            "_ref": "homePage",
+            "_type": "reference"
+          },
+          "variant": "primary"
+        }
+      ],
+      "media": {
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "SAS Infra — landmarks of Hyderabad",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-adef8cbeca6c4168cd341d50932598fab7a9c14b-1852x1298-png",
+              "_type": "reference"
+            }
+          }
+        },
+        "kind": "video"
+      },
+      "title": "Creating landmarks that define Hyderabad",
+      "variant": "editorial"
+    },
+    {
+      "_key": "k61",
+      "_type": "statsStripBlock",
+      "countUp": true,
+      "head": {
+        "eyebrow": "Hi",
+        "heading": "Built to a standard the city can measure"
+      },
+      "items": [
+        {
+          "_key": "k57",
+          "label": "Square feet under development",
+          "suffix": "M+",
+          "value": "9"
+        },
+        {
+          "_key": "k58",
+          "label": "Landmark projects across Hyderabad",
+          "value": "3"
+        },
+        {
+          "_key": "k59",
+          "label": "South India's tallest residential tower",
+          "suffix": "m",
+          "value": "244"
+        },
+        {
+          "_key": "k60",
+          "label": "Largest skyscraper in the world by floor area",
+          "suffix": "m",
+          "value": "171"
+        }
+      ]
+    },
+    {
+      "_key": "k66",
+      "_type": "featureGridBlock",
+      "cta": {
+        "_type": "link",
+        "kind": "internal",
+        "label": "Know more about SAS Infra",
+        "reference": {
+          "_ref": "page-about",
+          "_type": "reference"
+        }
+      },
+      "features": [
+        {
+          "_key": "k62",
+          "icon": "home-design",
+          "text": "Collaborations with internationally recognised architecture and design firms.",
+          "title": "Premium Design"
+        },
+        {
+          "_key": "k63",
+          "icon": "home-location",
+          "text": "Every project positioned within Hyderabad's most connected corridors.",
+          "title": "Strategic Locations"
+        },
+        {
+          "_key": "k64",
+          "icon": "home-global",
+          "text": "Engineering and material specifications benchmarked against the world's best.",
+          "title": "Global Standard"
+        },
+        {
+          "_key": "k65",
+          "icon": "home-future",
+          "text": "Infrastructure designed for how people will live and work in the next decade, not the last one.",
+          "title": "Future-Ready"
+        }
+      ],
+      "head": {
+        "dek": "Every SAS Infra development is designed with global architecture partners, engineered to standards that exceed regulatory benchmarks, and positioned in Hyderabad's highest-growth corridors. We build for the long term — from the structural core outward.",
+        "heading": "Building what Hyderabad will be known for."
+      }
+    },
+    {
+      "_key": "k67",
+      "_type": "feedBlock",
+      "head": {
+        "eyebrow": "Landmark Projects",
+        "heading": "A portfolio of defining places, shaping the skyline of Hyderabad"
+      },
+      "limit": 4,
+      "source": "projects"
+    },
+    {
+      "_key": "k72",
+      "_type": "featureGridBlock",
+      "features": [
+        {
+          "_key": "k68",
+          "icon": "home-transparent",
+          "text": "Clear communication from launch through handover. No surprises, no hidden costs, no shifted timelines without a reason you can trust.",
+          "title": "Transparent Process"
+        },
+        {
+          "_key": "k69",
+          "icon": "home-partnership",
+          "text": "Committed to the continued value and maintenance of every development we deliver, decades after the keys are handed over.",
+          "title": "Long-Term Partnership"
+        },
+        {
+          "_key": "k70",
+          "icon": "home-global-local",
+          "text": "International design partners paired with deep familiarity of Hyderabad's terrain, climate, and regulatory landscape.",
+          "title": "Global Expertise, Local Roots"
+        },
+        {
+          "_key": "k71",
+          "icon": "home-engineering",
+          "text": "Specifications and structural standards benchmarked against the world's best — routinely exceeding regulatory minimums.",
+          "title": "Engineering Excellence"
+        }
+      ],
+      "head": {
+        "eyebrow": "Why Choose SAS Infra",
+        "heading": "Four commitments, kept on every project."
+      }
+    },
+    {
+      "_key": "k73",
+      "_type": "mapBlock",
+      "footnote": "Travel times by car at 10:00 IST · Google Maps median, April 2026.",
+      "head": {
+        "heading": "Anchored on Hyderabad's most connected corridor."
+      },
+      "hiddenLocalities": [
+        "Borabanda",
+        "Jubilee Hills",
+        "Navirman Nagar",
+        "Osman Nagar",
+        "Tolichowki",
+        "Golconda",
+        "Ibrahim Bagh",
+        "Yousufguda"
+      ],
+      "location": {
+        "_type": "location",
+        "city": "Hyderabad",
+        "geopoint": {
+          "_type": "geopoint",
+          "lat": 17.401836,
+          "lng": 78.338721
+        },
+        "state": "Telangana"
+      },
+      "markerCategories": [
+        {
+          "_key": "cat-healthcare",
+          "_type": "markerCategory",
+          "color": "#C0524F",
+          "icon": "cross",
+          "key": "healthcare",
+          "label": "Healthcare"
+        },
+        {
+          "_key": "cat-education",
+          "_type": "markerCategory",
+          "color": "#5667A0",
+          "icon": "cap",
+          "key": "education",
+          "label": "Education"
+        },
+        {
+          "_key": "cat-corporate",
+          "_type": "markerCategory",
+          "color": "#3C8585",
+          "icon": "building",
+          "key": "corporate",
+          "label": "IT / Corporate"
+        },
+        {
+          "_key": "cat-hospitality",
+          "_type": "markerCategory",
+          "color": "#C28A3A",
+          "icon": "dining",
+          "key": "hospitality",
+          "label": "Hospitality"
+        },
+        {
+          "_key": "cat-retail",
+          "_type": "markerCategory",
+          "color": "#B07C2A",
+          "icon": "bag",
+          "key": "retail",
+          "label": "Retail"
+        },
+        {
+          "_key": "cat-leisure",
+          "_type": "markerCategory",
+          "color": "#6B9457",
+          "icon": "flag",
+          "key": "leisure",
+          "label": "Leisure"
+        },
+        {
+          "_key": "cat-heritage",
+          "_type": "markerCategory",
+          "color": "#8A5A99",
+          "icon": "dome",
+          "key": "heritage",
+          "label": "Heritage"
+        },
+        {
+          "_key": "cat-convention",
+          "_type": "markerCategory",
+          "color": "#BC6444",
+          "icon": "star",
+          "key": "convention",
+          "label": "Convention"
+        },
+        {
+          "_key": "cat-transit",
+          "_type": "markerCategory",
+          "color": "#4A78BC",
+          "icon": "train",
+          "key": "transit",
+          "label": "Transit"
+        }
+      ],
+      "pointsOfInterest": [
+        {
+          "_key": "aig-hospitals",
+          "_type": "localityPoi",
+          "category": "healthcare",
+          "labelNudge": 4,
+          "labelSide": "left",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.44327,
+            "lng": 78.36628
+          },
+          "name": "AIG Hospitals",
+          "showOnMobile": false
+        },
+        {
+          "_key": "wells-fargo",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "labelSide": "left",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.42518,
+            "lng": 78.37809
+          },
+          "name": "Wells Fargo India Tower 4",
+          "showOnMobile": false
+        },
+        {
+          "_key": "isb",
+          "_type": "localityPoi",
+          "category": "education",
+          "labelSide": "left",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.43513,
+            "lng": 78.34068
+          },
+          "name": "Indian School of Business",
+          "showOnMobile": true
+        },
+        {
+          "_key": "wipro-gopanpally",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "labelSide": "right",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.43518,
+            "lng": 78.29837
+          },
+          "name": "Wipro Gopanpally Campus",
+          "showOnMobile": false
+        },
+        {
+          "_key": "raidurg-metro",
+          "_type": "localityPoi",
+          "category": "transit",
+          "labelSide": "right",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4422,
+            "lng": 78.3773
+          },
+          "name": "Raidurg Metro Station",
+          "showOnMobile": true
+        },
+        {
+          "_key": "sheraton",
+          "_type": "localityPoi",
+          "category": "hospitality",
+          "labelSide": "left",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.42188,
+            "lng": 78.33727
+          },
+          "name": "Sheraton Hyderabad Hotel",
+          "showOnMobile": false
+        },
+        {
+          "_key": "ocean-park",
+          "_type": "localityPoi",
+          "category": "leisure",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.38935,
+            "lng": 78.32912
+          },
+          "name": "Ocean Park",
+          "showOnMobile": true
+        },
+        {
+          "_key": "om-convention",
+          "_type": "localityPoi",
+          "category": "convention",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.38325,
+            "lng": 78.3582
+          },
+          "name": "OM Convention",
+          "showOnMobile": false
+        },
+        {
+          "_key": "qutub-shahi",
+          "_type": "localityPoi",
+          "category": "heritage",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.39551,
+            "lng": 78.39682
+          },
+          "name": "Qutub Shahi Tombs",
+          "showOnMobile": true
+        },
+        {
+          "_key": "sas-infra-office",
+          "_type": "localityPoi",
+          "category": "office",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.41321,
+            "lng": 78.35343
+          },
+          "name": "SAS Infra · Corporate Office",
+          "showOnMobile": true
+        },
+        {
+          "_key": "microsoft",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4341,
+            "lng": 78.3742
+          },
+          "name": "Microsoft India",
+          "showOnMobile": false
+        },
+        {
+          "_key": "salesforce",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.42338,
+            "lng": 78.37754
+          },
+          "name": "Salesforce",
+          "showOnMobile": false
+        },
+        {
+          "_key": "nvidia",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.41606,
+            "lng": 78.34319
+          },
+          "name": "Nvidia",
+          "showOnMobile": false
+        },
+        {
+          "_key": "continental-hospital",
+          "_type": "localityPoi",
+          "category": "healthcare",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.4129,
+            "lng": 78.3479
+          },
+          "name": "Continental Hospitals",
+          "showOnMobile": false
+        },
+        {
+          "_key": "inorbit-mall",
+          "_type": "localityPoi",
+          "category": "retail",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.43454,
+            "lng": 78.38669
+          },
+          "name": "Inorbit Mall",
+          "showOnMobile": false
+        },
+        {
+          "_key": "qualcomm",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.42932,
+            "lng": 78.38011
+          },
+          "name": "Qualcomm",
+          "showOnMobile": false
+        },
+        {
+          "_key": "novartis",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.43511,
+            "lng": 78.38143
+          },
+          "name": "Novartis",
+          "showOnMobile": false
+        },
+        {
+          "_key": "honeywell",
+          "_type": "localityPoi",
+          "category": "corporate",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.41877,
+            "lng": 78.34415
+          },
+          "name": "Honeywell",
+          "showOnMobile": false
+        },
+        {
+          "_key": "lemon-tree",
+          "_type": "localityPoi",
+          "category": "hospitality",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.42286,
+            "lng": 78.33079
+          },
+          "name": "Lemon Tree Hotel",
+          "showOnMobile": false
+        },
+        {
+          "_key": "rockwell-school",
+          "_type": "localityPoi",
+          "category": "education",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.38672,
+            "lng": 78.33475
+          },
+          "name": "Rockwell International School",
+          "showOnMobile": false
+        },
+        {
+          "_key": "ratnadeep",
+          "_type": "localityPoi",
+          "category": "retail",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.38704,
+            "lng": 78.34045
+          },
+          "name": "Ratnadeep Supermarket",
+          "showOnMobile": false
+        },
+        {
+          "_key": "sas-crown",
+          "_type": "localityPoi",
+          "category": "project",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.401836,
+            "lng": 78.338721
+          },
+          "name": "SAS Crown",
+          "projectKey": "crown",
+          "showOnMobile": true
+        },
+        {
+          "_key": "sas-itower",
+          "_type": "localityPoi",
+          "category": "project",
+          "location": {
+            "_type": "geopoint",
+            "lat": 17.419178012275573,
+            "lng": 78.36055538892053
+          },
+          "name": "SAS iTower",
+          "projectKey": "itower",
+          "showOnMobile": true
+        }
+      ]
+    },
+    {
+      "_key": "k75",
+      "_type": "feedBlock",
+      "cta": {
+        "_key": "k74",
+        "_type": "link",
+        "kind": "internal",
+        "label": "View All Updates",
+        "reference": {
+          "_ref": "updatesIndexPage",
+          "_type": "reference"
+        },
+        "variant": "text"
+      },
+      "head": {
+        "eyebrow": "Latest Updates",
+        "heading": "Construction milestones, news, and insights."
+      },
+      "itemCtaLabel": "Read More",
+      "limit": 6,
+      "source": "updates"
+    },
+    {
+      "_key": "k81",
+      "_type": "contactFormBlock",
+      "formCopy": {
+        "_type": "object",
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@example.com",
+        "interestLabel": "I'm Interested In",
+        "interestPlaceholder": "Select a project",
+        "messageLabel": "Message (optional)",
+        "messagePlaceholder": "Anything you'd like us to know",
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "+91",
+        "submitLabel": "Send Enquiry →"
+      },
+      "formTarget": "home-enquiry",
+      "head": {
+        "dek": "Tell us a little about what you're looking for and our team will be in touch within one business day.",
+        "eyebrow": "Start the Conversation",
+        "heading": "Begin your journey with SAS Infra."
+      },
+      "leadOptions": [
+        {
+          "_key": "k76",
+          "label": "SAS Crown — Residential",
+          "value": "sas-crown"
+        },
+        {
+          "_key": "k77",
+          "label": "SAS iTower — Commercial",
+          "value": "sas-itower"
+        },
+        {
+          "_key": "k78",
+          "label": "The Address — Retail Leasing",
+          "value": "the-address"
+        },
+        {
+          "_key": "k79",
+          "label": "SAS Kukatpally — Pre-Launch",
+          "value": "sas-kukatpally"
+        },
+        {
+          "_key": "k80",
+          "label": "General Enquiry",
+          "value": "general"
+        }
+      ],
+      "variant": "sales"
+    },
+    {
+      "_key": "logoWallHome01",
+      "_type": "logoWallBlock",
+      "head": {
+        "_type": "head",
+        "heading": "Global firms, at every layer of the building."
+      },
+      "partners": [
+        {
+          "_key": "gf-aedas",
+          "_ref": "partner-aedas",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-meinhardt",
+          "_ref": "partner-meinhardt",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-sterling",
+          "_ref": "partner-sterling",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-honeywell",
+          "_ref": "partner-honeywell",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-godrej",
+          "_ref": "partner-godrej",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-mitsubishi",
+          "_ref": "partner-mitsubishi",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-tke",
+          "_ref": "partner-tke",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-schindler",
+          "_ref": "partner-schindler",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-alumil",
+          "_ref": "partner-alumil",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-hitachi",
+          "_ref": "partner-hitachi",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-carimali",
+          "_ref": "partner-carimali",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-toto",
+          "_ref": "partner-toto",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-cbre",
+          "_ref": "partner-cbre",
+          "_type": "reference"
+        },
+        {
+          "_key": "gf-jll",
+          "_ref": "partner-jll",
+          "_type": "reference"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "metaDescription": "Discover ultra-luxury gated community residences and premium Grade-A commercial developments in Hyderabad with us, defined by high-rise living and corporate excellence—luxury apartments hyderabad, office space hyderabad.",
+    "metaTitle": "Luxury Apartments & Office Spaces in Hyderabad | SAS Infra",
+    "ogImage": {
+      "_type": "imageWithAlt",
+      "alt": "SAS Infra — creating landmarks that define Hyderabad.",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4509aaecd6ce23523cbf98b0d9340db716ab8ba5-1200x630-png",
+          "_type": "reference"
+        }
+      }
+    }
+  },
+  "title": "Home"
+}

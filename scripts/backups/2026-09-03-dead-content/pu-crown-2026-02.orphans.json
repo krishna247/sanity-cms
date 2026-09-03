@@ -1,0 +1,57 @@
+{
+  "_createdAt": "2026-05-31T11:19:09Z",
+  "_id": "pu-crown-2026-02",
+  "_rev": "CliFX4MbV5EiWMo3hnZ5RA",
+  "_type": "projectUpdate",
+  "_updatedAt": "2026-06-02T08:01:28Z",
+  "body": [
+    {
+      "_key": "k3",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "k4",
+          "_type": "span",
+          "marks": [],
+          "text": "Concrete pour completed for the 42nd-floor slab. Mock-up apartment finishes are now under installation in the show-home wing at Kokapet."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "category": "construction",
+  "date": "2026-02-01",
+  "headline": "February — slab pour on level 42",
+  "media": {
+    "image": {
+      "_type": "imageWithAlt",
+      "alt": "SAS Crown construction progress, February 2026",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dd993a749bcb83063b5f47499e86858a41cdab0b-1800x1800-jpg",
+          "_type": "reference"
+        }
+      }
+    },
+    "kind": "image"
+  },
+  "pdf": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-ef5e8aca2e6d695c4fba4d0b9587cccada051a2e-pdf",
+      "_type": "reference"
+    }
+  },
+  "project": {
+    "_ref": "project-sas-crown",
+    "_type": "reference"
+  },
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "crown-2026-02"
+    }
+  }
+}

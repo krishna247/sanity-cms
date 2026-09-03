@@ -1,0 +1,872 @@
+{
+  "_createdAt": "2026-05-31T16:19:47Z",
+  "_id": "project-sas-crown",
+  "_rev": "NYtiIxqee7F0fOwpqsLgsM",
+  "_system": {
+    "base": {
+      "id": "project-sas-crown",
+      "rev": "yZSrZGRGAaSlRr9qlKfVaf"
+    }
+  },
+  "_type": "project",
+  "_updatedAt": "2026-09-02T15:08:15Z",
+  "amenities": [
+    {
+      "_key": "k313",
+      "icon": "crown-banquet",
+      "name": "Banquet"
+    },
+    {
+      "_key": "k314",
+      "icon": "crown-ev",
+      "name": "EV Charging"
+    },
+    {
+      "_key": "k315",
+      "icon": "crown-car-wash",
+      "name": "Car Wash"
+    },
+    {
+      "_key": "k316",
+      "icon": "crown-games",
+      "name": "Games"
+    },
+    {
+      "_key": "k317",
+      "icon": "crown-mini-mart",
+      "name": "Mini Mart"
+    },
+    {
+      "_key": "k318",
+      "icon": "crown-pool",
+      "name": "Swimming Pool"
+    },
+    {
+      "_key": "k319",
+      "icon": "crown-theatre",
+      "name": "Private Theater"
+    },
+    {
+      "_key": "k320",
+      "icon": "crown-spa",
+      "name": "Spa"
+    },
+    {
+      "_key": "k321",
+      "icon": "crown-yoga",
+      "name": "Yoga Studio"
+    },
+    {
+      "_key": "k322",
+      "icon": "crown-massage",
+      "name": "Massage"
+    }
+  ],
+  "brochure": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-91bfa97927a1053494aad08ee1a8c1fc630d0b31-pdf",
+      "_type": "reference"
+    }
+  },
+  "catalogueCta": "Explore Crown",
+  "catalogueKind": "Residential",
+  "catalogueOrder": 2,
+  "catalogueStats": [
+    {
+      "_key": "stat-floors",
+      "label": "Floors",
+      "valueHtml": "G+59"
+    },
+    {
+      "_key": "stat-configs",
+      "label": "Configs",
+      "valueHtml": "4-5 BHK"
+    },
+    {
+      "_key": "stat-location",
+      "label": "Height",
+      "valueHtml": "244 m"
+    }
+  ],
+  "catalogueTitleHtml": "South India's <em>tallest</em> residential tower.",
+  "flyoutTitleHtml": "South India's <em>tallest</em><br>residential tower.",
+  "heroImage": {
+    "_type": "imageWithAlt",
+    "alt": "SAS Crown residential tower over Kokapet at day",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-e1b8aafb4e5cc58ead1c8b07c4ef6474c89069a1-1600x830-webp",
+        "_type": "reference"
+      }
+    }
+  },
+  "location": {
+    "_type": "location",
+    "city": "Kokapet",
+    "geopoint": {
+      "_type": "geopoint",
+      "lat": 17.401836,
+      "lng": 78.338721
+    },
+    "state": "Telangana"
+  },
+  "navCtaLabel": "Book a Tour",
+  "numberOfFloors": 60,
+  "pageBuilder": [
+    {
+      "_key": "k282",
+      "_type": "projectHeroBlock",
+      "ctas": [
+        {
+          "_key": "k274",
+          "_type": "link",
+          "anchorId": "contact",
+          "kind": "anchor",
+          "label": "Contact Us",
+          "reference": {
+            "_ref": "project-sas-crown",
+            "_type": "reference"
+          },
+          "variant": "primary"
+        },
+        {
+          "_key": "k275",
+          "_type": "link",
+          "file": {
+            "_type": "file",
+            "asset": {
+              "_ref": "file-91bfa97927a1053494aad08ee1a8c1fc630d0b31-pdf",
+              "_type": "reference"
+            }
+          },
+          "kind": "file",
+          "label": "Download Brochure",
+          "variant": "secondary"
+        }
+      ],
+      "eyebrow": "Residential · Kokapet, Hyderabad",
+      "logo": {
+        "_type": "imageWithAlt",
+        "alt": "SAS Crown",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-7266058c2654064649c46e5d94b3672e1078997e-102x90-svg",
+            "_type": "reference"
+          }
+        }
+      },
+      "media": {
+        "kind": "video",
+        "poster": {
+          "_type": "imageWithAlt",
+          "alt": "SAS Crown residential tower over Kokapet at day",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-e1b8aafb4e5cc58ead1c8b07c4ef6474c89069a1-1600x830-webp",
+              "_type": "reference"
+            }
+          }
+        },
+        "video": {
+          "_type": "file",
+          "asset": {
+            "_ref": "file-374cb638a15926d8e3234efd4e91f44024dd3b8b-mp4",
+            "_type": "reference"
+          }
+        }
+      },
+      "stats": [
+        {
+          "_key": "k276",
+          "label": "Height",
+          "value": "244 m"
+        },
+        {
+          "_key": "k277",
+          "label": "Floors",
+          "value": "G + 59"
+        },
+        {
+          "_key": "k278",
+          "label": "Configuration",
+          "value": "4-5 BHK"
+        },
+        {
+          "_key": "k279",
+          "label": "Sizes",
+          "value": "6,565–8,811 sq ft"
+        },
+        {
+          "_key": "k280",
+          "label": "Land",
+          "value": "4.5 acres"
+        },
+        {
+          "_key": "k281",
+          "label": "Open Space",
+          "value": "80%"
+        }
+      ],
+      "title": "South India's <em>tallest</em><br />residential tower."
+    },
+    {
+      "_key": "k287",
+      "_type": "statsStripBlock",
+      "countUp": true,
+      "items": [
+        {
+          "_key": "k283",
+          "label": "Tower height — South India's tallest residential",
+          "suffix": "m",
+          "value": "244"
+        },
+        {
+          "_key": "k284",
+          "label": "Floors",
+          "prefix": "G+",
+          "value": "59"
+        },
+        {
+          "_key": "k285",
+          "label": "Ceiling heights that redefine skyline living",
+          "suffix": "ft",
+          "value": "13"
+        },
+        {
+          "_key": "k286",
+          "label": "Open and landscaped space across the site",
+          "suffix": "%",
+          "value": "80"
+        }
+      ]
+    },
+    {
+      "_key": "k288",
+      "_type": "specsRefBlock",
+      "head": {
+        "eyebrow": "Specifications",
+        "heading": "Every detail defined. Every <em>number</em> that matters."
+      }
+    },
+    {
+      "_key": "k295",
+      "_type": "proseBlock",
+      "body": [
+        {
+          "_key": "k289",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "k290",
+              "_type": "span",
+              "marks": [],
+              "text": "SAS Crown — South India's tallest residential tower — rises 244 metres above Kokapet, the city's most rapidly maturing residential corridor. G + 59 floors set across 4.5 acres of lush greenery, with eighty percent of the site held as open and landscaped space."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "k291",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "k292",
+              "_type": "span",
+              "marks": [],
+              "text": "Each home is a 4 BHK with an office room, an entertainment room and a maid room, ranging from 6,565 to 8,811 sq ft, with east-and-west orientations that bring through-light and ventilation. Italian marble flooring; thirteen-foot ceilings; private sky villas occupying entire upper floors. The Sky Club, at this height, the first of its kind in India, sits within Tower 2."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "k293",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "k294",
+              "_type": "span",
+              "marks": [],
+              "text": "Designed by Simon Naf, Aedas. Design collaborators for landmark projects across Asia."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "head": {
+        "eyebrow": "The Vision",
+        "heading": "Luxury apartments in <em>Kokapet</em>, Hyderabad."
+      }
+    },
+    {
+      "_key": "k296",
+      "_type": "galleryBlock",
+      "head": {
+        "eyebrow": "Gallery",
+        "heading": "An <em>uninterrupted</em> view of the city."
+      },
+      "images": [
+        {
+          "_key": "k261",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown — tower by day",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-1b16f8f46fd042a3ae884dd9de167b9e83d89694-1600x830-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "tall"
+        },
+        {
+          "_key": "k262",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown Sky Club interior",
+            "asset": {
+              "_ref": "image-cadf8fa96d02872c1888f2a8b5d03f206e47aaaf-1600x932-webp",
+              "_type": "reference"
+            },
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-cadf8fa96d02872c1888f2a8b5d03f206e47aaaf-1600x932-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "k263",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown residence interior",
+            "asset": {
+              "_ref": "image-9dffa7928d0b299861e98760d3b60e84e1a0cc7f-1600x942-webp",
+              "_type": "reference"
+            },
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-9dffa7928d0b299861e98760d3b60e84e1a0cc7f-1600x942-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "k264",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown aerial view over Kokapet",
+            "asset": {
+              "_ref": "image-0f97854c6a6a2a93be481adc2ffeb771ade7c056-1600x831-webp",
+              "_type": "reference"
+            },
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-0f97854c6a6a2a93be481adc2ffeb771ade7c056-1600x831-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "k265",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown — clubhouse perspective",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-fca91d86621bafb17fd6cf57adf57e9b2d1ecf59-1600x973-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "k266",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown apartment living space",
+            "asset": {
+              "_ref": "image-9dffa7928d0b299861e98760d3b60e84e1a0cc7f-1600x942-webp",
+              "_type": "reference"
+            },
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-9dffa7928d0b299861e98760d3b60e84e1a0cc7f-1600x942-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "k267",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown — South India's tallest residential tower",
+            "asset": {
+              "_ref": "image-aff29ea400dbea4a9ab64e417540d529619d7534-1600x942-webp",
+              "_type": "reference"
+            },
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-aff29ea400dbea4a9ab64e417540d529619d7534-1600x942-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        },
+        {
+          "_key": "k268",
+          "image": {
+            "_type": "imageWithAlt",
+            "alt": "SAS Crown bedroom interior",
+            "asset": {
+              "_ref": "image-ec90e8b4eda0a69aa6ea17e5fdb1f52e3ea0fefa-1600x942-webp",
+              "_type": "reference"
+            },
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-ec90e8b4eda0a69aa6ea17e5fdb1f52e3ea0fefa-1600x942-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "size": "default"
+        }
+      ],
+      "variant": "carousel"
+    },
+    {
+      "_key": "k298",
+      "_type": "floorPlansBlock",
+      "cta": {
+        "_key": "k297",
+        "_type": "link",
+        "file": {
+          "_type": "file",
+          "asset": {
+            "_ref": "file-91bfa97927a1053494aad08ee1a8c1fc630d0b31-pdf",
+            "_type": "reference"
+          }
+        },
+        "kind": "file",
+        "label": "Download Brochure",
+        "variant": "secondary"
+      },
+      "head": {
+        "dek": "Five configurations across the tower — through-light layouts with east and west orientations. Sky villas occupy entire upper floors for whole-floor privacy.",
+        "eyebrow": "Residences",
+        "heading": "A bird's-eye view of the <em>residence</em>."
+      },
+      "metrics": [
+        {
+          "_key": "cm1",
+          "label": "Configuration",
+          "value": "4 BHK + Office + Maid"
+        },
+        {
+          "_key": "cm2",
+          "label": "Sizes",
+          "value": "6,565 – 8,811 sq ft"
+        },
+        {
+          "_key": "cm3",
+          "label": "Ceiling Height",
+          "value": "13 ft"
+        },
+        {
+          "_key": "cm4",
+          "label": "Sky Villas",
+          "value": "Full-floor"
+        }
+      ],
+      "mode": "list",
+      "plans": [
+        {
+          "_key": "k269",
+          "label": "East Wing",
+          "planImage": {
+            "_type": "imageWithAlt",
+            "alt": "East Wing floor plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-7145abdb50bfc5808964bd6a3b8ab2f9bbec5c67-933x1068-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "seq": 1,
+          "size": "6,565 sq ft"
+        },
+        {
+          "_key": "k270",
+          "label": "West Wing",
+          "planImage": {
+            "_type": "imageWithAlt",
+            "alt": "West Wing floor plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-1e2b63b23068975847023fed6bc1d4eea155765a-906x1080-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "seq": 2,
+          "size": "7,200 sq ft"
+        },
+        {
+          "_key": "k271",
+          "label": "Corner",
+          "planImage": {
+            "_type": "imageWithAlt",
+            "alt": "Corner floor plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-08df5fcd280e13e08c019ac6c84f735e70d7094f-1012x1076-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "seq": 3,
+          "size": "7,920 sq ft"
+        },
+        {
+          "_key": "k272",
+          "label": "Sky Villa",
+          "planImage": {
+            "_type": "imageWithAlt",
+            "alt": "Sky Villa floor plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-a0905fc6aede30dc3cccf1083866ba2a041b36fb-1016x1068-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "seq": 4,
+          "size": "8,400 sq ft"
+        },
+        {
+          "_key": "k273",
+          "label": "Full Floor",
+          "planImage": {
+            "_type": "imageWithAlt",
+            "alt": "Full Floor floor plan",
+            "image": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-3e494cf165f37c6524baeb57e74bda9365340674-898x1078-webp",
+                "_type": "reference"
+              }
+            }
+          },
+          "seq": 5,
+          "size": "8,811 sq ft"
+        }
+      ]
+    },
+    {
+      "_key": "k299",
+      "_type": "signatureFeatureBlock",
+      "body": "One lakh+ sq ft of curated amenity within Tower 2. The highest residential clubhouse on the subcontinent — a measured retreat in the upper third of the tower.",
+      "eyebrow": "Signature · Clubdom",
+      "heading": "The <em>Sky Club</em> — India's first at this height.",
+      "image": {
+        "_type": "imageWithAlt",
+        "alt": "Clubdom — Sky Club at SAS Crown",
+        "asset": {
+          "_ref": "image-ed34cca8413c92067b8a4beb25a2288bc42d9f9f-1600x973-webp",
+          "_type": "reference"
+        },
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-ed34cca8413c92067b8a4beb25a2288bc42d9f9f-1600x973-webp",
+            "_type": "reference"
+          }
+        }
+      },
+      "items": [
+        "Sky lounge & observation deck",
+        "Banquet & private dining",
+        "Heated swimming pool",
+        "Wellness · spa & massage",
+        "Yoga & meditation studio",
+        "Private theatre"
+      ],
+      "variant": "cinema"
+    },
+    {
+      "_key": "k303",
+      "_type": "amenityZonesBlock",
+      "anchor": {
+        "body": "The Sky Club anchors the upper third of Tower 2. Three programmed zones flow across its floors, each entered through its own lobby.",
+        "eyebrow": "Within the Sky Club",
+        "heading": "Where ten amenities <em>belong</em>.",
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "Sky Club lifestyle render at SAS Crown",
+          "asset": {
+            "_ref": "image-988b8a501e73a099a945f1b0cdf77de2fa7f61bb-1600x942-webp",
+            "_type": "reference"
+          },
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-988b8a501e73a099a945f1b0cdf77de2fa7f61bb-1600x942-webp",
+              "_type": "reference"
+            }
+          }
+        }
+      },
+      "head": {
+        "dek": "Three programmed zones across the Clubdom, ground level, and the Sky Club — each engineered to feel resident-only, never shared with the building next door.",
+        "eyebrow": "Life at Crown",
+        "heading": "Designed for the way you <em>live</em>."
+      },
+      "zones": [
+        {
+          "_key": "k300",
+          "items": [
+            "Heated infinity pool",
+            "Spa & sauna",
+            "Yoga & meditation studio",
+            "Massage suites"
+          ],
+          "seq": 1,
+          "title": "Wellness & Leisure"
+        },
+        {
+          "_key": "k301",
+          "items": [
+            "Two-hundred-seat banquet",
+            "Twenty-four-seat private theatre",
+            "Games & cards lounge"
+          ],
+          "seq": 2,
+          "title": "Social & Entertainment"
+        },
+        {
+          "_key": "k302",
+          "items": [
+            "EV charging",
+            "Car wash",
+            "Mini-mart",
+            "Resident concierge"
+          ],
+          "seq": 3,
+          "title": "Family & Convenience"
+        }
+      ]
+    },
+    {
+      "_key": "k304",
+      "_type": "amenitiesRefBlock",
+      "head": {
+        "dek": "Ten resident-only amenities across the Sky Club, the Clubdom, and the ground level.",
+        "eyebrow": "Amenities",
+        "heading": "Everything we have <em>on offer</em>."
+      }
+    },
+    {
+      "_key": "k305",
+      "_type": "locationMapBlock",
+      "editorialCard": "Anchored in <em>Hyderabad's</em> most connected corridors.",
+      "footnote": "Travel times by car at 10:00 IST · Google Maps median, April 2026.",
+      "locationCard": {
+        "dek": "South India's tallest residential tower, rising over the Kokapet spine of Hyderabad's Financial District.",
+        "eyebrow": "The Project",
+        "heading": "SAS <em>Crown</em>."
+      },
+      "mapConfig": {
+        "frameStyle": "disc",
+        "mapProject": "crown"
+      },
+      "overture": {
+        "dek": "Six minutes to ORR. Twelve to the Financial District.",
+        "eyebrow": "III — Location",
+        "heading": "The Kokapet <em>spine</em>."
+      }
+    },
+    {
+      "_key": "k307",
+      "_type": "constructionFeedBlock",
+      "ctaLabel": "View Full Construction Timeline",
+      "head": {
+        "eyebrow": "Watch It Rise",
+        "heading": "Construction milestones from <em>Kokapet</em>."
+      },
+      "items": [
+        {
+          "_key": "cf1",
+          "category": "Construction",
+          "ctaLabel": "Download PDF",
+          "date": "March 2026",
+          "embedUrl": "https://www.youtube.com/embed/nU9CFZLotn0?rel=0&modestbranding=1",
+          "headline": "Tower 2 reaches the 38th floor — Sky Club shell takes shape over Kokapet."
+        },
+        {
+          "_key": "cf2",
+          "category": "Construction",
+          "ctaLabel": "Download PDF",
+          "date": "February 2026",
+          "embedUrl": "https://www.youtube.com/embed/nU9CFZLotn0?rel=0&modestbranding=1&start=38",
+          "headline": "Italian marble lots from Carrara cleared at port — finishes phase begins on lower residences."
+        },
+        {
+          "_key": "cf3",
+          "category": "Media",
+          "ctaLabel": "Download PDF",
+          "date": "January 2026",
+          "embedUrl": "https://www.youtube.com/embed/nU9CFZLotn0?rel=0&modestbranding=1&start=76",
+          "headline": "SAS Crown featured in Architectural Digest's 2026 luxury skyline edition."
+        }
+      ]
+    },
+    {
+      "_key": "k312",
+      "_type": "contactFormBlock",
+      "formCopy": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@example.com",
+        "interestLabel": "I'm Interested In",
+        "interestPlaceholder": "Configuration",
+        "messageLabel": "Message (optional)",
+        "messagePlaceholder": "Tell us what you're looking for",
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "+91",
+        "submitLabel": "Send Enquiry →"
+      },
+      "formTarget": "crown-enquiry",
+      "head": {
+        "dek": "Leave the details below and our residential team will be in touch within one business day to set up a private viewing of the project and the show home.",
+        "eyebrow": "Schedule a Visit",
+        "heading": "Tour <em>SAS Crown</em><br />at Kokapet."
+      },
+      "leadOptions": [
+        {
+          "_key": "k308",
+          "label": "4 BHK — 6,565 sq ft",
+          "value": "6565"
+        },
+        {
+          "_key": "k309",
+          "label": "4 BHK — 7,200 sq ft",
+          "value": "7200"
+        },
+        {
+          "_key": "k310",
+          "label": "4 BHK — 8,811 sq ft",
+          "value": "8811"
+        },
+        {
+          "_key": "k311",
+          "label": "Sky Villa — full floor",
+          "value": "sky-villa"
+        }
+      ],
+      "variant": "sales"
+    }
+  ],
+  "projectType": "residential",
+  "reraNumber": "P02400002786",
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "sas-crown"
+    }
+  },
+  "seo": {
+    "_type": "seo",
+    "metaDescription": "Own ultra-luxury 4 & 5 BHK residences in Kokapet—an iconic high-rise near the Financial District with elite amenities, crafted for refined living in Luxury Apartments in Kokapet Hyderabad.",
+    "metaTitle": "Luxury Apartments in Kokapet Hyderabad | SAS Infra",
+    "ogImage": {
+      "_type": "imageWithAlt",
+      "alt": "Luxury Apartments in Kokapet Hyderabad",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-d9fd6f1de66856be47b226e20884f2e2e6ff03a1-1024x596-webp",
+          "_type": "reference"
+        }
+      }
+    }
+  },
+  "seoDescription": "South India's tallest residential tower — 244 m, G+59. Ultra-luxury 4-5 BHK apartments in Kokapet, Hyderabad, designed by Aedas, set across 4.5 acres.",
+  "seoSchemaType": "ApartmentComplex",
+  "slug": {
+    "_type": "slug",
+    "current": "sas-crown"
+  },
+  "specifications": [
+    {
+      "_key": "k323",
+      "icon": "crown-status",
+      "label": "Status",
+      "value": "Under<br>Construction"
+    },
+    {
+      "_key": "k324",
+      "icon": "crown-land",
+      "label": "Total Land",
+      "value": "4.5 Acres"
+    },
+    {
+      "_key": "k325",
+      "icon": "crown-towers",
+      "label": "Towers",
+      "value": "5 Towers"
+    },
+    {
+      "_key": "k326",
+      "icon": "crown-flats",
+      "label": "Flats",
+      "value": "~270 Units"
+    },
+    {
+      "_key": "k327",
+      "icon": "crown-configuration",
+      "label": "Configuration",
+      "value": "4 BHK +<br>Office & Maid"
+    },
+    {
+      "_key": "k328",
+      "icon": "crown-type",
+      "label": "Type",
+      "value": "Ultra-Luxury<br>Residential"
+    }
+  ],
+  "status": "under-construction",
+  "tagline": "South India's tallest residential tower",
+  "title": "SAS Crown",
+  "unitConfiguration": "4-5 BHK"
+}

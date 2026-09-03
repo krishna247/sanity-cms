@@ -23,7 +23,7 @@ const client = createClient({
 const SITEMAP = '/Users/krishna/sasinfra/repos/frontend/dist/sitemap-0.xml'
 
 // Mirror of repos/frontend/src/schemaTypes/utils/routing + lib/routing
-const SINGLETON_IDS = ['siteSettings', 'navigation', 'homePage', 'blogIndexPage', 'updatesIndexPage']
+const SINGLETON_IDS = ['siteSettings', 'navigation', 'homePage', 'blogIndexPage']
 const FIXED_PAGE_IDS = [
   'page-about', 'page-careers', 'page-contact', 'page-media',
   'page-privacy', 'page-terms', 'page-cookies',
@@ -41,10 +41,9 @@ function resolveHref(d) {
   switch (d._type) {
     case 'homePage': return '/'
     case 'blogIndexPage': return '/blog'
-    case 'updatesIndexPage': return '/projects/updates'
     case 'blogPost': return s ? `/blog/${s}` : '/blog'
     case 'project': return s ? `/projects/${s}` : '/projects'
-    case 'projectUpdate': return s ? `/projects/updates#${s}` : '/projects/updates'
+    case 'projectUpdate': return '/media'
     case 'page': return `/${[d.route?.section, s].filter(Boolean).join('/')}`
     default: return '#'
   }
@@ -160,7 +159,6 @@ async function main() {
   const expected = new Set([
     '/',                      // homePage singleton
     '/blog',                  // blogIndexPage singleton
-    '/projects/updates',      // updatesIndexPage singleton
     ...docs.pages.map(resolveHref),
     ...docs.projects.map(resolveHref),
     ...docs.blog.filter((b) => seg(b)).map(resolveHref),

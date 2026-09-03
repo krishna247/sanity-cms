@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-06-30T07:38:01Z",
+  "_id": "partner-carimali",
+  "_rev": "jXPMwD9ceBCv0j9vAPqNch",
+  "_type": "partner",
+  "_updatedAt": "2026-07-20T09:39:03Z",
+  "country": "Italy",
+  "discipline": "Finishes & Sanitaryware",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Carimali logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-c4746d674951a054b13f9f9e34f717b015366930-976x198-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Carimali",
+  "shortCountry": "Italy"
+}

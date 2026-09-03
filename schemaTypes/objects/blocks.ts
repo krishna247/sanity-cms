@@ -12,6 +12,7 @@ import {
 } from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {textStyleField, textStylesFieldset} from './textStyle'
+import {deadHere} from '../utils/renderMatrix'
 
 const iconTokenOptions = [
   {title: 'Building', value: 'building'},
@@ -66,12 +67,14 @@ const headField = defineField({
   type: 'object',
   fieldsets: [textStylesFieldset],
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
-    defineField({name: 'heading', title: 'Heading', type: 'string'}),
-    defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
-    textStyleField('eyebrowStyle', 'Eyebrow'),
-    textStyleField('headingStyle', 'Heading'),
-    textStyleField('dekStyle', 'Deck'),
+    // hidden → see utils/renderMatrix.ts: a bespoke page that never renders a
+    // slot does not offer it in the Studio.
+    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', hidden: deadHere('head.eyebrow')}),
+    defineField({name: 'heading', title: 'Heading', type: 'string', hidden: deadHere('head.heading')}),
+    defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3, hidden: deadHere('head.dek')}),
+    defineField({...textStyleField('eyebrowStyle', 'Eyebrow'), hidden: deadHere('head.eyebrowStyle')}),
+    defineField({...textStyleField('headingStyle', 'Heading'), hidden: deadHere('head.headingStyle')}),
+    defineField({...textStyleField('dekStyle', 'Deck'), hidden: deadHere('head.dekStyle')}),
   ],
 })
 
@@ -281,12 +284,13 @@ export const logoWallBlock = defineType({
     headField,
     defineField({
       name: 'partners',
+      hidden: deadHere('partners'),
       title: 'Partners',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: [{type: 'partner'}]})],
       validation: (rule) => rule.min(1),
     }),
-    textStyleField('nameStyle', 'Partner name', 'Shown only when a partner has no logo.'),
+    defineField({...textStyleField('nameStyle', 'Partner name', 'Shown only when a partner has no logo.'), hidden: deadHere('nameStyle')}),
   ],
   preview: {select: {title: 'head.heading'}},
 })
@@ -298,9 +302,10 @@ export const galleryBlock = defineType({
   icon: ImageIcon,
   fields: [
     headField,
-    ctaField,
+    defineField({...ctaField, hidden: deadHere('cta')}),
     defineField({
       name: 'variant',
+      hidden: deadHere('variant'),
       title: 'Variant',
       type: 'string',
       initialValue: 'grid',
@@ -324,7 +329,7 @@ export const galleryBlock = defineType({
               initialValue: 'default',
               options: {list: ['default', 'tall']},
             }),
-            textStyleField('captionStyle', 'Caption'),
+            defineField({...textStyleField('captionStyle', 'Caption'), hidden: deadHere('images[].captionStyle')}),
           ],
           preview: {select: {title: 'image.alt', media: 'image.image', subtitle: 'size'}},
         }),
@@ -339,7 +344,7 @@ export const specsRefBlock = defineType({
   title: 'Project Specs',
   type: 'object',
   icon: ThListIcon,
-  fields: [headField, ctaField],
+  fields: [headField],
   preview: {select: {title: 'head.heading'}},
 })
 
@@ -348,7 +353,7 @@ export const amenitiesRefBlock = defineType({
   title: 'Project Amenities',
   type: 'object',
   icon: StarIcon,
-  fields: [headField, ctaField],
+  fields: [headField],
   preview: {select: {title: 'head.heading'}},
 })
 
@@ -378,9 +383,9 @@ export const ctaBlock = defineType({
   fieldsets: [textStylesFieldset],
   fields: [
     headField,
-    defineField({name: 'actions', title: 'Actions', type: 'array', of: [defineArrayMember({type: 'link'})]}),
-    defineField({name: 'note', title: 'Note', type: 'string', description: 'Optional short line under the actions. On the Media page it precedes the press-desk email link (default: “or write to”).'}),
-    textStyleField('noteStyle', 'Note'),
+    defineField({name: 'actions', title: 'Actions', type: 'array', of: [defineArrayMember({type: 'link'})], hidden: deadHere('actions')}),
+    defineField({name: 'note', title: 'Note', type: 'string', description: 'Optional short line under the actions. On the Media page it precedes the press-desk email link (default: “or write to”).', hidden: deadHere('note')}),
+    defineField({...textStyleField('noteStyle', 'Note'), hidden: deadHere('noteStyle')}),
   ],
   preview: {select: {title: 'head.heading', subtitle: 'head.eyebrow'}},
 })
@@ -393,8 +398,8 @@ export const featureGridBlock = defineType({
   fieldsets: [textStylesFieldset],
   fields: [
     headField,
-    defineField({...ctaField, description: "Optional link under the section intro (home: 'Know more about SAS Infra' → About page)."}),
-    textStyleField('ctaStyle', 'CTA label'),
+    defineField({...ctaField, description: "Optional link under the section intro (home: 'Know more about SAS Infra' → About page).", hidden: deadHere('cta')}),
+    defineField({...textStyleField('ctaStyle', 'CTA label'), hidden: deadHere('ctaStyle')}),
     defineField({
       name: 'features',
       title: 'Features',
@@ -459,7 +464,7 @@ export const feedBlock = defineType({
   fieldsets: [textStylesFieldset],
   fields: [
     headField,
-    ctaField,
+    defineField({...ctaField, hidden: deadHere('cta')}),
     defineField({
       name: 'source',
       title: 'Source',
@@ -470,7 +475,6 @@ export const feedBlock = defineType({
           {title: 'Projects', value: 'projects'},
           {title: 'Updates', value: 'updates'},
           {title: 'Press', value: 'press'},
-          {title: 'Jobs', value: 'jobs'},
           {title: 'Blog', value: 'blog'},
         ],
       },
@@ -480,14 +484,14 @@ export const feedBlock = defineType({
     defineField({
       name: 'itemCtaLabel', title: 'Item link text', type: 'string', placeholder: 'Read more',
       description: 'Text of the link at the foot of each card in an Updates / Press / Blog / Jobs feed (defaults to "Read more").',
-      hidden: ({parent}) => parent?.source === 'projects',
+      hidden: ({parent}) => ['projects', 'press'].includes(parent?.source),
     }),
     // Media-wall chrome — only the bespoke /media wall renders these.
     defineField({name: 'filterLabel', title: 'Filter label', type: 'string', description: 'The small kicker before the category pills on the media wall (default: “Filter”).', hidden: ({parent}) => parent?.source !== 'press'}),
     defineField({name: 'allLabel', title: '“All” pill label', type: 'string', description: 'Text of the first filter pill, which shows every item (default: “All”). The other pills are the press items’ categories.', hidden: ({parent}) => parent?.source !== 'press'}),
     defineField({name: 'countNoun', title: 'Item count — singular noun', type: 'string', description: 'The noun after the count when it is 1, e.g. “item” → “1 item” (default: “item”).', hidden: ({parent}) => parent?.source !== 'press'}),
     defineField({name: 'countNounPlural', title: 'Item count — plural noun', type: 'string', description: 'The noun after the count otherwise, e.g. “items” → “20 items” (default: “items”).', hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({...textStyleField('itemCtaLabelStyle', 'Item link text', 'Updates and Press feeds.'), hidden: ({parent}) => parent?.source === 'projects'}),
+    defineField({...textStyleField('itemCtaLabelStyle', 'Item link text', 'Updates feeds.'), hidden: ({parent}) => ['projects', 'press'].includes(parent?.source)}),
     defineField({...textStyleField('filterLabelStyle', 'Filter label'), hidden: ({parent}) => parent?.source !== 'press'}),
     defineField({...textStyleField('allLabelStyle', 'Filter pills', 'One style for every pill, incl. All.'), hidden: ({parent}) => parent?.source !== 'press'}),
     defineField({...textStyleField('countNounStyle', 'Item count', 'The “20 items” counter.'), hidden: ({parent}) => parent?.source !== 'press'}),
@@ -502,7 +506,7 @@ export const feedBlock = defineType({
     }),
     defineField({
       ...textStyleField('itemExcerptStyle', 'Item excerpt', 'Updates and Press feeds.'),
-      hidden: ({parent}) => !['blog', 'jobs'].includes(parent?.source),  // an excerpt renders only on the generic Blog / Jobs feed cards
+      hidden: ({parent}) => parent?.source !== 'blog',  // an excerpt renders only on the generic Blog feed cards
     }),
     // The Projects feed renders catalogue cards.
     defineField({
@@ -612,12 +616,13 @@ export const mapBlock = defineType({
   fieldsets: [textStylesFieldset],
   fields: [
     headField,
-    defineField({name: 'location', title: 'Location', type: 'location'}),
-    defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
+    defineField({name: 'location', title: 'Location', type: 'location', hidden: deadHere('location')}),
+    defineField({name: 'footnote', title: 'Footnote', type: 'string', hidden: deadHere('footnote')}),
     defineField({name: 'mapQuery', title: 'Map search query', type: 'string', description: 'Google Maps search query for the embedded map on the Contact page — plain words, e.g. “ACE Tech Park Nanakramguda Financial District Hyderabad”. The site URL-encodes it (spaces → +).'}),
-    textStyleField('footnoteStyle', 'Footnote'),
+    defineField({...textStyleField('footnoteStyle', 'Footnote'), hidden: deadHere('footnoteStyle')}),
     defineField({
       name: 'markerCategories',
+      hidden: deadHere('markerCategories'),
       title: 'Marker Categories',
       description:
         'Palette for the home locality map. Each category sets a marker colour + glyph ' +
@@ -646,6 +651,7 @@ export const mapBlock = defineType({
     }),
     defineField({
       name: 'pointsOfInterest',
+      hidden: deadHere('pointsOfInterest'),
       title: 'Points of Interest',
       description:
         'Curated landmarks for the home locality map, rendered as category-coloured ' +
@@ -687,6 +693,7 @@ export const mapBlock = defineType({
     }),
     defineField({
       name: 'hiddenLocalities',
+      hidden: deadHere('hiddenLocalities'),
       title: 'Hidden locality labels',
       description: 'Basemap neighbourhood labels to hide (cuts noise). Leave empty for the built-in default set.',
       type: 'array',
@@ -788,6 +795,7 @@ export const floorPlansBlock = defineType({
             }),
             defineField({
               name: 'placeholder',
+              hidden: deadHere('plans[].placeholder'),
               title: 'Placeholder Card',
               description: 'Rendered only when Plan Image is empty.',
               type: 'object',
@@ -928,46 +936,15 @@ export const locationMapBlock = defineType({
       type: 'object',
       fieldsets: [textStylesFieldset],
       fields: [
-        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', hidden: deadHere('locationCard.eyebrow')}),
         defineField({name: 'heading', title: 'Heading', type: 'string'}),
         defineField({name: 'dek', title: 'Deck', type: 'text', rows: 3}),
-        textStyleField('eyebrowStyle', 'Eyebrow'),
+        defineField({...textStyleField('eyebrowStyle', 'Eyebrow'), hidden: deadHere('locationCard.eyebrowStyle')}),
         textStyleField('headingStyle', 'Heading'),
         textStyleField('dekStyle', 'Deck'),
       ],
     }),
-    defineField({name: 'ruleLabel', title: 'Vertical rule label', type: 'string', description: 'Text on the vertical rule beside the disc location card. Default: “Strategic Locations · IX Sites”. Only rendered on pages that show the rule.'}),
-    defineField({name: 'editorialLabel', title: 'Editorial card label', type: 'string', description: 'Small label on the editorial-only location card. Default: “Strategic Locations”.'}),
-    defineField({name: 'footnote', title: 'Footnote', type: 'string'}),
-    defineField({
-      name: 'editorialCard',
-      title: 'Editorial Card Heading',
-      description: 'The overlay headline on the map (allows inline <em> html), e.g. "Anchored in Hyderabad\'s CBD spine."',
-      type: 'string',
-    }),
-    defineField({name: 'address', title: 'Street Address', type: 'text', rows: 2}),
-    defineField({
-      name: 'travelTimes',
-      title: 'Travel Times',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({name: 'distance', title: 'Distance', type: 'string'}),
-            defineField({name: 'time', title: 'Time', type: 'string'}),
-            defineField({name: 'destination', title: 'Destination', type: 'string'}),
-          ],
-          preview: {select: {title: 'destination', subtitle: 'time'}},
-        }),
-      ],
-    }),
-    defineField({
-      name: 'connectivity',
-      title: 'Connectivity Highlights',
-      type: 'array',
-      of: [defineArrayMember({type: 'string'})],
-    }),
+    defineField({name: 'footnote', title: 'Footnote', type: 'string', hidden: deadHere('footnote')}),
     defineField({
       name: 'pointsOfInterest',
       title: 'Points of Interest',
@@ -1008,7 +985,7 @@ export const locationMapBlock = defineType({
         }),
       ],
     }),
-    textStyleField('footnoteStyle', 'Footnote'),
+    defineField({...textStyleField('footnoteStyle', 'Footnote'), hidden: deadHere('footnoteStyle')}),
   ],
   preview: {select: {title: 'overture.heading', subtitle: 'mapConfig.mapProject'}},
 })
@@ -1155,33 +1132,6 @@ export const towerAnatomyBlock = defineType({
   preview: {select: {title: 'head.heading'}},
 })
 
-export const plateAnatomyBlock = defineType({
-  name: 'plateAnatomyBlock',
-  title: 'Plate Anatomy',
-  type: 'object',
-  icon: ImageIcon,
-  fields: [
-    headField,
-    defineField({name: 'image', title: 'Plate Image', type: 'imageWithAlt'}),
-    defineField({
-      name: 'pins',
-      title: 'Annotation Pins',
-      description: 'Text only — the pin coordinates stay in the component.',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({name: 'title', title: 'Title', type: 'string'}),
-            defineField({name: 'body', title: 'Body', type: 'text', rows: 2}),
-          ],
-          preview: {select: {title: 'title'}},
-        }),
-      ],
-    }),
-  ],
-  preview: {select: {title: 'head.heading'}},
-})
 
 export const tenantsBlock = defineType({
   name: 'tenantsBlock',
@@ -1236,8 +1186,6 @@ export const engineeredNumbersBlock = defineType({
   icon: ThListIcon,
   fields: [
     headField,
-    defineField({name: 'image', title: 'Frame Image', type: 'imageWithAlt'}),
-    defineField({name: 'frameCaption', title: 'Frame Caption', type: 'string'}),
     defineField({
       name: 'stats',
       title: 'Stats',
@@ -1256,80 +1204,11 @@ export const engineeredNumbersBlock = defineType({
         }),
       ],
     }),
-    defineField({name: 'banksHeading', title: 'Lift Banks Heading', type: 'string'}),
-    defineField({
-      name: 'banks',
-      title: 'Lift Banks',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({name: 'zone', title: 'Zone', type: 'string'}),
-            defineField({name: 'floors', title: 'Floors', type: 'string'}),
-          ],
-          preview: {select: {title: 'zone', subtitle: 'floors'}},
-        }),
-      ],
-    }),
   ],
   preview: {select: {title: 'head.heading'}},
 })
 
-export const consultantsBlock = defineType({
-  name: 'consultantsBlock',
-  title: 'Consultants',
-  type: 'object',
-  icon: TiersIcon,
-  fields: [
-    headField,
-    defineField({
-      name: 'cells',
-      title: 'Consultants',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({name: 'name', title: 'Name', type: 'string'}),
-            defineField({name: 'role', title: 'Role', type: 'string'}),
-          ],
-          preview: {select: {title: 'name', subtitle: 'role'}},
-        }),
-      ],
-    }),
-  ],
-  preview: {select: {title: 'head.heading'}},
-})
 
-export const brochureBlock = defineType({
-  name: 'brochureBlock',
-  title: 'Brochure',
-  type: 'object',
-  icon: DocumentTextIcon,
-  fields: [
-    headField,
-    defineField({name: 'ctaLabel', title: 'CTA Label', type: 'string'}),
-    defineField({
-      name: 'cards',
-      title: 'Brochure Cards',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            defineField({name: 'num', title: 'Numeral', type: 'string'}),
-            defineField({name: 'image', title: 'Image', type: 'imageWithAlt'}),
-            defineField({name: 'title', title: 'Title', type: 'string'}),
-            defineField({name: 'sub', title: 'Subtitle', type: 'string'}),
-          ],
-          preview: {select: {title: 'title', subtitle: 'sub', media: 'image.image'}},
-        }),
-      ],
-    }),
-  ],
-  preview: {select: {title: 'head.heading'}},
-})
 
 export const addressSectionBlock = defineType({
   name: 'addressSectionBlock',
@@ -1729,11 +1608,8 @@ export const projectPageBuilder = defineType({
     defineArrayMember({type: 'feedBlock'}),
     defineArrayMember({type: 'masterPlanBlock'}),
     defineArrayMember({type: 'towerAnatomyBlock'}),
-    defineArrayMember({type: 'plateAnatomyBlock'}),
     defineArrayMember({type: 'tenantsBlock'}),
     defineArrayMember({type: 'engineeredNumbersBlock'}),
-    defineArrayMember({type: 'consultantsBlock'}),
-    defineArrayMember({type: 'brochureBlock'}),
     defineArrayMember({type: 'addressSectionBlock'}),
     defineArrayMember({type: 'constructionFeedBlock'}),
   ],
@@ -1763,11 +1639,8 @@ export const blockTypes = [
   locationMapBlock,
   masterPlanBlock,
   towerAnatomyBlock,
-  plateAnatomyBlock,
   tenantsBlock,
   engineeredNumbersBlock,
-  consultantsBlock,
-  brochureBlock,
   addressSectionBlock,
   constructionFeedBlock,
   partnerDisciplinesBlock,

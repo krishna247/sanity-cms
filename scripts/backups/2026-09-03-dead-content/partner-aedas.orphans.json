@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:47Z",
+  "_id": "partner-aedas",
+  "_rev": "GEXMKa47MWvz5tPnIoLueH",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:38:07Z",
+  "country": "UK / Hong Kong",
+  "discipline": "Architecture & Master Planning",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Aedas logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-133556d4638efdd1f48c8b00b51afa61909c4818-100x100-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Aedas",
+  "shortCountry": "UK / HK"
+}

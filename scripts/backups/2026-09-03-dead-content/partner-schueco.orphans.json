@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:02Z",
+  "_id": "partner-schueco",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "Germany",
+  "discipline": "Facade Systems",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Schüco logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-a0420c2c58478b4b221eb2c2ef71b1db8fb16618-900x170-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Schüco"
+}

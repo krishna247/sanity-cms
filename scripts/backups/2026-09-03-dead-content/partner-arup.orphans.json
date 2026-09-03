@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:48Z",
+  "_id": "partner-arup",
+  "_rev": "MScPNk9ueXiUZ6ZHtV0Fwq",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:24Z",
+  "country": "United Kingdom",
+  "discipline": "Structural Engineering",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Arup logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-a46f1a6c5b76c5cb6bbd8a48320409d25a0dda5b-1024x316-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Arup",
+  "shortCountry": "UK"
+}

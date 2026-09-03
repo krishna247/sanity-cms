@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:04Z",
+  "_id": "partner-duravit",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "Germany",
+  "discipline": "Sanitaryware",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Duravit logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f6fabc88de6c02cedc2c3a9ed1f73a96e794c5e3-651x154-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Duravit"
+}

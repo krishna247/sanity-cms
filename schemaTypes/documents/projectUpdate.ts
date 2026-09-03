@@ -27,7 +27,7 @@ export default defineType({
       name: 'route',
       title: 'Anchor',
       type: 'route',
-      description: 'This is an anchor on /projects/updates, not a standalone page.',
+      description: 'Anchor id for this update. Updates render on their project page and in the /media feed, never as a standalone page.',
       validation: (rule) => rule.custom(validateProjectUpdateAnchor),
     }),
     defineField({
@@ -53,7 +53,6 @@ export default defineType({
       description:
         'Where the update card links to on the home page — a blog post, the media page, any internal document, or an external URL. Leave empty to link to the update’s project page.',
     }),
-    defineField({name: 'body', title: 'Body', type: 'portableText'}),
     defineField({
       name: 'media',
       title: 'Media',
@@ -64,13 +63,11 @@ export default defineType({
           title: 'Kind',
           type: 'string',
           initialValue: 'image',
-          options: {list: ['image', 'youtube']},
+          options: {list: ['image']},
         }),
         defineField({name: 'image', title: 'Image', type: 'imageWithAlt', hidden: ({parent}) => parent?.kind !== 'image'}),
-        defineField({name: 'youtubeUrl', title: 'YouTube URL', type: 'url', hidden: ({parent}) => parent?.kind !== 'youtube'}),
       ],
     }),
-    defineField({name: 'pdf', title: 'PDF', type: 'file', options: {accept: 'application/pdf'}}),
   ],
   orderings: [{title: 'Newest', name: 'dateDesc', by: [{field: 'date', direction: 'desc'}]}],
   preview: {

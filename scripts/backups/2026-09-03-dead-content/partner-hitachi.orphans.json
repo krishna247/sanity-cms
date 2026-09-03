@@ -1,0 +1,11 @@
+{
+  "_createdAt": "2026-06-30T07:37:59Z",
+  "_id": "partner-hitachi",
+  "_rev": "9LCiSJlzJ0ismCrmbRnD8z",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:38:00Z",
+  "country": "Japan",
+  "discipline": "HVAC",
+  "name": "Hitachi",
+  "shortCountry": "Japan"
+}

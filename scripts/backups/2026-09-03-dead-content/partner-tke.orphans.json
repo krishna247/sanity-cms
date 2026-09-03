@@ -1,0 +1,11 @@
+{
+  "_createdAt": "2026-06-30T07:37:55Z",
+  "_id": "partner-tke",
+  "_rev": "yvLBTJSmLZxRcxXLPBVbun",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:37:56Z",
+  "country": "Germany",
+  "discipline": "Vertical Transport",
+  "name": "TKE",
+  "shortCountry": "Germany"
+}

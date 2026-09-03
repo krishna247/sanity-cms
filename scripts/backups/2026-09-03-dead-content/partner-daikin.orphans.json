@@ -1,0 +1,21 @@
+{
+  "_createdAt": "2026-05-31T11:19:06Z",
+  "_id": "partner-daikin",
+  "_rev": "r8QPoU0XLRPq9k38cXwTsj",
+  "_type": "partner",
+  "_updatedAt": "2026-05-31T11:20:23Z",
+  "country": "Japan",
+  "discipline": "HVAC",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Daikin logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-500de6050e64122e076ba587c7f11e067ac235d5-300x65-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Daikin"
+}

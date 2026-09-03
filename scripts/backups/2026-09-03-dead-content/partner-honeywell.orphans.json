@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:53Z",
+  "_id": "partner-honeywell",
+  "_rev": "9LCiSJlzJ0ismCrmbRnHzH",
+  "_type": "partner",
+  "_updatedAt": "2026-06-30T07:38:08Z",
+  "country": "USA",
+  "discipline": "Building Systems & Automation",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Honeywell logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-2aab944931428e68e29dba50776e58294bd9db71-678x120-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Honeywell",
+  "shortCountry": "USA"
+}

@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:54Z",
+  "_id": "partner-bosch",
+  "_rev": "MScPNk9ueXiUZ6ZHtV0IWy",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:29Z",
+  "country": "Germany",
+  "discipline": "Security Systems",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "Bosch logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-2a2007a07b1850c7c968a221a69db18f98dd5f14-433x97-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "Bosch",
+  "shortCountry": "Germany"
+}

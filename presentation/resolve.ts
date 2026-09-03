@@ -33,7 +33,6 @@ export const resolve: PresentationPluginOptions['resolve'] = {
   locations: {
     homePage: locationFor('homePage', 'Home'),
     blogIndexPage: locationFor('blogIndexPage', 'Blog'),
-    updatesIndexPage: locationFor('updatesIndexPage', 'Project Updates'),
     page: locationFor('page', 'Page'),
     project: locationFor('project', 'Project'),
     blogPost: locationFor('blogPost', 'Blog Post'),

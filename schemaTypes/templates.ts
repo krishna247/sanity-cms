@@ -16,12 +16,6 @@ export const templates: Template[] = [
     value: {title: 'Blog', eyebrow: 'Blog', heading: 'Notes on building Hyderabad.'},
   },
   {
-    id: 'updatesIndexPage',
-    title: 'Updates Index',
-    schemaType: 'updatesIndexPage',
-    value: {title: 'Project Updates', eyebrow: 'Updates', heading: "Here's what we're building, this month."},
-  },
-  {
     id: 'navigation',
     title: 'Navigation',
     schemaType: 'navigation',

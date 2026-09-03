@@ -1,0 +1,22 @@
+{
+  "_createdAt": "2026-05-31T11:18:55Z",
+  "_id": "partner-kone",
+  "_rev": "MScPNk9ueXiUZ6ZHtV0Iqi",
+  "_type": "partner",
+  "_updatedAt": "2026-06-01T12:45:30Z",
+  "country": "Finland",
+  "discipline": "Elevators",
+  "logo": {
+    "_type": "imageWithAlt",
+    "alt": "KONE logo",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-479c465a41b89eedf0deaa77f88b5a04823cd2b2-1193x462-svg",
+        "_type": "reference"
+      }
+    }
+  },
+  "name": "KONE",
+  "shortCountry": "Finland"
+}

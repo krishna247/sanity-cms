@@ -1,0 +1,43 @@
+{
+  "_createdAt": "2026-05-31T11:19:12Z",
+  "_id": "pu-itower-2026-01",
+  "_rev": "h6RIlqYooS2c3gLVEZp8eE",
+  "_type": "projectUpdate",
+  "_updatedAt": "2026-05-31T16:19:55Z",
+  "body": [
+    {
+      "_key": "k9",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "k10",
+          "_type": "span",
+          "marks": [],
+          "text": "Structural pour completed up to level 24. Arup peer review on track for the next milestone set. Experience-centre opening at Nanakramguda announced for Q2."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "category": "milestone",
+  "date": "2026-01-01",
+  "headline": "January — structural milestone, level 24",
+  "pdf": {
+    "_type": "file",
+    "asset": {
+      "_ref": "file-9d02fed39fd70609ee79fa878f646457fd350e08-pdf",
+      "_type": "reference"
+    }
+  },
+  "project": {
+    "_ref": "project-sas-itower",
+    "_type": "reference"
+  },
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "itower-2026-01"
+    }
+  }
+}

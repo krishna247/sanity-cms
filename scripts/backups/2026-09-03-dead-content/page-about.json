@@ -1,0 +1,581 @@
+{
+  "_createdAt": "2026-05-31T11:20:23Z",
+  "_id": "page-about",
+  "_rev": "NYtiIxqee7F0fOwpqs5SVW",
+  "_system": {
+    "base": {
+      "id": "page-about",
+      "rev": "kHltHVDDYZYSymrFO65TI3"
+    }
+  },
+  "_type": "page",
+  "_updatedAt": "2026-09-02T14:26:21Z",
+  "pageBuilder": [
+    {
+      "_key": "k82",
+      "_type": "heroBlock",
+      "dek": "Founded in 2018. Headquartered in Hyderabad's Financial District. Founder-led, with a long view of the city.",
+      "title": "Creating landmarks<br />that define <em>Hyderabad</em>.",
+      "variant": "minimal"
+    },
+    {
+      "_key": "k89",
+      "_type": "proseBlock",
+      "body": [
+        {
+          "_key": "sb1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "sb1a",
+              "_type": "span",
+              "marks": [],
+              "text": "Dr. G.V. Rao entered real estate in "
+            },
+            {
+              "_key": "sb1b",
+              "_type": "span",
+              "marks": [
+                "em"
+              ],
+              "text": "2000"
+            },
+            {
+              "_key": "sb1c",
+              "_type": "span",
+              "marks": [],
+              "text": " — an industry outsider who believed Hyderabad deserved better than what was being built. He founded "
+            },
+            {
+              "_key": "sb1d",
+              "_type": "span",
+              "marks": [
+                "strong"
+              ],
+              "text": "SAS Infra in 2018"
+            },
+            {
+              "_key": "sb1e",
+              "_type": "span",
+              "marks": [],
+              "text": " to build to that standard."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "sb2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "sb2a",
+              "_type": "span",
+              "marks": [],
+              "text": "Our portfolio includes SAS Crown, "
+            },
+            {
+              "_key": "sb2b",
+              "_type": "span",
+              "marks": [
+                "em"
+              ],
+              "text": "the tallest residential tower in South India"
+            },
+            {
+              "_key": "sb2c",
+              "_type": "span",
+              "marks": [],
+              "text": "; SAS iTower, "
+            },
+            {
+              "_key": "sb2d",
+              "_type": "span",
+              "marks": [
+                "em"
+              ],
+              "text": "one of the four largest commercial developments in the world"
+            },
+            {
+              "_key": "sb2e",
+              "_type": "span",
+              "marks": [],
+              "text": "; and The Address, a curated luxury retail brand opening at SAS iTower and at further locations across the city."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "sb3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "sb3a",
+              "_type": "span",
+              "marks": [],
+              "text": "Each project is built with the world's best firms at every layer, sits inside the corridor that will define Hyderabad's next decade, and is engineered well above what code requires."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "sb4",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "sb4a",
+              "_type": "span",
+              "marks": [
+                "strong"
+              ],
+              "text": "We build for the long term."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "head": {
+        "eyebrow": "I — Our Story",
+        "heading": "An <em>industry outsider</em> who chose to build for the long term."
+      }
+    },
+    {
+      "_key": "k91",
+      "_type": "peopleBlock",
+      "head": {
+        "eyebrow": "II — Leadership",
+        "heading": "<em>Dr. G.V. Rao</em> · Chairman."
+      },
+      "people": [
+        {
+          "_key": "k90",
+          "_ref": "person-gv-rao",
+          "_type": "reference"
+        }
+      ],
+      "variant": "featured"
+    },
+    {
+      "_key": "about-letter",
+      "_type": "letterBlock",
+      "paragraphs": [
+        "Hyderabad is in the middle of becoming the city it will be for the next hundred years. The work that gets put in the ground now is the work that decides which version of the city wins.",
+        "I started SAS Infra because I believed Hyderabad deserved better than what was being built. That belief hasn’t changed. Neither has the standard we build to.",
+        "There’s more coming. We’re not close to done."
+      ]
+    },
+    {
+      "_key": "k92",
+      "_type": "quoteBlock",
+      "person": {
+        "_ref": "person-gv-rao",
+        "_type": "reference"
+      },
+      "quote": "I started SAS Infra because I believed Hyderabad deserved better than what was being built. That belief hasn't changed. Neither has the standard we build to.",
+      "roleOverride": "Chairman, SAS Infra"
+    },
+    {
+      "_key": "k98",
+      "_type": "peopleBlock",
+      "head": {
+        "dek": "Five directors lead day-to-day execution across construction, engineering, sales, and governance — each accountable for an outcome, not a department.",
+        "eyebrow": "III — The Team",
+        "heading": "A leadership group<br />with <em>operating depth</em>."
+      },
+      "people": [
+        {
+          "_key": "k93",
+          "_ref": "person-yadagiri-rao",
+          "_type": "reference"
+        },
+        {
+          "_key": "k94",
+          "_ref": "person-vamsi-vadlamudi",
+          "_type": "reference"
+        },
+        {
+          "_key": "k95",
+          "_ref": "person-parikshith",
+          "_type": "reference"
+        },
+        {
+          "_key": "k96",
+          "_ref": "person-jayasurya",
+          "_type": "reference"
+        },
+        {
+          "_key": "k97",
+          "_ref": "person-karthik",
+          "_type": "reference"
+        }
+      ],
+      "variant": "grid"
+    },
+    {
+      "_key": "k110",
+      "_type": "logoWallBlock",
+      "head": {
+        "dek": "Architecture, engineering, building systems, and finishes — each layer of an SAS Infra development is the work of a globally recognised specialist.",
+        "eyebrow": "IV — Global Partners",
+        "heading": "Global firms, <em>at every layer</em><br />of the building."
+      },
+      "partners": [
+        {
+          "_key": "k99",
+          "_ref": "partner-aedas",
+          "_type": "reference"
+        },
+        {
+          "_key": "k100",
+          "_ref": "partner-arup",
+          "_type": "reference"
+        },
+        {
+          "_key": "k101",
+          "_ref": "partner-coffey",
+          "_type": "reference"
+        },
+        {
+          "_key": "k102",
+          "_ref": "partner-godrej",
+          "_type": "reference"
+        },
+        {
+          "_key": "k103",
+          "_ref": "partner-siemens",
+          "_type": "reference"
+        },
+        {
+          "_key": "k104",
+          "_ref": "partner-honeywell",
+          "_type": "reference"
+        },
+        {
+          "_key": "k105",
+          "_ref": "partner-bosch",
+          "_type": "reference"
+        },
+        {
+          "_key": "k106",
+          "_ref": "partner-kone",
+          "_type": "reference"
+        },
+        {
+          "_key": "k107",
+          "_ref": "partner-schindler",
+          "_type": "reference"
+        },
+        {
+          "_key": "k108",
+          "_ref": "partner-otis",
+          "_type": "reference"
+        },
+        {
+          "_key": "k109",
+          "_ref": "partner-mitsubishi",
+          "_type": "reference"
+        }
+      ]
+    },
+    {
+      "_key": "partnerDisciplines-about",
+      "_type": "partnerDisciplinesBlock",
+      "disciplines": [
+        {
+          "_key": "disc-01",
+          "_type": "discipline",
+          "desc": "Master planning, building form, and architectural vocabulary.",
+          "firms": [
+            {
+              "_key": "firm-aedas",
+              "_type": "firm",
+              "name": "Aedas"
+            }
+          ],
+          "num": "01",
+          "title": "Architecture & Master Planning"
+        },
+        {
+          "_key": "disc-02",
+          "_type": "discipline",
+          "desc": "Tower structure, seismic and wind engineering, and peer review.",
+          "firms": [
+            {
+              "_key": "firm-meinhardt",
+              "_type": "firm",
+              "name": "Meinhardt"
+            },
+            {
+              "_key": "firm-sterling",
+              "_type": "firm",
+              "name": "Sterling"
+            }
+          ],
+          "num": "02",
+          "title": "Structural Engineering"
+        },
+        {
+          "_key": "disc-03",
+          "_type": "discipline",
+          "desc": "Power, fire-life-safety, and intelligent building controls.",
+          "firms": [
+            {
+              "_key": "firm-honeywell",
+              "_type": "firm",
+              "name": "Honeywell"
+            },
+            {
+              "_key": "firm-godrej",
+              "_type": "firm",
+              "name": "Godrej"
+            }
+          ],
+          "num": "03",
+          "title": "Building Systems & Automation"
+        },
+        {
+          "_key": "disc-04",
+          "_type": "discipline",
+          "desc": "High-speed elevators, lift planning, and traffic analysis.",
+          "firms": [
+            {
+              "_key": "firm-mitsubishi-electric",
+              "_type": "firm",
+              "name": "Mitsubishi Electric"
+            },
+            {
+              "_key": "firm-tke",
+              "_type": "firm",
+              "name": "TKE"
+            },
+            {
+              "_key": "firm-schindler",
+              "_type": "firm",
+              "name": "Schindler"
+            }
+          ],
+          "num": "04",
+          "title": "Vertical Transport"
+        },
+        {
+          "_key": "disc-05",
+          "_type": "discipline",
+          "desc": "Curtain-wall systems, glazing, and the building envelope.",
+          "firms": [
+            {
+              "_key": "firm-alumil",
+              "_type": "firm",
+              "name": "Alumil"
+            }
+          ],
+          "num": "05",
+          "title": "Façade & Glazing"
+        },
+        {
+          "_key": "disc-06",
+          "_type": "discipline",
+          "desc": "Climate, ventilation, and energy-efficient air systems.",
+          "firms": [
+            {
+              "_key": "firm-hitachi",
+              "_type": "firm",
+              "name": "Hitachi"
+            }
+          ],
+          "num": "06",
+          "title": "HVAC"
+        },
+        {
+          "_key": "disc-07",
+          "_type": "discipline",
+          "desc": "Interior finishes, fittings, and premium sanitaryware.",
+          "firms": [
+            {
+              "_key": "firm-carimali",
+              "_type": "firm",
+              "name": "Carimali"
+            },
+            {
+              "_key": "firm-toto",
+              "_type": "firm",
+              "name": "TOTO"
+            }
+          ],
+          "num": "07",
+          "title": "Finishes & Sanitaryware"
+        },
+        {
+          "_key": "disc-08",
+          "_type": "discipline",
+          "desc": "Commercial leasing, occupier strategy, and market advisory.",
+          "firms": [
+            {
+              "_key": "firm-cbre",
+              "_type": "firm",
+              "name": "CBRE"
+            },
+            {
+              "_key": "firm-jll",
+              "_type": "firm",
+              "name": "JLL"
+            }
+          ],
+          "num": "08",
+          "title": "Leasing & Advisory"
+        }
+      ]
+    },
+    {
+      "_key": "about-credentials",
+      "_type": "credentialsBlock",
+      "award": {
+        "body": "SAS Crown was honoured at the Times Business Awards 2025 as a Landmark Project in South India, recognised for its scale, design ambition, and contribution to the Hyderabad skyline.",
+        "line": "Landmark Project in South India — SAS Crown",
+        "name": "Times Business Awards 2025",
+        "source": "The Times of India"
+      },
+      "credentials": [
+        {
+          "_key": "cred-leed-gold",
+          "_type": "credential",
+          "body": "SAS iTower is being designed and built to LEED Gold standards. The final rating is awarded by the USGBC upon completion.",
+          "mark": "LEED Gold",
+          "org": "U.S. Green Building Council"
+        },
+        {
+          "_key": "cred-well-silver",
+          "_type": "credential",
+          "body": "SAS iTower is being designed and built to WELL Silver standards. The final rating is awarded by the IWBI upon completion.",
+          "mark": "WELL Silver",
+          "org": "International WELL Building Institute"
+        }
+      ],
+      "head": {
+        "eyebrow": "Recognition & Credentials",
+        "heading": "Recognised, and <em>certified</em>."
+      },
+      "rera": [
+        {
+          "_key": "rera-crown",
+          "_type": "reraRegistration",
+          "body": "Telangana RERA registered — RERA No. P02400002786",
+          "project": "SAS Crown"
+        },
+        {
+          "_key": "rera-itower",
+          "_type": "reraRegistration",
+          "body": "Telangana RERA registered — RERA No. P02400000878",
+          "project": "SAS iTower"
+        }
+      ],
+      "reraHeading": "RERA Registrations",
+      "reraNote": "Full registration numbers available at telangana.rera.gov.in."
+    },
+    {
+      "_key": "k117",
+      "_type": "timelineBlock",
+      "head": {
+        "dek": "The dates below mark the moments that shaped what SAS Infra has become.",
+        "eyebrow": "V — Milestones",
+        "heading": "From <em>2000</em> to today."
+      },
+      "milestones": [
+        {
+          "_key": "m1",
+          "body": "Dr. G.V. Rao enters the real estate industry in Hyderabad — an outsider with a background in veterinary science and organic farming.",
+          "title": "Dr. G.V. Rao enters real estate",
+          "year": "2000"
+        },
+        {
+          "_key": "m2",
+          "body": "Dr. G.V. Rao founds SAS Infra to build to a higher standard than the city was being given.",
+          "title": "SAS Infra founded",
+          "year": "2018"
+        },
+        {
+          "_key": "m4",
+          "body": "Construction begins at Nanakramguda for South India's tallest commercial development, built with the world's best firms at every layer",
+          "title": "SAS iTower breaks ground",
+          "year": "2018"
+        },
+        {
+          "_key": "m5",
+          "body": "South India's tallest residential tower revealed at Kokapet — G+59, 244 metres.",
+          "title": "SAS Crown announced",
+          "year": "2021"
+        },
+        {
+          "_key": "m6",
+          "body": "SAS Infra's curated luxury retail brand announced, with its first location at SAS iTower.",
+          "title": "The Address announced",
+          "year": "2024"
+        },
+        {
+          "_key": "m7",
+          "body": "SAS Infra's next residential development enters pre-launch.",
+          "title": "Next residential development",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "_key": "k120",
+      "_type": "ctaBlock",
+      "actions": [
+        {
+          "_key": "k118",
+          "_type": "link",
+          "kind": "internal",
+          "label": "Schedule a Conversation",
+          "reference": {
+            "_ref": "page-contact",
+            "_type": "reference"
+          },
+          "variant": "primary"
+        },
+        {
+          "_key": "k119",
+          "_type": "link",
+          "anchorId": "projects",
+          "kind": "anchor",
+          "label": "Explore Our Projects",
+          "reference": {
+            "_ref": "homePage",
+            "_type": "reference"
+          },
+          "variant": "secondary"
+        }
+      ],
+      "head": {
+        "dek": "Our team will arrange a tour of the show home at Kokapet, the iTower experience centre at Nanakramguda, or a private meeting at our office in Financial District.",
+        "eyebrow": "Visit SAS Infra",
+        "heading": "Come see <em>what we have built</em>,<br />and what we are building next."
+      }
+    }
+  ],
+  "route": {
+    "segment": {
+      "_type": "slug",
+      "current": "about"
+    }
+  },
+  "seo": {
+    "metaDescription": "A prominent brand in the city, we're known for delivering luxury residential apartments and premium commercial spaces - SAS Infra Hyderabad",
+    "metaTitle": "About SAS Infra Hyderabad | Real Estate Developer",
+    "ogImage": {
+      "_type": "imageWithAlt",
+      "alt": "About SAS Infra — twenty-five years building Hyderabad’s landmarks.",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6de5d69e1080de639efcf603277effce2859e50b-1200x630-png",
+          "_type": "reference"
+        }
+      }
+    }
+  },
+  "title": "About"
+}

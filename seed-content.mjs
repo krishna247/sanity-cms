@@ -1,3 +1,6 @@
+// HISTORICAL SEED — predates the 2026-09-03 schema trim (partner discipline/country,
+// projectUpdate body/pdf, updatesIndexPage, plateAnatomy/consultants/brochure blocks
+// no longer exist). Do NOT run against production; kept for reference only.
 // One-off content population for the v2.6 content architecture.
 // Source of truth: repos/frontend (page copy from git history d4bd117~1, assets
 // from repos/frontend/public). Idempotent: dedupes asset uploads by
