@@ -494,15 +494,15 @@ export const feedBlock = defineType({
     // List feeds (Updates / Press) render title + meta + excerpt per item.
     defineField({
       ...textStyleField('itemTitleStyle', 'Item title', 'Updates and Press feeds.'),
-      hidden: ({parent}) => !['updates', 'press'].includes(parent?.source),
+      hidden: ({parent}) => parent?.source === 'projects',
     }),
     defineField({
       ...textStyleField('itemMetaStyle', 'Item meta', 'Updates and Press feeds.'),
-      hidden: ({parent}) => !['updates', 'press'].includes(parent?.source),
+      hidden: ({parent}) => parent?.source === 'projects',
     }),
     defineField({
       ...textStyleField('itemExcerptStyle', 'Item excerpt', 'Updates and Press feeds.'),
-      hidden: ({parent}) => !['updates', 'press'].includes(parent?.source),
+      hidden: ({parent}) => !['blog', 'jobs'].includes(parent?.source),  // an excerpt renders only on the generic Blog / Jobs feed cards
     }),
     // The Projects feed renders catalogue cards.
     defineField({
@@ -1008,9 +1008,6 @@ export const locationMapBlock = defineType({
         }),
       ],
     }),
-    textStyleField('editorialCardStyle', 'Editorial card heading'),
-    textStyleField('ruleLabelStyle', 'Vertical rule label'),
-    textStyleField('editorialLabelStyle', 'Editorial card label'),
     textStyleField('footnoteStyle', 'Footnote'),
   ],
   preview: {select: {title: 'overture.heading', subtitle: 'mapConfig.mapProject'}},

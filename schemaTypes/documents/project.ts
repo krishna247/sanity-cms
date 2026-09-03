@@ -185,6 +185,7 @@ export default defineType({
     }),
     defineField({name: 'catalogueKind', title: 'Catalogue Kind', type: 'string', group: 'catalogue'}),
     defineField({name: 'catalogueTitleHtml', title: 'Catalogue Title (HTML)', type: 'string', group: 'catalogue'}),
+    defineField({...textStyleField('catalogueTitleStyle', 'Catalogue title', "Wins over the home feed's Card title default for this project."), group: 'catalogue', fieldset: undefined}),
     defineField({name: 'flyoutTitleHtml', title: 'Flyout Title (HTML)', type: 'string', group: 'catalogue', description: 'Title on the nav-flyout card; may carry <br> and <em>. Falls back to the Catalogue Title.'}),
     defineField({name: 'catalogueCta', title: 'Catalogue CTA', type: 'string', group: 'catalogue'}),
     defineField({name: 'catalogueOrder', title: 'Catalogue order', type: 'number', group: 'catalogue', description: 'Position in the home catalogue and the nav flyout (1 = first). Projects without a value follow, iTower then Crown, then the rest alphabetically.'}),

@@ -1,11 +1,13 @@
 import {UserIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
+import {textStyleField, textStylesFieldset} from '../objects/textStyle'
 
 export default defineType({
   name: 'person',
   title: 'Person',
   type: 'document',
   icon: UserIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({
       name: 'name',
@@ -33,6 +35,9 @@ export default defineType({
       },
     }),
     defineField({name: 'jobTitle', title: 'Job Title', type: 'string'}),
+    textStyleField('nameStyle', 'Name', 'Wins over the block-level Name style wherever this person is shown.'),
+    textStyleField('jobTitleStyle', 'Role'),
+    textStyleField('bioStyle', 'Bio'),
     defineField({name: 'bio', title: 'Bio', type: 'text', rows: 4}),
     defineField({
       name: 'profile',

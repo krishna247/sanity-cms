@@ -1,13 +1,17 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
+import {textStyleField, textStylesFieldset} from '../objects/textStyle'
 
 export default defineType({
   name: 'pressItem',
   title: 'Press Item',
   type: 'document',
   icon: DocumentTextIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
+    textStyleField('titleStyle', 'Title', 'Wins over the media wall default for this item.'),
+    textStyleField('metaStyle', 'Meta', 'Outlet · date · duration.'),
     // press = a clipping/feature; video = a SAS Infra film (YouTube). Drives the
     // /media wall card (play badge + duration chip) and the derived thumbnail.
     defineField({

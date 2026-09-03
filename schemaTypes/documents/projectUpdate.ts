@@ -1,5 +1,6 @@
 import {ThListIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
+import {textStyleField, textStylesFieldset} from '../objects/textStyle'
 import {validateProjectUpdateAnchor} from '../utils/routing'
 
 export default defineType({
@@ -7,6 +8,7 @@ export default defineType({
   title: 'Project Update',
   type: 'document',
   icon: ThListIcon,
+  fieldsets: [textStylesFieldset],
   fields: [
     defineField({
       name: 'date',
@@ -42,6 +44,8 @@ export default defineType({
       },
     }),
     defineField({name: 'headline', title: 'Headline', type: 'string', validation: (rule) => rule.required()}),
+    textStyleField('headlineStyle', 'Headline', 'Wins over the feed default wherever this update is shown.'),
+    textStyleField('metaStyle', 'Meta', 'Category · date.'),
     defineField({
       name: 'cardLink',
       title: 'Card link',

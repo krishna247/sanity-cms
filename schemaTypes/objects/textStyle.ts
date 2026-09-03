@@ -1,4 +1,5 @@
 import {defineField} from 'sanity'
+import {TextStyleInput} from './TextStyleInput'
 
 // ─── "Text style" picker ──────────────────────────────────────────────────────
 // One dropdown, reused beside every editorial text field in the schema. The
@@ -37,7 +38,9 @@ export const textStylesFieldset = {
   name: 'textStyles',
   title: 'Text styles',
   description: 'Optional. Change the style of one piece of text in this section. Every option is one of the site\'s 14 named styles (sizes shown at desktop), so the page always stays on the system.',
-  options: {collapsible: true, collapsed: true},
+  // Open by default: a collapsed group at the foot of a nested dialog was the
+  // main reason editors thought the control was missing.
+  options: {collapsible: true, collapsed: false},
 }
 
 /** The picker for text field `<name minus "Style">`. Pass the plain-English
@@ -51,4 +54,6 @@ export const textStyleField = (name: string, title: string, description?: string
     options: {list: TEXT_STYLE_OPTIONS},
     initialValue: 'default',
     fieldset: 'textStyles',
+    // Custom input: shows "As designed" when the value is missing (see TextStyleInput.tsx).
+    components: {input: TextStyleInput},
   })
