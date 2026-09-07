@@ -1449,29 +1449,6 @@ export const partnerDisciplinesBlock = defineType({
 // Models the VISIBLE content of the About page's Phase-3 sections so it becomes
 // CMS-editable while AboutPage.astro keeps the exact bespoke DOM.
 
-export const letterBlock = defineType({
-  name: 'letterBlock',
-  title: 'Letter',
-  type: 'object',
-  icon: DocumentTextIcon,
-  description: "Plain paragraphs of first-person copy (About: the chairman's letter, shown inside the chairman profile).",
-  fieldsets: [textStylesFieldset],
-  fields: [
-    defineField({
-      name: 'paragraphs',
-      title: 'Paragraphs',
-      type: 'array',
-      of: [defineArrayMember({type: 'string'})],
-      validation: (rule) => rule.min(1),
-    }),
-    textStyleField('paragraphsStyle', 'Paragraphs', 'One style for every paragraph.'),
-  ],
-  preview: {
-    select: {first: 'paragraphs.0'},
-    prepare: ({first}) => ({title: 'Letter', subtitle: first}),
-  },
-})
-
 export const credentialsBlock = defineType({
   name: 'credentialsBlock',
   title: 'Recognition & Credentials',
@@ -1582,7 +1559,6 @@ export const pagePageBuilder = defineType({
     defineArrayMember({type: 'cardGridBlock'}),
     defineArrayMember({type: 'feedBlock'}),
     defineArrayMember({type: 'partnerDisciplinesBlock'}),
-    defineArrayMember({type: 'letterBlock'}),
     defineArrayMember({type: 'credentialsBlock'}),
   ],
 })
@@ -1644,7 +1620,6 @@ export const blockTypes = [
   addressSectionBlock,
   constructionFeedBlock,
   partnerDisciplinesBlock,
-  letterBlock,
   credentialsBlock,
   homePageBuilder,
   pagePageBuilder,

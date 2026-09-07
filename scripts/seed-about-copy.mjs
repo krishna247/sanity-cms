@@ -6,7 +6,6 @@ import {getCliClient} from 'sanity/cli'
 // about.html is byte-identical before and after the seed.
 //
 // Blocks written (stable _keys, inserted in RENDERED order):
-//   about-letter               letterBlock       after k91  (chairman peopleBlock)
 //   partnerDisciplines-about   partnerDisciplinesBlock — rebuilt to the deck p35
 //                              8-discipline / 14-firm wall (inline `firms`, logos
 //                              left unset → the site's own /images/partners files),
@@ -26,17 +25,6 @@ const client = getCliClient().withConfig({dataset: 'production', apiVersion: '20
 
 const PUBLISHED = 'page-about'
 const DRAFT = 'drafts.page-about'
-
-// ── Chairman letter (AboutPage.astro CHAIRMAN_LETTER) ─────────────────────
-const letter = {
-  _type: 'letterBlock',
-  _key: 'about-letter',
-  paragraphs: [
-    'Hyderabad is in the middle of becoming the city it will be for the next hundred years. The work that gets put in the ground now is the work that decides which version of the city wins.',
-    'I started SAS Infra because I believed Hyderabad deserved better than what was being built. That belief hasn’t changed. Neither has the standard we build to.',
-    'There’s more coming. We’re not close to done.',
-  ],
-}
 
 // ── Partner wall (AboutPage.astro PARTNER_WALL — deck p35) ────────────────
 // Firm _keys are the identity the component uses to find each firm's own
@@ -134,13 +122,12 @@ async function seed(id) {
   need('k110')
 
   const tx = client.transaction()
-  // 1. letter — after the chairman peopleBlock (k91)
-  if (keys.has(letter._key)) tx.patch(id, (p) => p.set({[at(letter._key)]: letter}))
-  else tx.patch(id, (p) => p.insert('after', at('k91'), [letter]))
-  // 2. partner wall — rebuild + move to right after the logoWallBlock (k110)
+  // (The chairman letterBlock this script used to insert after k91 was retired
+  //  2026-09-07 — the About page no longer renders one.)
+  // 1. partner wall — rebuild + move to right after the logoWallBlock (k110)
   if (keys.has(partnerWall._key)) tx.patch(id, (p) => p.unset([at(partnerWall._key)]))
   tx.patch(id, (p) => p.insert('after', at('k110'), [partnerWall]))
-  // 3. credibility band — right after the wall
+  // 2. credibility band — right after the wall
   if (keys.has(credentials._key)) tx.patch(id, (p) => p.set({[at(credentials._key)]: credentials}))
   else tx.patch(id, (p) => p.insert('after', at(partnerWall._key), [credentials]))
   await tx.commit()
