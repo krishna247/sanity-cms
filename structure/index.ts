@@ -1,6 +1,7 @@
 import {
   CogIcon,
   DocumentIcon,
+  EditIcon,
   DocumentsIcon,
   DocumentTextIcon,
   HomeIcon,
@@ -39,10 +40,32 @@ function flagshipProject(S: StructureBuilder, id: string, title: string) {
     .child(S.document().schemaType('project').documentId(id).title(title))
 }
 
+// Every document with an unpublished draft, newest edit first. A change is only
+// on the live site once its document is PUBLISHED (the publish webhook rebuilds
+// the site; the Presentation preview shows drafts, so an edit can look "done"
+// there while the live footer/page is still the published copy — the footer
+// labels edited on 4 Sep sat here unpublished for four days). This pane is the
+// one place that shows what is still waiting.
+function unpublishedChanges(S: StructureBuilder) {
+  return S.listItem()
+    .id('unpublished-changes')
+    .title('Unpublished changes')
+    .icon(EditIcon)
+    .child(
+      S.documentList()
+        .title('Unpublished changes')
+        .apiVersion('2025-01-01')
+        .filter('_id in path("drafts.**") && !(_type in ["sanity.previewUrlSecret", "sanity.imageAsset", "sanity.fileAsset"])')
+        .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+    )
+}
+
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content')
     .items([
+      unpublishedChanges(S),
+      S.divider(),
       singleton(S, 'siteSettings', 'Site Settings', CogIcon),
       singleton(S, 'navigation', 'Navigation', MenuIcon),
       S.divider(),

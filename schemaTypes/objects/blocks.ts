@@ -1533,6 +1533,11 @@ export const homePageBuilder = defineType({
     defineArrayMember({type: 'featureGridBlock'}),
     defineArrayMember({type: 'statsStripBlock'}),
     defineArrayMember({type: 'feedBlock'}),
+    // The Home partner marquee (HomePage.astro `block('logoWallBlock')`) has been
+    // a logoWallBlock in the homePage document since the restore-homepage seed,
+    // but the member was never listed here, so the Studio showed it as "Item of
+    // type logoWallBlock not valid for this list" — uneditable.
+    defineArrayMember({type: 'logoWallBlock'}),
     defineArrayMember({type: 'ctaBlock'}),
     defineArrayMember({type: 'contactFormBlock'}),
     defineArrayMember({type: 'mapBlock'}),

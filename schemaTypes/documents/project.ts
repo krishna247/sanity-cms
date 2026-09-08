@@ -83,7 +83,14 @@ export default defineType({
       type: 'array',
       group: 'content',
       of: [
+        // Named members: an item's stored `_type` must equal the member name, or
+        // the Studio refuses to edit it ("Item of type spec not valid for this
+        // list"). iTower was seeded with `_type: 'spec'` / `'amenity'` while the
+        // members here were anonymous (implicit name `object`) — 22 uneditable
+        // rows. scripts/fix-array-item-types.mjs stamps Crown's (typeless) rows.
         defineArrayMember({
+          name: 'spec',
+          title: 'Specification',
           type: 'object',
           fieldsets: [textStylesFieldset],
           fields: [
@@ -104,6 +111,8 @@ export default defineType({
       group: 'content',
       of: [
         defineArrayMember({
+          name: 'amenity',
+          title: 'Amenity',
           type: 'object',
           fieldsets: [textStylesFieldset],
           fields: [
