@@ -10,6 +10,7 @@ import {structure} from './structure'
 import {oldStructure} from './structure/old'
 import {oldSchemaTypes} from './schemaTypes/old'
 import {resolve} from './presentation/resolve'
+import {DocumentDraftBanner, publishingTool, ToolMenuWithCount} from './studio/publishing'
 
 const guardedIds = new Set<string>(GUARDED_DOCUMENT_IDS)
 const singletonTypes = new Set<string>(SINGLETON_IDS)
@@ -53,9 +54,15 @@ export default defineConfig([
       }),
       visionTool(),
     ],
+    // "Publishing" tab: the queue of unpublished drafts (studio/publishing);
+    // the tool menu shows how many are waiting in the tab title.
+    tools: (prev) => [...prev, publishingTool],
+    studio: {components: {toolMenu: ToolMenuWithCount}},
     document: {
       actions: filterDocumentActions,
     },
+    // Banner on every document form that has unpublished changes.
+    form: {components: {input: DocumentDraftBanner}},
     schema: {types: schemaTypes, templates: mergeTemplates},
   },
   {

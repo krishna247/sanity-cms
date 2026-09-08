@@ -1,7 +1,7 @@
 import {
   CogIcon,
   DocumentIcon,
-  EditIcon,
+  PublishIcon,
   DocumentsIcon,
   DocumentTextIcon,
   HomeIcon,
@@ -15,6 +15,7 @@ import {
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
 import type {ComponentType} from 'react'
 import {FIXED_PAGE_IDS} from '../schemaTypes/utils/routing'
+import {PublishingQueuePane} from '../studio/publishing'
 
 function singleton(S: StructureBuilder, type: string, title: string, icon: ComponentType) {
   return S.listItem()
@@ -40,31 +41,26 @@ function flagshipProject(S: StructureBuilder, id: string, title: string) {
     .child(S.document().schemaType('project').documentId(id).title(title))
 }
 
-// Every document with an unpublished draft, newest edit first. A change is only
-// on the live site once its document is PUBLISHED (the publish webhook rebuilds
-// the site; the Presentation preview shows drafts, so an edit can look "done"
-// there while the live footer/page is still the published copy — the footer
-// labels edited on 4 Sep sat here unpublished for four days). This pane is the
-// one place that shows what is still waiting.
-function unpublishedChanges(S: StructureBuilder) {
+// Every document with an unpublished draft, newest edit first, with who edited
+// it, what changed, and Publish / Discard. A change is only on the live site
+// once its document is PUBLISHED (the publish webhook rebuilds the site); the
+// Presentation preview shows drafts, so an edit can look "done" there while
+// the live page is still the published copy — the footer labels edited on
+// 4 Sep sat unpublished for four days. The same queue is the "Publishing" tab
+// in the top bar (studio/publishing).
+function publishingQueue(S: StructureBuilder) {
   return S.listItem()
-    .id('unpublished-changes')
-    .title('Unpublished changes')
-    .icon(EditIcon)
-    .child(
-      S.documentList()
-        .title('Unpublished changes')
-        .apiVersion('2025-01-01')
-        .filter('_id in path("drafts.**") && !(_type in ["sanity.previewUrlSecret", "sanity.imageAsset", "sanity.fileAsset"])')
-        .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
-    )
+    .id('publishing-queue')
+    .title('Publishing queue')
+    .icon(PublishIcon)
+    .child(S.component(PublishingQueuePane).id('publishing-queue').title('Publishing queue'))
 }
 
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content')
     .items([
-      unpublishedChanges(S),
+      publishingQueue(S),
       S.divider(),
       singleton(S, 'siteSettings', 'Site Settings', CogIcon),
       singleton(S, 'navigation', 'Navigation', MenuIcon),
