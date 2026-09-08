@@ -29,6 +29,7 @@ const RETIRED_BLOCKS = new Set(['plateAnatomyBlock', 'consultantsBlock', 'brochu
 
 const projects = await client.fetch('*[_type == "project"]{_id, specifications, amenities, pageBuilder}')
 let touched = 0
+let snapshots = 0
 for (const doc of projects) {
   const sets = {}
   const unsets = []
@@ -52,6 +53,7 @@ for (const doc of projects) {
   if (unsets.length) {
     mkdirSync(dir, {recursive: true})
     writeFileSync(`${dir}/${doc._id}.json`, JSON.stringify(await client.getDocument(doc._id), null, 2))
+    snapshots++
   }
   let patch = client.patch(doc._id)
   if (nSets) patch = patch.set(sets)
@@ -60,4 +62,4 @@ for (const doc of projects) {
   console.log('   rev', res._rev.slice(0, 8))
   touched++
 }
-console.log(DRY ? 'dry run — nothing written' : `done; ${touched} document(s) patched${touched ? `; snapshots in ${dir}` : ''}`)
+console.log(DRY ? 'dry run — nothing written' : `done; ${touched} document(s) patched${snapshots ? `; ${snapshots} snapshot(s) in ${dir}` : ''}`)
