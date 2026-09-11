@@ -6,7 +6,6 @@ import {resolveHref, type RoutableDocument} from '../../lib/routing'
 const BY_TYPE: Record<string, string> = {
   siteSettings: 'Every page (site settings)',
   navigation: 'Every page (header and footer)',
-  pressItem: '/media',
   projectUpdate: '/media',
   partner: 'Home and About partner walls',
   person: 'About page and blog bylines',

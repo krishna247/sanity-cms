@@ -6,7 +6,6 @@ import blogIndexPage from './documents/blogIndexPage'
 import navigation from './documents/navigation'
 import person from './documents/person'
 import partner from './documents/partner'
-import pressItem from './documents/pressItem'
 import projectUpdate from './documents/projectUpdate'
 import category from './documents/category'
 import siteSettings from './singletons/siteSettings'
@@ -32,7 +31,6 @@ export const schemaTypes = [
   // Reusable library documents
   person,
   partner,
-  pressItem,
   category,
   // Legacy document kept readable while the greenfield model moves to person.
   // Singletons

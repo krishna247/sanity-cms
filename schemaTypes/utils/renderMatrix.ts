@@ -33,7 +33,6 @@ export const DEAD_SLOTS: Record<string, Record<string, string[]>> = {
     contactFormBlock: ['head.eyebrow', 'head.heading', 'head.dek'],
     mapBlock: ['head.eyebrow', 'head.heading', 'head.dek', 'location', 'footnote', 'markerCategories', 'pointsOfInterest', 'hiddenLocalities'],
   },
-  'page-media': {feedBlock: HEAD_ALL.concat(['cta'])},
   'page-privacy': {proseBlock: HEAD_ALL, ctaBlock: ['head.eyebrow', 'head.heading', 'note']},
   'page-terms': {proseBlock: HEAD_ALL, ctaBlock: ['head.eyebrow', 'head.heading', 'note']},
   'page-cookies': {proseBlock: HEAD_ALL, ctaBlock: ['head.eyebrow', 'head.heading', 'note']},

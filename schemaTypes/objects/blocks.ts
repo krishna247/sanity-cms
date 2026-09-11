@@ -474,7 +474,6 @@ export const feedBlock = defineType({
         list: [
           {title: 'Projects', value: 'projects'},
           {title: 'Updates', value: 'updates'},
-          {title: 'Press', value: 'press'},
           {title: 'Blog', value: 'blog'},
         ],
       },
@@ -483,25 +482,17 @@ export const feedBlock = defineType({
     defineField({name: 'limit', title: 'Limit', type: 'number', initialValue: 3}),
     defineField({
       name: 'itemCtaLabel', title: 'Item link text', type: 'string', placeholder: 'Read more',
-      description: 'Text of the link at the foot of each card in an Updates / Press / Blog / Jobs feed (defaults to "Read more").',
-      hidden: ({parent}) => ['projects', 'press'].includes(parent?.source),
+      description: 'Text of the link at the foot of each card in an Updates / Blog / Jobs feed (defaults to "Read more").',
+      hidden: ({parent}) => parent?.source === 'projects',
     }),
-    // Media-wall chrome — only the bespoke /media wall renders these.
-    defineField({name: 'filterLabel', title: 'Filter label', type: 'string', description: 'The small kicker before the category pills on the media wall (default: “Filter”).', hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({name: 'allLabel', title: '“All” pill label', type: 'string', description: 'Text of the first filter pill, which shows every item (default: “All”). The other pills are the press items’ categories.', hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({name: 'countNoun', title: 'Item count — singular noun', type: 'string', description: 'The noun after the count when it is 1, e.g. “item” → “1 item” (default: “item”).', hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({name: 'countNounPlural', title: 'Item count — plural noun', type: 'string', description: 'The noun after the count otherwise, e.g. “items” → “20 items” (default: “items”).', hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({...textStyleField('itemCtaLabelStyle', 'Item link text', 'Updates feeds.'), hidden: ({parent}) => ['projects', 'press'].includes(parent?.source)}),
-    defineField({...textStyleField('filterLabelStyle', 'Filter label'), hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({...textStyleField('allLabelStyle', 'Filter pills', 'One style for every pill, incl. All.'), hidden: ({parent}) => parent?.source !== 'press'}),
-    defineField({...textStyleField('countNounStyle', 'Item count', 'The “20 items” counter.'), hidden: ({parent}) => parent?.source !== 'press'}),
-    // List feeds (Updates / Press) render title + meta + excerpt per item.
+    defineField({...textStyleField('itemCtaLabelStyle', 'Item link text', 'Updates feeds.'), hidden: ({parent}) => parent?.source === 'projects'}),
+    // List feeds (Updates / Blog) render title + meta + excerpt per item.
     defineField({
-      ...textStyleField('itemTitleStyle', 'Item title', 'Updates and Press feeds.'),
+      ...textStyleField('itemTitleStyle', 'Item title', 'Updates and Blog feeds.'),
       hidden: ({parent}) => parent?.source === 'projects',
     }),
     defineField({
-      ...textStyleField('itemMetaStyle', 'Item meta', 'Updates and Press feeds.'),
+      ...textStyleField('itemMetaStyle', 'Item meta', 'Updates and Blog feeds.'),
       hidden: ({parent}) => parent?.source === 'projects',
     }),
     defineField({
