@@ -533,6 +533,122 @@ export const feedBlock = defineType({
   preview: {select: {title: 'head.heading', subtitle: 'source'}},
 })
 
+// The bespoke /media wall — a contact-sheet grid of press clippings + SAS Infra
+// films. Each entry is authored INLINE here (add / remove / drag to reorder in
+// the Page Builder), so the whole wall is managed on the Media page itself.
+// Rendered by MediaPage.astro; the fields mirror the former standalone pressItem.
+export const mediaWallBlock = defineType({
+  name: 'mediaWallBlock',
+  title: 'Media Wall',
+  type: 'object',
+  icon: PlayIcon,
+  fieldsets: [textStylesFieldset],
+  fields: [
+    // Chrome — the filter bar above the grid.
+    defineField({name: 'filterLabel', title: 'Filter label', type: 'string', description: 'The small kicker before the category pills (default: “Filter”).'}),
+    defineField({name: 'allLabel', title: '“All” pill label', type: 'string', description: 'Text of the first filter pill, which shows every entry (default: “All”). The other pills are the entries’ categories.'}),
+    defineField({name: 'countNoun', title: 'Item count — singular noun', type: 'string', description: 'The noun after the count when it is 1, e.g. “item” → “1 item” (default: “item”).'}),
+    defineField({name: 'countNounPlural', title: 'Item count — plural noun', type: 'string', description: 'The noun after the count otherwise, e.g. “items” → “20 items” (default: “items”).'}),
+    // Entries — each is one card on the wall.
+    defineField({
+      name: 'items',
+      title: 'Entries',
+      type: 'array',
+      description: 'Each entry is one card on the wall. Add, remove or drag to reorder; the order here is the order on the page.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'mediaWallItem',
+          title: 'Media entry',
+          icon: DocumentTextIcon,
+          fieldsets: [textStylesFieldset],
+          fields: [
+            defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
+            // press = a clipping/feature; video = a SAS Infra film (YouTube). Drives
+            // the card (play badge + duration chip) and the derived thumbnail.
+            defineField({
+              name: 'kind',
+              title: 'Kind',
+              type: 'string',
+              options: {list: ['press', 'video'], layout: 'radio'},
+              initialValue: 'press',
+              validation: (rule) => rule.required(),
+            }),
+            // Filter group for the wall (never shown on the card).
+            defineField({
+              name: 'category',
+              title: 'Category',
+              type: 'string',
+              options: {list: ['Films', 'Recognition', 'Milestones', 'Press']},
+              initialValue: 'Press',
+            }),
+            defineField({name: 'publication', title: 'Publication', type: 'string', description: 'The outlet / source shown in the card footer.'}),
+            defineField({name: 'publishedAt', title: 'Published At', type: 'date'}),
+            // Card thumbnail. Required for press; videos may leave it empty to
+            // derive the YouTube still (i.ytimg.com/vi/<id>/maxresdefault.jpg).
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'imageWithAlt',
+              validation: (rule) =>
+                rule.custom((value, context) => {
+                  const kind = (context.parent as {kind?: string} | undefined)?.kind
+                  if (kind === 'video') return true
+                  return value ? true : 'Thumbnail is required for press entries'
+                }),
+            }),
+            defineField({
+              name: 'youtubeUrl',
+              title: 'YouTube URL',
+              type: 'url',
+              description: 'Video entries only — e.g. https://youtu.be/UibIqbVFNuE',
+              hidden: ({parent}) => parent?.kind !== 'video',
+              validation: (rule) =>
+                rule.custom((value, context) => {
+                  const kind = (context.parent as {kind?: string} | undefined)?.kind
+                  if (kind === 'video' && !value) return 'YouTube URL is required for video entries'
+                  return true
+                }),
+            }),
+            defineField({
+              name: 'duration',
+              title: 'Duration',
+              type: 'string',
+              description: 'Video entries only — e.g. 2:41 (shown as the corner chip).',
+              hidden: ({parent}) => parent?.kind !== 'video',
+            }),
+            // Press link (article URL). Videos ignore this and use the YouTube URL.
+            defineField({name: 'link', title: 'Link', type: 'link'}),
+            textStyleField('titleStyle', 'Title', 'Wins over the wall default for this entry.'),
+            textStyleField('metaStyle', 'Meta', 'Outlet · date · duration.'),
+          ],
+          preview: {
+            select: {title: 'title', subtitle: 'publication', kind: 'kind', media: 'image.image'},
+            prepare: ({title, subtitle, kind, media}) => ({
+              title,
+              subtitle: [kind === 'video' ? '▶ Film' : subtitle].filter(Boolean).join(' · '),
+              media,
+            }),
+          },
+        }),
+      ],
+    }),
+    // Text-style pickers (collapsed "Text styles" fieldset).
+    textStyleField('filterLabelStyle', 'Filter label'),
+    textStyleField('allLabelStyle', 'Filter pills', 'One style for every pill, incl. All.'),
+    textStyleField('countNounStyle', 'Item count', 'The “20 items” counter.'),
+    textStyleField('itemTitleStyle', 'Entry title', 'Default card-title style for every entry.'),
+    textStyleField('itemMetaStyle', 'Entry meta', 'Default outlet · date · duration style for every entry.'),
+  ],
+  preview: {
+    select: {items: 'items'},
+    prepare: ({items}) => ({
+      title: 'Media Wall',
+      subtitle: `${items?.length ?? 0} ${items?.length === 1 ? 'entry' : 'entries'}`,
+    }),
+  },
+})
+
 export const contactFormBlock = defineType({
   name: 'contactFormBlock',
   title: 'Contact Form',
@@ -1563,6 +1679,7 @@ export const pagePageBuilder = defineType({
     defineArrayMember({type: 'mapBlock'}),
     defineArrayMember({type: 'cardGridBlock'}),
     defineArrayMember({type: 'feedBlock'}),
+    defineArrayMember({type: 'mediaWallBlock'}),
     defineArrayMember({type: 'partnerDisciplinesBlock'}),
     defineArrayMember({type: 'credentialsBlock'}),
   ],
@@ -1611,6 +1728,7 @@ export const blockTypes = [
   featureGridBlock,
   cardGridBlock,
   feedBlock,
+  mediaWallBlock,
   contactFormBlock,
   mapBlock,
   projectHeroBlock,
