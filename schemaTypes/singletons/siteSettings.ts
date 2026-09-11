@@ -252,6 +252,38 @@ export default defineType({
         textStyleField('bodyStyle', 'Body'),
       ],
     }),
+    defineField({
+      name: 'leadForm',
+      title: 'Enquiry Form — Submission Messages',
+      type: 'object',
+      description:
+        'What a visitor is told while their enquiry is being sent to the CRM. Shared by every ' +
+        'enquiry form on the site (contact page, home, about, and each project page).',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({
+          name: 'sendingLabel',
+          title: 'Button — While Sending',
+          type: 'string',
+          description: 'Replaces the submit button label while the enquiry is in flight, e.g. "Sending…".',
+        }),
+        defineField({
+          name: 'successMessage',
+          title: 'Message — Sent',
+          type: 'string',
+          description: 'Shown under the form once the enquiry has reached the CRM.',
+        }),
+        defineField({
+          name: 'errorMessage',
+          title: 'Message — Could Not Send',
+          type: 'string',
+          description:
+            'Shown if the enquiry could not be delivered. Give another way to reach the team ' +
+            '(a phone number or email) — this is the one moment a visitor is trying to make ' +
+            'contact and the form has failed them.',
+        }),
+      ],
+    }),
   ],
   fieldsets: [
     {
