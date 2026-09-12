@@ -23,7 +23,9 @@ const PROJECT = {
 }
 export const DEAD_SLOTS: Record<string, Record<string, string[]>> = {
   homePage: {statsStripBlock: HEAD_ALL, feedBlock: ['cta']},
-  'page-about': {logoWallBlock: ['partners', 'nameStyle'], ctaBlock: ['actions', 'note']},
+  // page-about's closing section is its contactFormBlock (head + formCopy + leadOptions),
+  // which replaced the ctaBlock on 2026-09-12.
+  'page-about': {logoWallBlock: ['partners', 'nameStyle']},
   'page-careers': {
     proseBlock: ['head.heading', 'head.dek'],
     featureGridBlock: ['head.heading', 'head.dek', 'cta'],
