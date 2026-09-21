@@ -55,6 +55,15 @@ export default defineType({
                 name: 'reference',
                 title: 'Reference',
                 type: 'reference',
+                // Weak on purpose: an in-body link is a courtesy, not a
+                // dependency. As a strong reference it made 21 of the 31 blog
+                // posts undeletable — every post another post linked to was
+                // refused by the API ("Not able to delete Blogs", client QA
+                // Sr 42). The frontend renders a link whose target is gone as
+                // plain text. Links created before this flag carry no `_weak`
+                // on the stored value — scripts/weaken-internal-links.mjs
+                // backfills them.
+                weak: true,
                 to: [{type: 'blogPost'}, {type: 'project'}, {type: 'page'}],
               },
             ],
