@@ -32,17 +32,17 @@ export default defineType({
             name: 'link',
             title: 'Link',
             type: 'object',
+            // No "open in new tab" checkbox: the frontend applies one rule to
+            // every CMS link — an off-site URL (YouTube, a press article, a
+            // PDF on the asset CDN) opens in a new tab, anything on
+            // sasinfra.com stays in the tab. See isOffSiteHref() in the
+            // frontend's src/lib/routing.ts. (The former `blank` flag was
+            // never set on any stored link.)
             fields: [
               {
                 name: 'href',
                 title: 'URL',
                 type: 'url',
-              },
-              {
-                name: 'blank',
-                title: 'Open in new tab',
-                type: 'boolean',
-                initialValue: false,
               },
             ],
           },
