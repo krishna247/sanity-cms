@@ -8,6 +8,7 @@ import person from './documents/person'
 import partner from './documents/partner'
 import projectUpdate from './documents/projectUpdate'
 import category from './documents/category'
+import downloadFile from './documents/downloadFile'
 import siteSettings from './singletons/siteSettings'
 import seo from './objects/seo'
 import portableText from './objects/portableText'
@@ -32,6 +33,7 @@ export const schemaTypes = [
   person,
   partner,
   category,
+  downloadFile,
   // Legacy document kept readable while the greenfield model moves to person.
   // Singletons
   siteSettings,

@@ -51,6 +51,21 @@ export default defineType({
       type: 'imageWithAlt',
       group: 'content',
     }),
+    // Card image — its own asset, never borrowed from featuredImage (image
+    // integrity rule). Slots: /blog featured card 4:3, /blog grid cards 3:2,
+    // page-builder blog feed 4:3. Hotspot drives the 3:2 trim.
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail (cards)',
+      type: 'imageWithAlt',
+      group: 'content',
+      description:
+        'Shown on blog cards (the Blog page and any blog feed). Upload a 4:3 image, 1200 × 900 px ' +
+        '(minimum 800 × 600), JPG or WebP under 400 KB. Smaller cards trim it to 3:2, removing about ' +
+        '1/9 of the height from the top and from the bottom, so keep text and faces inside the ' +
+        'central 1200 × 800 band. Set the hotspot to move the trim. The Featured Image above stays ' +
+        'the full-width banner on the post page.',
+    }),
     defineField({
       name: 'body',
       title: 'Body',

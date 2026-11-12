@@ -134,11 +134,23 @@ export default defineType({
       validation: (rule) => rule.required().error('RERA number is required'),
     }),
     defineField({
-      name: 'brochure',
+      name: 'brochureFile',
       title: 'Brochure',
+      type: 'reference',
+      to: [{type: 'downloadFile'}],
+      group: 'content',
+      description:
+        'Pick (or create) a Downloadable file. The brochure link becomes https://files.sasinfra.com/<filename> and stays the same when the file is replaced on that document.',
+    }),
+    defineField({
+      name: 'brochure',
+      title: 'Brochure (legacy upload)',
       type: 'file',
       options: {accept: 'application/pdf'},
       group: 'content',
+      deprecated: {reason: 'Use "Brochure" (a Downloadable file) instead; it gives a files.sasinfra.com link.'},
+      readOnly: true,
+      hidden: ({value}) => value === undefined,
     }),
     defineField({name: 'seo', title: 'SEO', type: 'seo', group: 'structuredData'}),
     defineField({

@@ -4,6 +4,7 @@ import {
   PublishIcon,
   DocumentsIcon,
   DocumentTextIcon,
+  DownloadIcon,
   HomeIcon,
   MenuIcon,
   PinIcon,
@@ -191,6 +192,8 @@ export const structure: StructureResolver = (S) =>
             .items([
               S.documentTypeListItem('person').title('People'),
               S.documentTypeListItem('partner').title('Partners'),
+              // Files served at https://files.sasinfra.com/<filename> (brochures etc.).
+              S.documentTypeListItem('downloadFile').title('Downloadable files').icon(DownloadIcon),
             ]),
         ),
     ])

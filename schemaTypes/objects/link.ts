@@ -1,7 +1,7 @@
 import {LinkIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
-const TARGET_FIELDS = ['reference', 'href', 'file', 'email', 'phone'] as const
+const TARGET_FIELDS = ['reference', 'href', 'file', 'download', 'email', 'phone'] as const
 
 function validateLink(value: Record<string, unknown> | undefined) {
   // An absent or empty link is valid — `cta`/`link` fields are usually optional,
@@ -28,6 +28,7 @@ function validateLink(value: Record<string, unknown> | undefined) {
   if (kind === 'anchor' && !hasAnchor) return 'Anchor links need an anchor id.'
   if (kind === 'external' && !hasHref) return 'External links need a URL.'
   if (kind === 'file' && !hasFile) return 'File links need a file.'
+  if (kind === 'download' && !value.download) return 'Choose a downloadable file.'
   if (kind === 'email' && !hasEmail) return 'Email links need an email address.'
   if (kind === 'phone' && !hasPhone) return 'Phone links need a phone number.'
 
@@ -57,7 +58,8 @@ export default defineType({
           {title: 'Internal', value: 'internal'},
           {title: 'External', value: 'external'},
           {title: 'Anchor', value: 'anchor'},
-          {title: 'File', value: 'file'},
+          {title: 'Downloadable file (files.sasinfra.com)', value: 'download'},
+          {title: 'File (direct upload, Sanity CDN link)', value: 'file'},
           {title: 'Email', value: 'email'},
           {title: 'Phone', value: 'phone'},
         ],
@@ -101,6 +103,17 @@ export default defineType({
       title: 'File',
       type: 'file',
       hidden: ({parent}) => parent?.kind !== 'file',
+    }),
+    // QA Sr 45/46: brochures etc. live on a `downloadFile` doc and are served at
+    // https://files.sasinfra.com/<filename>; replacing the PDF there keeps every
+    // button's link stable. Preferred over the raw `file` kind.
+    defineField({
+      name: 'download',
+      title: 'Downloadable file',
+      type: 'reference',
+      to: [{type: 'downloadFile'}],
+      description: 'Links to https://files.sasinfra.com/<filename>. Manage the files under Library → Downloadable files.',
+      hidden: ({parent}) => parent?.kind !== 'download',
     }),
     defineField({
       name: 'email',
